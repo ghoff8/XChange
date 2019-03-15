@@ -25,7 +25,7 @@ SECRET_KEY = '81#_=k$^6r!xxo&9-_ukb443q4j#442+*m5=3rxe4p$f2zs8s7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['xchange-workspace-ghoffma3.c9users.io']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'xchange_workspace.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'XChange/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
