@@ -14,3 +14,6 @@ def login(request):
     
 def settings(request):
     return render(request, 'XChange/settings.html')
+    
+def bookmarks(request):
+    return render(request, 'XChange/bookmarks.html')
