@@ -6,8 +6,61 @@
 
 <body>
 <h1>Settings</h1>
-<!-- Nav Bar. -->
+    <br>
+    <ul>
+      <li id="homeNav"><a href="/home.html">Home</a></li>
+      <li id="portNav"><a href="#">My Portfolio</a></li>
+      <li id="srchNav"><a href="search.html">Search</a></li>
+      <li id="settNav"><a href="settings.html">Settings</a></li>
+    </ul>
+    <br>
 <!-- Display username -->
 
+<div class = "accountInfo">
+<h2> Account Information: </h2>
+<p> Change password: </p>
+<label for="userPass"> Password: </label>
+<input id="userPass" type="password"> <br>
+<label for="RetypePass"> Retype Password: </label>
+<input id="RetypePass" type="password">
+<br>
+<input type="submit" value="Submit">
+
+<p> Change E-mail: </p>
+<label for="userPass"> Email: </label>
+<input id="userEmail" type="Email">
+<br>
+<label for="retypeEmail">Retype Email: </label>
+<input id="Retype-Email" type="Email">
+<br>
+<input type="submit" value="Submit">
+</div>
+
+<div class = "notifications">
+<h2> Notifications: </h2>    
+<form>
+<p> Bookmark Notifications:
+  On  <input type="radio" name="Bookmark On" value="On" checked> 
+  Off <input type="radio" name="Bookmark Off" value="Off"> <br>
+</form> 
+</p>
+
+<form>
+<p> Price-Point Notifications:
+  On  <input type="radio" name="PricePoint On" value="On" checked> 
+  Off <input type="radio" name="PricePoint Off" value="Off"> <br>
+</p>    
+</form> 
+
+<form>
+<p> Perrferred Method of notifications:
+  Email  <input type="radio" name="Email" value="Email" checked> 
+  Browser <input type="radio" name="Browser" value="Browser"> <br>
+<br>
+<input type="submit" value="Submit">
+</p>
+</form> 
+    
+</div>
 </body>
 </html>
