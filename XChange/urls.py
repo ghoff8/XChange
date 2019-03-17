@@ -8,4 +8,6 @@ urlpatterns = [
     url(r'^settings', views.settings, name='settings'),
     url(r'^search', views.search, name='search'),
     url(r'^bookmarks', views.bookmarks, name='bookmarks'),
+    url(r'^home', views.home, name='home'),
+    url(r'^myPortfolio', views.myPortfolio, name='myPortfolio'),
     ]

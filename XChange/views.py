@@ -20,4 +20,10 @@ def search(request):
 
 def bookmarks(request):
     return render(request, 'XChange/bookmarks.html')
+    
+def home(request):
+    return render(request, 'XChange/home.html')
+    
+def myPortfolio(request):
+    return render(request, 'XChange/myPortfolio.html')    
 
