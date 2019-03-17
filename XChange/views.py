@@ -14,3 +14,6 @@ def login(request):
     
 def settings(request):
     return render(request, 'XChange/settings.html')
+    
+def search(request):
+    return render(request, 'XChange/search.html')    
