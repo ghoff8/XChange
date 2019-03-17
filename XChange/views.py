@@ -11,3 +11,6 @@ def index(request):
 
 def login(request):
     return render(request, 'XChange/login.html')
+    
+def settings(request):
+    return render(request, 'XChange/settings.html')
