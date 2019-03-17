@@ -17,3 +17,7 @@ def settings(request):
     
 def search(request):
     return render(request, 'XChange/search.html')    
+
+def bookmarks(request):
+    return render(request, 'XChange/bookmarks.html')
+
