@@ -2,53 +2,52 @@
 <html>
    <head>
        <title> Login </title>
+       <link rel="stylesheet" type="text/css" href="/static/XChange/login.css" />
+       <link rel="stylesheet" type="text/css" href="/static/XChange/common.css" />
    </head>
    <body>
-    <h1>Login</h1> 
-    
-    
-    <form>
-    <div id="login">        
-        <label for="user">Username</label>
-        <input type="text" placeholder="Enter Username" name="user" required>
-        <br>
-        <br>  
-        <label for="pass">Password</label>
-        <input type="password" placeholder="Enter Password" name="pass" required>
-        <br>
-        <button type="submit">Login</button>
-    </div>        
-    
-    
-    <br> 
-    
-    <h2> Sign-Up </h2>
-    <div id="signup">
-    
-        <label for="user">Username</label>
-        <input type="text" placeholder="Enter Username" name="user" required>
-        <br>
-        <br>
-        <label for="pass">Password</label>
-        <input type="password" placeholder="Enter Password" name="pass" required>
-        <br>
-        <br>
-        <label for="pass">Repeat Password</label>
-        <input type="rep-pass" placeholder="Re-Enter Password" name="pass" required>        
-        <br>
-        <br>
-        <label for="pass">Email</label>
-        <input type="email" placeholder="Enter Email" name="email" required>        
-        
-        <br>
-        <button type="submit">Submit</button>
-    </div> 
-    </form>
-       
-    
-    
-    
+    <h1 id="login-page-title"><span id="x">X</span><span id="c">C</span>hange</h1>
+    <br><br>
+    <div id="log_sign">
+        <div id="login">
+            <h2>Login</h2>
+            <form action="home.html">
+                <label for="user">Username</label>
+                <input type="text" placeholder="Enter Username" name="user" required>
+                <br>
+                <br>  
+                <label for="pass">Password</label>
+                <input type="password" placeholder="Enter Password" name="pass" required>
+                <br>
+                <button type="submit">Login</button>
+            </form>
+        </div>        
+        <div id="signup">
+            <h2> Sign-Up </h2>
+            <form action="home.html">
+                <label for="user">Username</label>
+                <input type="text" placeholder="Enter Username" name="user" required>
+                <br>
+                <br>
+                <label for="pass">Password</label>
+                <input type="password" placeholder="Enter Password" name="pass" required>
+                <br>
+                <br>
+                <label for="pass">Repeat Password</label>
+                <input type="password" placeholder="Re-Enter Password" name="pass" required>        
+                <br>
+                <br>
+                <label for="pass">Email</label>
+                <input type="email" placeholder="Enter Email" name="email" required>        
+                <br>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
    </body>
-   
+    <footer>
+        <hr>
+        <p>Team 5</p>
+    </footer>
 </html>
 
