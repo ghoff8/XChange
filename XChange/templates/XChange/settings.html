@@ -10,7 +10,7 @@
     <h1>Settings</h1>
       <br>
       <div class="navBarDiv">
-        <ul>
+        <ul class= "navBarList">
           <li id="homeNav"><a href="/home.html">Home</a></li>
           <li id="portNav"><a href="#">My Portfolio</a></li>
           <li id="srchNav"><a href="search.html">Search</a></li>
@@ -25,51 +25,52 @@
     <h2> Account Information: </h2>
     <p> Change password: </p>
     <label for="userPass"> Password: </label>
-    <input id="userPass" type="password"> <br>
+    <input class = "passCss" id="userPass" type="password"> <br>
     <label for="RetypePass"> Retype Password: </label>
-    <input id="RetypePass" type="password">
+    <input class = "passCss" id="RetypePass" type="password">
     <br>
-    <input type="submit" value="Submit">
+    <input class="submit1" type="submit" value="Submit">
     
     <p> Change E-mail: </p>
     <label for="userPass"> Email: </label>
-    <input id="userEmail" type="Email">
+    <input class="EmailCss" id="userEmail" type="Email">
     <br>
     <label for="retypeEmail">Retype Email: </label>
-    <input id="Retype-Email" type="Email">
+    <input class="EmailCss" id="Retype-Email" type="Email">
     <br>
-    <input type="submit" value="Submit">
+    <input class="submit1" type="submit" value="Submit">
     </div>
     
     <div class = "notifications">
     <h2> Notifications: </h2>    
     <form>
-    <p> Bookmark Notifications:
-      On  <input type="radio" name="Bookmark On" value="On" checked> 
-      Off <input type="radio" name="Bookmark Off" value="Off"> <br>
+    <p class ="bMark"> Bookmark Notifications: <br><br>
+      On: <input class="rButton" type="radio" name="Bookmark On" value="On" checked>
+      Off: <input class="rButton" type="radio" name="Bookmark Off" value="Off">
     </form> 
     </p>
     
     <form>
-    <p> Price-Point Notifications:
-      On  <input type="radio" name="PricePoint On" value="On" checked> 
-      Off <input type="radio" name="PricePoint Off" value="Off"> <br>
+    <p> Price-Point Notifications: <br><br>
+      On:  <input class="rButton" type="radio" name="PricePoint On" value="On" checked> 
+      Off: <input class="rButton" type="radio" name="PricePoint Off" value="Off">
     </p>    
     </form> 
     
     <form>
-    <p> Perrferred Method of notifications:
-      Email  <input type="radio" name="Email" value="Email" checked> 
-      Browser <input type="radio" name="Browser" value="Browser"> <br>
-    <br>
-    <input type="submit" value="Submit">
+    <p> Method of Notifications: <br><br>
+      Email:  <input class="rButton" type="radio" name="Email" value="Email"> 
+      Browser: <input class="rButton" type="radio" name="Browser" value="Browser" checked>
     </p>
+    <input class="submit1" type="submit" value="Submit">
     </form> 
         
     </div>
   </body>
+  
   <footer>
   <hr>
   <p>Team 5</p>
   </footer>
+  
 </html>
