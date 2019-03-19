@@ -1,0 +1,23 @@
+h1{
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+
+
+#accountInfo {
+    padding-left: 12%;
+    width: 300px;
+    float: left;
+}
+
+
+
+
+body {
+  background-color: #EEEEEE;
+}
