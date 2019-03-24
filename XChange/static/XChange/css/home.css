@@ -47,16 +47,81 @@ li a:hover {
   color: #31dbe3;
 }
 
-#bookTable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: teal;
-  color: white;
+
+h1 {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 25px;
 }
 
+#parentDiv {
+    width: 100%;
+}
 #bookmarkDiv {
     float: right;
+    width:45%;
+    border: 1px solid black;
+    /*margin: auto;*/
+    padding-bottom: 25px;
+    margin-right: 4%;
+}
+
+
+#todayDiv {
+    float: left;
+    width: 45%;
+    display: inline-table;
+    border: 1px solid black;
+    margin-left: 4.5%;
+}
+
+#currencyBar{
+    width: 15%;
+    /*display: table;*/
+    margin: auto;
+    
+}
+
+#currencyBar, button {
+  color: white;
+  /*padding: 8px;*/
+  font-weight: bold;
+  font-size: 16px;
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  
+  display: inline;
+  margin: auto;
+}
+
+#currencyBar{
+    width: 100%;
+    float: left;
+}
+
+.dynamic-bar{
+    /*background-color: teal;*/
+    color: teal;
+    width: 33%;
+    margin-top: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-decoration: none;
+    border:none;
+}
+
+.assetBar {
+    display: inline;
+    margin:auto;
+    list-style-type: none;
+    margin-top: 40px;
+}
+
+.assetBar{
+    
 }
 
 body {

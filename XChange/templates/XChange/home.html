@@ -23,17 +23,15 @@
         
         <div id="todayDiv">
             <h1>Today</h1>
-            <p>Current Net Income</p><br>
+            <p>Current Net Income</p>
             <p>Graph Here 📊</p>
         </div>
         
+        <div id="parentDiv">
         <div id="bookmarkDiv">
             <h1>Bookmarks</h1>
             <table id="bookTable">
-                <tr>
-                    <th>Company</th>
-                    <th>Date</th>
-                </tr>
+                
                 
                 <tr>
                     <td>Test Company</td>
@@ -47,23 +45,31 @@
             </table>
             
         </div>
-        
+
         <div id="currencyBar" class="dynamic-section">
           <button class="dynamic-bar" onclick="openAsset('Stocks')">Stocks</button>
           <button class="dynamic-bar" onclick="openAsset('Crypto')">Cryptocurrency</button>
           <button class="dynamic-bar" onclick="openAsset('Search')">Search</button>            
         </div>
+        </div>
         
+        <br>
         <div id="Stocks" class="assetBar">
-            <p>Stock Info Here</p>
+            <ul>
+                <li>Stock Info Here</li>
+            </ul>
         </div>
         
         <div id="Crypto" class="assetBar">
-            <p>Cryptocurrency Here</p>
+            <ul>
+                <li>Cryptocurrency Info Here</li>
+            </ul>
         </div>
         
         <div id="Search" class="assetBar">
-            <p>Search Results Here</p>
+            <ul>
+                <li>Search Info Here</li>
+            </ul>
         </div>
         
         
