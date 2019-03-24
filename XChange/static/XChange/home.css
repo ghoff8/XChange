@@ -47,6 +47,19 @@ li a:hover {
   color: #31dbe3;
 }
 
+#bookTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: teal;
+  color: white;
+}
+
+#bookmarkDiv {
+    float: right;
+}
+
 body {
     background-color: #EEEEEE;
 }
+
