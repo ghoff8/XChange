@@ -10,6 +10,15 @@
     background-color: #555555;
 }
 
+#bookmark-title {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
 li {
     float: left;
 }
@@ -28,4 +37,8 @@ li a {
 li a:hover {
   background-color: #444444;
   color: #31dbe3;
+}
+
+body {
+  background-color: #EEEEEE;
 }

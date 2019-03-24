@@ -20,6 +20,66 @@
               <li class="settNav"><a href="settings.html">Settings</a></li>
             </ul>
         </div>
+        
+        <div id="todayDiv">
+            <h1>Today</h1>
+            <p>Current Net Income</p><br>
+            <p>Graph Here 📊</p>
+        </div>
+        
+        <div id="bookmarkDiv">
+            <h1>Bookmarks</h1>
+            <table id="bookTable">
+                <tr>
+                    <th>Company</th>
+                    <th>Date</th>
+                </tr>
+                
+                <tr>
+                    <td>Test Company</td>
+                    <td>Test Date</td>
+                </tr>
+                
+                <tr>
+                    <td>Test Company 2</td>
+                    <td>Test Date 2</td>
+                </tr>                
+            </table>
+            
+        </div>
+        
+        <div id="currencyBar" class="dynamic-section">
+          <button class="dynamic-bar" onclick="openAsset('Stocks')">Stocks</button>
+          <button class="dynamic-bar" onclick="openAsset('Crypto')">Cryptocurrency</button>
+          <button class="dynamic-bar" onclick="openAsset('Search')">Search</button>            
+        </div>
+        
+        <div id="Stocks" class="assetBar">
+            <p>Stock Info Here</p>
+        </div>
+        
+        <div id="Crypto" class="assetBar">
+            <p>Cryptocurrency Here</p>
+        </div>
+        
+        <div id="Search" class="assetBar">
+            <p>Search Results Here</p>
+        </div>
+        
+        
+        <script>
+        function openAsset(assetName) {
+          var i;
+          var x = document.getElementsByClassName("asset");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+          }
+          document.getElementById(assetName).style.display = "block";  
+        }
+        </script>        
+        
+        
+        
     </body>
     <footer>
     <hr>
