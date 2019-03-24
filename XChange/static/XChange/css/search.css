@@ -42,25 +42,31 @@ button {
   padding: 8px;
 }
 
-/* #s-table tr:nth-child(even){
-    background-color: teal;
-    
+#s-table tr:nth-child(even){
+    background-color: #dddddd;
 }
-*/
+
+#searchBarButton {
+  width: 10%;
+}
 
 #s-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   text-align: left;
   background-color: teal;
   color: white;
+  border-radius: 5px;
+  border: none;
 }
 
 #s-table tr:hover {
-    background-color: #a09c9c;
-    
+    background-color: #AAAAAA;
 }
 
+input[type=text] {
+  width: 30%;
+}
 #s {
     width: 90%;
     margin:auto;

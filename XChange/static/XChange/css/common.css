@@ -1,4 +1,55 @@
+body {
+  background-color: #EEEEEE;
+  position: relative;
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+.navBarDiv {
+    margin: auto;
+}
+
+.navBarList {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    background-color: #555555;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    text-decoration: none;
+    color:black;
+    color: #DDDDDD;
+    padding: 15px 30px 15px 30px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Arial";
+    font-size: 20px;
+}
+
+li a:hover {
+  background-color: #444444;
+  color: #31dbe3;
+}
+
 footer {
     text-align: center;
-    /*Need to force footer to bot of each page*/
+    position: absolute;
+    right: 0;
+    bottom: 0;    /*try 10px later*/
+    left: 0;
+}
+
+footer {
+    bottom: 0;
+    height: 2em;
+    left: 0;
+    width: 100%;
 }
