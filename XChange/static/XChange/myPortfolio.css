@@ -29,3 +29,22 @@ li a:hover {
   background-color: #444444;
   color: #31dbe3;
 }
+
+div:not(#navBarDiv) {
+    width: 50%;
+    
+    
+}
+
+#graphDiv{
+    display:none;
+}
+
+#assetsUl {
+    list-style: none;
+    display:inline-block;
+    border:1px solid #000;
+    padding:20px;
+    margin-top:50%;
+}
+
