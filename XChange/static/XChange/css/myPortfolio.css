@@ -6,11 +6,61 @@ div:not(#navBarDiv) {
     display:none;
 }
 
+#pAssets{
+    border:1px solid #000;
+    padding:10%; 
+    font-size: 25px;
+    width:100px;
+}
+
+#pCurrentAsset{
+    display: inline-block;
+    border:1px solid #000;
+    padding:10%; 
+    width: 100px;
+    padding-right: 100%;
+    font-size: 25px;
+    white-space: nowrap;
+}
+
+#Wrap{
+    display: flex;
+}
+
 #assetsUl {
     list-style: none;
     display:inline-block;
     border:1px solid #000;
-    padding:20px;
-    margin-top:50%;
+    padding:9%;
+    height:150px;
+    margin-top:5%;
+    font-size: 15px;
 }
 
+#myBookmarksu1{
+    list-style: none;
+    display:inline-block;
+    border:1px solid #000;
+    padding:20px;
+}
+
+#holder{
+    width: 100%;
+}
+
+#assets{
+    width: 30%;
+}
+
+#graphDiv {
+    width:400px;
+    height: 400px;
+    overflow: hidden;
+    /*border:40px solid #000;*/
+    /*padding:10%;*/
+    /*margin-top:50%;*/
+}
+
+#myBookmarks{
+    width:20%;
+}
