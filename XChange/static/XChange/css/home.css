@@ -109,6 +109,7 @@ h1 {
     float: left;
 }
 
+
 .dynamic-bar{
     background-color: #EEEEEE;
     color: teal;
@@ -136,6 +137,7 @@ h1 {
 
 .currencyTable {
     width: 100%;
+    table-layout: fixed;
     /*margin: auto;*/
 }
 
