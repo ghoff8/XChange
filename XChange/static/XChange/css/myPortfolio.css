@@ -3,7 +3,7 @@ div:not(#navBarDiv) {
 }
 
 #graphDiv{
-    display:none;
+    height: 10px;
 }
 
 #pAssets{
@@ -11,6 +11,7 @@ div:not(#navBarDiv) {
     padding:10%; 
     font-size: 25px;
     width:100px;
+    float: left;
 }
 
 #pCurrentAsset{
@@ -21,6 +22,7 @@ div:not(#navBarDiv) {
     padding-right: 100%;
     font-size: 25px;
     white-space: nowrap;
+    float:left;
 }
 
 #Wrap{
@@ -35,6 +37,7 @@ div:not(#navBarDiv) {
     height:150px;
     margin-top:5%;
     font-size: 15px;
+    float: left;
 }
 
 #myBookmarksu1{
@@ -42,6 +45,8 @@ div:not(#navBarDiv) {
     display:inline-block;
     border:1px solid #000;
     padding:20px;
+    float: right;
+   
 }
 
 #holder{
@@ -49,18 +54,40 @@ div:not(#navBarDiv) {
 }
 
 #assets{
-    width: 30%;
+    width: 20%;
 }
 
 #graphDiv {
-    width:400px;
-    height: 400px;
+    width:50%;
+    /*height: 200px;*/
     overflow: hidden;
     /*border:40px solid #000;*/
     /*padding:10%;*/
     /*margin-top:50%;*/
+    margin:auto;
+    
 }
 
 #myBookmarks{
     width:20%;
+    /*float: right;*/
+    /*margin-left: 400px;*/
+}
+
+#buySell{
+    width: 50%;
+    float:left;
+    margin:auto;
+}
+
+.options{
+    /*background-color: teal;*/
+    color: teal;
+    width: 66%;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    border:none;
+    
 }
