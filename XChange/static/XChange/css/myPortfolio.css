@@ -1,37 +1,30 @@
-/*div:not(#navBarDiv) {*/
-/*    width: 50%;*/
-/*}*/
+#divAsset {
+    width: 19.5%;
+}
 
-/*#graphDiv{*/
-/*    height: 10px;*/
-/*}*/
+#divCurrentAsset {
+    width: 60%;
+}
 
-#divAssets{
-    border:1px solid #000;
-    /*padding:10%; */
-    /*font-size: 25px;*/
-    width: 30%;
+#divBookAsset {
+    width: 19.5%;
+}
+
+#divAsset, #divCurrentAsset, #divBookAsset {
+    border: 1px solid #000;
+    margin-top: 1%;
     float: left;
+    text-align: center;
 }
 
-#divCurrentAsset{
-    /*display: inline-block;*/
-    border:1px solid #000;
-    /*padding:10%; */
-    width: 50%;
-    /*padding-right: 100%;*/
-    /*font-size: 25px;*/
-    /*white-space: nowrap;*/
-    float: right;
-}
-
-#divAssets p, #divCurrentAsset p {
+#divAsset h2, #divCurrentAsset h2, #divBookAsset h2 {
     font-size: 25px;
 }
 
 #Wrap{
     /*display: flex;*/
-    width: 100%;
+    width: 90%;
+    margin: auto;
 }
 
 #assetsUl {
