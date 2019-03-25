@@ -110,7 +110,7 @@ h1 {
 }
 
 .dynamic-bar{
-    /*background-color: teal;*/
+    background-color: #EEEEEE;
     color: teal;
     width: 33%;
     margin-top: 15px;
@@ -118,19 +118,40 @@ h1 {
     padding-bottom: 30px;
     text-decoration: none;
     border:none;
+    font-size: 30px;
+}
+
+.dynamic-bar:focus {
+    outline: none;
+    /*background-color: #DDDDDD;*/
+    text-shadow: 5px 5px 5px #AAAAAA;
+    transition: text-shadow .3s;
 }
 
 .assetDiv {
-    width: 95%;
+    width: 90%;
     margin:auto;
     /*list-style-type: none;*/
 }
 
-.assetDiv li {
-    display: block;
-    float: left;
-    clear: left;
+.currencyTable {
+    width: 100%;
+    /*margin: auto;*/
 }
+
+.currencyTable td {
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.currencyTable tr:nth-child(even){
+    background-color: #dddddd;
+}
+
+.currencyTable tr:hover {
+    background-color: #AAAAAA;
+}
+
 
 body {
     background-color: #EEEEEE;
