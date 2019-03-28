@@ -25,7 +25,9 @@ SECRET_KEY = '81#_=k$^6r!xxo&9-_ukb443q4j#442+*m5=3rxe4p$f2zs8s7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['xchange-workspace-ghoffma3.c9users.io', 'fac8c70386894602883d2fedb9d94fa4.vfs.cloud9.us-east-2.amazonaws.com']
+
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,7 +59,7 @@ ROOT_URLCONF = 'xchange_workspace.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'XChange/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,4 +122,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'XChange/static')
+
+STATIC_URL = '/static/XChange/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "XChange/static/XChange"),
+]
+
+LOGIN_REDIRECT_URL = 'home'

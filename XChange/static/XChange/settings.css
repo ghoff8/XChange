@@ -1,0 +1,61 @@
+h1{
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+.accountInfo {
+    padding-left: 20%;
+    width: 300px;
+    float: left;
+}
+
+.notifications {
+    padding-right: 15%;
+    width: 300px;
+    float: right;
+}
+
+.submit1 {
+  margin-top: 10px;
+  background-color: teal;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+}
+.passCss {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 90%;
+    border: 1px solid #AAAAAA;
+    box-sizing: border-box;
+}
+
+.EmailCss{
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 90%;
+    border: 1px solid #AAAAAA;
+    box-sizing: border-box;
+}
+
+.rButton {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+body {
+  background-color: #EEEEEE;
+}
