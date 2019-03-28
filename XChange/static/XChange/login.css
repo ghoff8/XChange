@@ -41,6 +41,11 @@ input:focus {
     background-color: lightblue;    
 }
 
+h1 {
+    color: #cc0000;
+    font-family: 'Arial';
+}
+
 h2 {
     color: #444444;
     font-family: 'Arial';

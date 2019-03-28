@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -128,3 +129,5 @@ STATIC_URL = '/static/XChange/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "XChange/static/XChange"),
 ]
+
+LOGIN_REDIRECT_URL = 'home'
