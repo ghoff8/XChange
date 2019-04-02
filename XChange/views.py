@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings as djSettings
-from django.contrib.auth import login as djLogin, authenticate
+from django.contrib.auth import login as djLogin, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -61,6 +61,11 @@ def bookmarks(request):
 def home(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Logout'):
+            logout(request)
+            return render(request, 'XChange/index.html')
     return render(request, 'XChange/home.html')
     
 def myPortfolio(request):
