@@ -1,0 +1,104 @@
+#myPortfolio-title {
+  color: teal;
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+#Wrap{
+    width: 100%;
+    margin: auto;
+}
+
+#divAsset {
+    width: 22.5%;
+}
+
+#divCurrentAsset {
+    width: 60%;
+}
+
+#divBookAsset {
+    width: 16.5%;
+}
+
+#assets{
+    width: 22.5%;
+    height: 40vh;
+}
+
+#graphDiv {
+    width:60%;
+    height: 40vh;
+}
+
+#graphDiv p {
+    font-size: 20px;
+    font-family: "Verdana";
+}
+
+#todayGraph {
+    width: 70%;
+    height: auto;
+}
+
+#myBookmarks{
+    width:16.5%;
+    height: 40vh;
+}
+
+#divAsset, #divCurrentAsset, #divBookAsset, #assets, #graphDiv, #myBookmarks{
+    border: 1px solid #000;
+    float: left;
+    text-align: center;
+}
+
+#divAsset, #divCurrentAsset, #divBookAsset {
+    margin-top: 2%;
+    background-color: #555
+}
+
+#divAsset h2, #divCurrentAsset h2, #divBookAsset h2 {
+    color: #eee;
+    font-family: "Arial";
+    font-size: 25px;
+}
+
+#assetsUl, #myBookmarksUl {
+    list-style: none;
+    /*display:inline-block;*/
+    float: left;
+    font-size: 20px;
+    /*margin: 20px;*/
+}
+
+#assetsUl li, #myBookmarksUl li {
+    float: left;
+    clear: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#myBookmarksUl{
+    list-style: none;
+    display:inline-block;
+}
+
+#buySell{
+    width: 40%;
+    margin:auto;
+}
+
+.options{
+    color: white;
+    background-color: teal;
+    width: 49%;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    border:none;
+    font-size: 25px;
+    
+}

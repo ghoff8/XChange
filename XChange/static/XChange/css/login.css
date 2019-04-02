@@ -1,0 +1,75 @@
+#login-page-title {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+#x {
+  color: #31dbe3;
+  font-size: 60px;
+}
+
+#c {
+  font-size: 60px;
+}
+
+#login {
+    padding-left: 12%;
+    width: 300px;
+    float: left;
+}
+
+#signup {
+    width: 300px;
+    float: right; 
+    padding-right: 12%;
+}
+
+input {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 90%;
+    border: 1px solid #AAAAAA;
+    box-sizing: border-box;
+}
+
+input:focus {
+    background-color: lightblue;    
+}
+
+h1 {
+    color: #cc0000;
+    font-family: 'Arial';
+}
+
+h2 {
+    color: #444444;
+    font-family: 'Arial';
+}
+
+button {
+  margin-top: 10px;
+  background-color: teal;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+}
+
+#log_sign {
+    width: 70%;
+    overflow: hidden;
+    margin: auto;
+}
+
+body {
+  background-color: #EEEEEE;
+}

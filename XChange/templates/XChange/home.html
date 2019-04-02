@@ -3,13 +3,13 @@
 <html>
     <head>
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="/static/XChange/home.css" />
-        <link rel="stylesheet" type="text/css" href="/static/XChange/common.css" />
+        <link rel="stylesheet" type="text/css" href="/static/XChange/css/home.css" />
+        <link rel="stylesheet" type="text/css" href="/static/XChange/css/common.css" />
+        <script src="/static/XChange/js/home.js"></script>
     </head>  <!--Might rename to XChange or something similar-->
     <body>
         <h1 id="home-title">Home</h1>
-        <img src="/static/XChange/images/homescreenlogo.png" alt="XChange Logo">
-        <br>
+        <img id="homeLogo" src="/static/XChange/images/homescreenlogo.png" alt="XChange Logo">
         <br>
         <div class="navBarDiv">
             <ul class="navBarList">
@@ -20,12 +20,156 @@
               <li class="settNav"><a href="settings.html">Settings</a></li>
             </ul>
         </div>
-        <!--<form action="index" method = "GET">-->
-          <input type="submit" value="Logout" />
-        <!--</form>-->
+        
+        <input type="submit" value="Logout" />
+        <div id="parentDiv">
+            <div id="todayDiv">
+                <h1>Today</h1>
+                <p>Your net income from the past 24 hrs is: </p>
+                <img id="todayGraph" src="/static/XChange/images/todayGraph.png" alt="Past 24hr net graph">
+            </div>
+            
+            <!--<div id="parentDiv">-->
+            <div id="bookmarkDiv">
+                <h1>Bookmarks</h1>
+                <table id="bookTable">
+                    
+                    
+                    <tr>
+                        <td>Test Company</td>
+                        <td>Test Date</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Test Company 2</td>
+                        <td>Test Date 2</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Test Company 3</td>
+                        <td>Test Date 3</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Test Company 4</td>
+                        <td>Test Date 4</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Test Company 5</td>
+                        <td>Test Date 5</td>
+                    </tr>
+                </table>
+                
+            </div>
+        <!--</div>-->
+        </div>
+
+        <div id="currencyBar" class="dynamic-section">
+          <button class="dynamic-bar" onclick="openAsset('Stocks')">Stocks</button>
+          <button class="dynamic-bar" onclick="openAsset('Crypto')">Cryptocurrency</button>
+          <button class="dynamic-bar" onclick="openAsset('Search')">Search</button>            
+        </div>
+        <!--</div>-->
+        
+        <br>
+        <div id="Stocks" class="assetDiv">
+            <!--replace with table with no table borders
+            Company name, Price per stock, %up or %down past day-->
+            <table class="currencyTable">
+                <tr>
+                    <td>Stock Company 1</td>
+                    <td>Price of Stock 1</td>
+                    <td>% up or down 1</td>
+                </tr>
+                <tr>
+                    <td>Stock Company 2</td>
+                    <td>Price of Stock 2</td>
+                    <td>% up or down 2</td>
+                </tr>
+                <tr>
+                    <td>Stock Company 3</td>
+                    <td>Price of Stock 3</td>
+                    <td>% up or down 3</td>
+                </tr>
+                <tr>
+                    <td>Stock Company 4</td>
+                    <td>Price of Stock 4</td>
+                    <td>% up or down 4</td>
+                </tr>
+                <tr>
+                    <td>Stock Company 5</td>
+                    <td>Price of Stock 5</td>
+                    <td>% up or down 5</td>
+                </tr>
+                <tr>
+                    <td>Stock Company 6</td>
+                    <td>Price of Stock 6</td>
+                    <td>% up or down 6</td>
+                </tr>
+                <tr>
+                    <td>Stock Company 7</td>
+                    <td>Price of Stock 7</td>
+                    <td>% up or down 7</td>
+                </tr>
+                <tr>
+                    <td>Stock Company 8</td>
+                    <td>Price of Stock 8</td>
+                    <td>% up or down 8</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="Crypto" class="assetDiv" style="display:none">
+            <table class="currencyTable">
+                <tr>
+                    <td>Cryptocurrency Company 1</td>
+                    <td>Price of Cryptocurrency 1</td>
+                    <td>% up or down 1</td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency Company 2</td>
+                    <td>Price of Cryptocurrency 2</td>
+                    <td>% up or down 2</td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency Company 3</td>
+                    <td>Price of Cryptocurrency 3</td>
+                    <td>% up or down 3</td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency Company 4</td>
+                    <td>Price of Cryptocurrency 4</td>
+                    <td>% up or down 4</td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency Company \5</td>
+                    <td>Price of Cryptocurrency 5</td>
+                    <td>% up or down 5</td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency Company 6</td>
+                    <td>Price of Cryptocurrency 6</td>
+                    <td>% up or down 6</td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency Company 7</td>
+                    <td>Price of Cryptocurrency 7</td>
+                    <td>% up or down 7</td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency Company 8</td>
+                    <td>Price of Cryptocurrency 8</td>
+                    <td>% up or down 8</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="Search" class="assetDiv" style="display:none">
+            <ul>
+                <li>Search Info Here</li>
+            </ul>
+        </div>
     </body>
-    <footer>
-    <hr>
-    <p>Team 5</p>
-  </footer>
+
 </html>

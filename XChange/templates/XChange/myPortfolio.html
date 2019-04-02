@@ -2,13 +2,14 @@
 <html>
   <head>
     <title>My Portfolio</title>
-    <link rel="stylesheet" type="text/css" href="/static/XChange/myPortfolio.css" />
-    <link rel="stylesheet" type="text/css" href="/static/XChange/common.css" />
+    <link rel="stylesheet" type="text/css" href="/static/XChange/css/myPortfolio.css" />
+    <link rel="stylesheet" type="text/css" href="/static/XChange/css/common.css" />
+    <script src="/static/XChange/js/myPortfolio.js"></script>
+    <link rel="icon" href="/static/XChange/images/tab_favicon.png">
   </head
   <body>
-    <h1 id="portfolio-title">My Portfolio</h1>
-    <br>
-    <div class="navBarDiv">
+    <h1 id="myPortfolio-title">My Portfolio</h1>
+    <div class="navBarDiv" id ="navBarDiv">
       <ul class="navBarList">
         <li class="homeNav"><a href="/home.html">Home</a></li>
         <li class="portNav"><a href="#">My Portfolio</a></li>
@@ -17,6 +18,48 @@
         <li class="settNav"><a href="settings.html">Settings</a></li>
       </ul>
     </div>
+    
+    <div id="Wrap">
+      
+      <div id="divAsset">
+        <h2>Assets</h2>
+      </div>
+      <div id="divCurrentAsset">
+        <h2>Name of currently selected asset:</h2>
+      </div>
+      <div id="divBookAsset">
+        <h2>Bookmarks</h2>
+      </div>
+         
+      <div id="assets">
+        <ul id="assetsUl" >
+          <li> Apple </li>
+          <li> Google </li>
+          <li> Micorsoft </li>
+          <li> Ford Motor Co </li>
+          <li> Nike Inc </li>
+          <li> SVB Financial Group </li>
+          <li> Regions Financial Corp </li>
+        </ul>
+      </div>
+      <div id="graphDiv">
+        <p>Company Name</p>
+        <img id="appleGraph" src="/static/XChange/images/todayGraph.png" alt="Apple past month graph">
+      </div>
+      <div id="myBookmarks">
+        <ul id="myBookmarksUl">
+          <li> Apple </li> <br>
+          <li> Google </li> <br>
+          <li> Micorsoft </li> <br>
+        </ul>
+      </div>
+    </div>
+    
+    <div id="buySell">
+        <button class="options">Buy</button>
+        <button class="options">Sell</button>
+    </div>
+    
     <br>
   </body>
 </html>

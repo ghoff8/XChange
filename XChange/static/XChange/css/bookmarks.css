@@ -1,0 +1,58 @@
+#bookmark-title {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+  
+body {
+  background-color: #EEEEEE;
+}
+
+#tableBookmark td:nth-child(1), td:nth-child(2), td:nth-child(3){
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#tableBookmark th:nth-child(1), th:nth-child(2), th:nth-child(3){
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/*#tableBookmark tr:nth-child(even){*/
+/*  background-color: #dddddd;*/
+/*}*/
+
+#tableBookmark th:nth-child(1), th:nth-child(2), th:nth-child(3) {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: left;
+  background-color: teal;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+#tableBookmark td:nth-child(1):hover {
+  background-color: #AAAAAA;
+}
+#tableBookmark td:nth-child(2):hover {
+  background-color: #AAAAAA;
+}
+#tableBookmark td:nth-child(3):hover {
+  background-color: #AAAAAA;
+}
+
+
+input[type=text] {
+  width: 30%;
+}
+
+
+table {
+    width: 100%;
+    margin:auto;
+}

@@ -2,75 +2,69 @@
 <html>
   <head>
     <title>Settings</title>
-    <link rel="stylesheet" type="text/css" href="/static/XChange/settings.css" />
-    <link rel="stylesheet" type="text/css" href="/static/XChange/common.css" />
+    <link rel="stylesheet" type="text/css" href="/static/XChange/css/settings.css" />
+    <link rel="stylesheet" type="text/css" href="/static/XChange/css/common.css" />
+    <script src="/static/XChange/js/settings.js"></script>
+    <link rel="icon" href="/static/XChange/images/tab_favicon.png">
   </head>
   
   <body>
-    <h1>Settings</h1>
-      <br>
+    <h1 id="settings-title">Settings</h1>
       <div class="navBarDiv">
-        <ul class= "navBarList">
+        <ul class="navBarList">
           <li id="homeNav"><a href="/home.html">Home</a></li>
-          <li id="portNav"><a href="#">My Portfolio</a></li>
+          <li id="portNav"><a href="myPortfolio.html">My Portfolio</a></li>
           <li id="srchNav"><a href="search.html">Search</a></li>
           <li class="bmarkNav"><a href="bookmarks">Bookmarks</a></li>
-          <li id="settNav"><a href="settings.html">Settings</a></li>
+          <li id="settNav"><a href="#">Settings</a></li>
         </ul>
       </div>
       <br>
   <!-- Display username -->
 
     <div class = "accountInfo">
-    <h2> Account Information: </h2>
-    <p> Change password: </p>
-    <label for="userPass"> Password: </label>
-    <input class = "passCss" id="userPass" type="password"> <br>
-    <label for="RetypePass"> Retype Password: </label>
-    <input class = "passCss" id="RetypePass" type="password">
-    <br>
-    <input class="submit1" type="submit" value="Submit">
-    
-    <p> Change E-mail: </p>
-    <label for="userPass"> Email: </label>
-    <input class="EmailCss" id="userEmail" type="Email">
-    <br>
-    <label for="retypeEmail">Retype Email: </label>
-    <input class="EmailCss" id="Retype-Email" type="Email">
-    <br>
-    <input class="submit1" type="submit" value="Submit">
+      <h2> Account Information: </h2>
+      <p> Change password: </p>
+      <label for="userPass"> Password: </label>
+      <input class = "passCss" id="userPass" type="password"> <br>
+      <label for="RetypePass"> Retype Password: </label>
+      <input class = "passCss" id="RetypePass" type="password">
+      <br>
+      <input class="submit1" type="submit" value="Submit">
+      
+      <p> Change E-mail: </p>
+      <label for="userPass"> Email: </label>
+      <input class="EmailCss" id="userEmail" type="Email">
+      <br>
+      <label for="retypeEmail">Retype Email: </label>
+      <input class="EmailCss" id="Retype-Email" type="Email">
+      <br>
+      <input class="submit1" type="submit" value="Submit">
     </div>
     
     <div class = "notifications">
-    <h2> Notifications: </h2>    
-    <form>
-    <p class ="bMark"> Bookmark Notifications: <br><br>
-      On: <input class="rButton" type="radio" name="Bookmark On" value="On" checked>
-      Off: <input class="rButton" type="radio" name="Bookmark Off" value="Off">
-    </form> 
-    </p>
-    
-    <form>
-    <p> Price-Point Notifications: <br><br>
-      On:  <input class="rButton" type="radio" name="PricePoint On" value="On" checked> 
-      Off: <input class="rButton" type="radio" name="PricePoint Off" value="Off">
-    </p>    
-    </form> 
-    
-    <form>
-    <p> Method of Notifications: <br><br>
-      Email:  <input class="rButton" type="radio" name="Email" value="Email"> 
-      Browser: <input class="rButton" type="radio" name="Browser" value="Browser" checked>
-    </p>
-    <input class="submit1" type="submit" value="Submit">
-    </form> 
-        
+      <h2> Notifications: </h2>    
+      <form>
+      <p class ="bMark"> Bookmark Notifications: <br><br>
+        On: <input class="rButton" type="radio" name="Bookmark On" value="On" checked>
+        Off: <input class="rButton" type="radio" name="Bookmark Off" value="Off">
+      </form> 
+      </p>
+      
+      <form>
+      <p> Price-Point Notifications: <br><br>
+        On:  <input class="rButton" type="radio" name="PricePoint On" value="On" checked> 
+        Off: <input class="rButton" type="radio" name="PricePoint Off" value="Off">
+      </p>    
+      </form> 
+      
+      <form>
+      <p> Method of Notifications: <br><br>
+        Email:  <input class="rButton" type="radio" name="Email" value="Email"> 
+        Browser: <input class="rButton" type="radio" name="Browser" value="Browser" checked>
+      </p>
+      <input class="submit1" type="submit" value="Submit">
+      </form> 
     </div>
   </body>
-  
-  <footer>
-  <hr>
-  <p>Team 5</p>
-  </footer>
-  
 </html>
