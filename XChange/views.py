@@ -3,8 +3,10 @@ from __future__ import unicode_literals
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.conf import settings as djSettings
 from django.contrib.auth import login as djLogin, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import SignUpForm, LoginForm
@@ -42,17 +44,27 @@ def login(request):
     return render(request, 'XChange/login.html', {'login_form': login_form, 'reg_form': reg_form})
     
 def settings(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     return render(request, 'XChange/settings.html')
     
 def search(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     return render(request, 'XChange/search.html')    
 
 def bookmarks(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     return render(request, 'XChange/bookmarks.html')
     
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     return render(request, 'XChange/home.html')
     
 def myPortfolio(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     return render(request, 'XChange/myPortfolio.html')    
 
