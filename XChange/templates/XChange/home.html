@@ -79,14 +79,17 @@
             <!--replace with table with no table borders
             Company name, Price per stock, %up or %down past day-->
             <table class="currencyTable">
+                <col class="nameCol">
+                <col>
+                <col>
                 <tr>
-                    <th>Stock Company</th>
+                    <th class="Not">Stock Company</th>
                     <th>Last Price</th>
                     <th>Growth Percentage</th>
                 </tr>
                 {% for x in stockMovers %}
                 <tr>
-                    <td> {{ x.companyName }} ({{x.symbol}}) </td>
+                    <td class="Not"> {{ x.companyName }} ({{x.symbol}}) </td>
                     <td> ${{ x.latestPrice }}</td>
                     <td> {{ x.changePercent }}%</td>
                 </tr>
@@ -96,14 +99,17 @@
         
         <div id="Crypto" class="assetDiv" style="display:none">
             <table class="currencyTable">
+                <col class="nameCol">
+                <col>
+                <col>
                 <tr>
-                    <th>Cryptocurrency</th>
+                    <th class="Not">Cryptocurrency</th>
                     <th>Last Price</th>
                     <th>Growth Percentage</th>
                 </tr>
                 {% for x in cryptoTop %}
                 <tr>
-                    <td> {{ x.companyName }} </td>
+                    <td class="Not"> {{ x.companyName }} </td>
                     <td> ${{ x.latestPrice }}</td>
                     <td> {{ x.changePercent }}%</td>
                 </tr>

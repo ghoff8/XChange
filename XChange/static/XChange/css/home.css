@@ -110,6 +110,7 @@ h1 {
 #currencyBar{
     width: 100%;
     float: left;
+    /*text-align: center;*/
 }
 
 
@@ -141,12 +142,32 @@ h1 {
 .currencyTable {
     width: 100%;
     table-layout: fixed;
-    /*margin: auto;*/
+    margin: auto;
 }
 
-.currencyTable td {
+
+.currencyTable td, th {
     border: 1px solid #ddd;
     padding: 15px;
+    font-size: 17px;
+    font-family: Arial;
+    text-align: left;
+}
+
+.currencyTable td:not(.Not), th:not(.Not) {
+    text-align: right;    
+}
+
+.currencyTable th {
+    background-color: #AAAAAA;    
+}
+
+.nameCol {
+    width: 51%;
+}
+
+.textLeftCol {
+    text-align: left;
 }
 
 .currencyTable tr:nth-child(even){
