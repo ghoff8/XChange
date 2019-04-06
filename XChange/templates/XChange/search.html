@@ -30,7 +30,9 @@
                     <button id="searchBarButton" type="submit" value="Search" name="submit"> Search </button>
                 </form>
             </div>
-        
+            {% if error %}
+                <h1> {{error}} </h1>
+            {% endif %}
             <div>
                 <table id="s-table">
                     <!--<table style="width: 50%">-->
@@ -43,8 +45,8 @@
                     {% if currentSearch %}
                     <tr>
                         <td>{{ symbol }}</td>
-                        <td>{{ currentPrice }}</td>
-                        <td>{{ currentGrowth }}</td>
+                        <td>${{ currentPrice }}</td>
+                        <td>{{change}} ({{ currentGrowth }}%)</td>
                     </tr>
                     {% endif %}
                 </table>

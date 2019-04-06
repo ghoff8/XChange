@@ -69,8 +69,12 @@ def search(request):
                 symbol = jsonData['companyName']
                 currentPrice = jsonData['latestPrice']
                 currentGrowth = jsonData['changePercent']
+                currentChange = jsonData['change']
+                return render(request, 'XChange/search.html', {'currentSearch': currentSearch, 'currentPrice': currentPrice, 'symbol': symbol, 'currentGrowth': currentGrowth, 'change': currentChange})
+            else:
+                error = "Asset Not Found"
+                return render(request, 'XChange/search.html', {'error': error})
             
-            return render(request, 'XChange/search.html', {'currentSearch': currentSearch, 'currentPrice': currentPrice, 'symbol': symbol, 'currentGrowth': currentGrowth})
     return render(request, 'XChange/search.html')
 
 def bookmarks(request):
@@ -87,9 +91,14 @@ def home(request):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-    
+    else:
+        stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/list/gainers').content
+        stockMovers = json.loads(stockReq)
+        cryptoReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/crypto').content
+        cryptoTop = json.loads(cryptoReq)
+        
     graphic = getGraph(request).content
-    return render(request, 'XChange/home.html', {'graphic': graphic})
+    return render(request, 'XChange/home.html', {'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
     
 def myPortfolio(request):
     if not request.user.is_authenticated:

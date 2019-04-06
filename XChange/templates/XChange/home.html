@@ -68,9 +68,9 @@
         </div>
 
         <div id="currencyBar" class="dynamic-section">
-          <button class="dynamic-bar" onclick="openAsset('Stocks')">Stocks</button>
+          <button class="dynamic-bar" onclick="openAsset('Stocks')">Top Stocks</button>
           <button class="dynamic-bar" onclick="openAsset('Crypto')">Cryptocurrency</button>
-          <button class="dynamic-bar" onclick="openAsset('Search')">Search</button>            
+                    
         </div>
         <!--</div>-->
         
@@ -80,98 +80,38 @@
             Company name, Price per stock, %up or %down past day-->
             <table class="currencyTable">
                 <tr>
-                    <td>Stock Company 1</td>
-                    <td>Price of Stock 1</td>
-                    <td>% up or down 1</td>
+                    <th>Stock Company</th>
+                    <th>Last Price</th>
+                    <th>Growth Percentage</th>
                 </tr>
+                {% for x in stockMovers %}
                 <tr>
-                    <td>Stock Company 2</td>
-                    <td>Price of Stock 2</td>
-                    <td>% up or down 2</td>
+                    <td> {{ x.companyName }} ({{x.symbol}}) </td>
+                    <td> ${{ x.latestPrice }}</td>
+                    <td> {{ x.changePercent }}%</td>
                 </tr>
-                <tr>
-                    <td>Stock Company 3</td>
-                    <td>Price of Stock 3</td>
-                    <td>% up or down 3</td>
-                </tr>
-                <tr>
-                    <td>Stock Company 4</td>
-                    <td>Price of Stock 4</td>
-                    <td>% up or down 4</td>
-                </tr>
-                <tr>
-                    <td>Stock Company 5</td>
-                    <td>Price of Stock 5</td>
-                    <td>% up or down 5</td>
-                </tr>
-                <tr>
-                    <td>Stock Company 6</td>
-                    <td>Price of Stock 6</td>
-                    <td>% up or down 6</td>
-                </tr>
-                <tr>
-                    <td>Stock Company 7</td>
-                    <td>Price of Stock 7</td>
-                    <td>% up or down 7</td>
-                </tr>
-                <tr>
-                    <td>Stock Company 8</td>
-                    <td>Price of Stock 8</td>
-                    <td>% up or down 8</td>
-                </tr>
+                {% endfor %}
             </table>
         </div>
         
         <div id="Crypto" class="assetDiv" style="display:none">
             <table class="currencyTable">
                 <tr>
-                    <td>Cryptocurrency Company 1</td>
-                    <td>Price of Cryptocurrency 1</td>
-                    <td>% up or down 1</td>
+                    <th>Cryptocurrency</th>
+                    <th>Last Price</th>
+                    <th>Growth Percentage</th>
                 </tr>
+                {% for x in cryptoTop %}
                 <tr>
-                    <td>Cryptocurrency Company 2</td>
-                    <td>Price of Cryptocurrency 2</td>
-                    <td>% up or down 2</td>
+                    <td> {{ x.companyName }} </td>
+                    <td> ${{ x.latestPrice }}</td>
+                    <td> {{ x.changePercent }}%</td>
                 </tr>
-                <tr>
-                    <td>Cryptocurrency Company 3</td>
-                    <td>Price of Cryptocurrency 3</td>
-                    <td>% up or down 3</td>
-                </tr>
-                <tr>
-                    <td>Cryptocurrency Company 4</td>
-                    <td>Price of Cryptocurrency 4</td>
-                    <td>% up or down 4</td>
-                </tr>
-                <tr>
-                    <td>Cryptocurrency Company \5</td>
-                    <td>Price of Cryptocurrency 5</td>
-                    <td>% up or down 5</td>
-                </tr>
-                <tr>
-                    <td>Cryptocurrency Company 6</td>
-                    <td>Price of Cryptocurrency 6</td>
-                    <td>% up or down 6</td>
-                </tr>
-                <tr>
-                    <td>Cryptocurrency Company 7</td>
-                    <td>Price of Cryptocurrency 7</td>
-                    <td>% up or down 7</td>
-                </tr>
-                <tr>
-                    <td>Cryptocurrency Company 8</td>
-                    <td>Price of Cryptocurrency 8</td>
-                    <td>% up or down 8</td>
-                </tr>
+                {% endfor %}
             </table>
         </div>
         
-        <div id="Search" class="assetDiv" style="display:none">
-            <ul>
-                <li>Search Info Here</li>
-            </ul>
-        </div>
+        
     </body>
 
 </html>
