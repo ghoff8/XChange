@@ -44,9 +44,15 @@
                     
                     {% if currentSearch %}
                     <tr>
+<<<<<<< HEAD
                         <td>{{ symbol }}</td>
                         <td>${{ currentPrice }}</td>
                         <td>{{change}} ({{ currentGrowth }}%)</td>
+=======
+                        <td id="currSymbol">{{ symbol }}</td>
+                        <td id="currPrice">{{ currentPrice }}</td>
+                        <td id="currGrowth">{{change}} ({{ currentGrowth }}%)</td>
+>>>>>>> 1e078571e0e9d30888ee0ca01b941e539d0cdf1f
                     </tr>
                     {% endif %}
                 </table>
