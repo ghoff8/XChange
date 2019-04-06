@@ -25,7 +25,7 @@ SECRET_KEY = '81#_=k$^6r!xxo&9-_ukb443q4j#442+*m5=3rxe4p$f2zs8s7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['xchange-workspace-ghoffma3.c9users.io', 'fac8c70386894602883d2fedb9d94fa4.vfs.cloud9.us-east-2.amazonaws.com']
+ALLOWED_HOSTS = ['fac8c70386894602883d2fedb9d94fa4.vfs.cloud9.us-east-2.amazonaws.com', '21bc43a5bf7c407483a88d663e63adce.vfs.cloud9.us-east-2.amazonaws.com']
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -136,3 +136,4 @@ LOGOUT_REDIRECT_URL = 'index'
 
 LOGIN_URL = 'login'
 
+DATA_ENDPOINT = 'https://api.iextrading.com/1.0'

@@ -38,7 +38,7 @@
                   <p>
                     {{ field.label_tag }}
                     {{ field }}
-                    {% if field.help_text %}
+                    {% if field.help_text and not field.name == 'username' %}
                       <small style="color: grey">{{ field.help_text|safe }}</small>
                     {% endif %}
                     {% for error in field.errors %}

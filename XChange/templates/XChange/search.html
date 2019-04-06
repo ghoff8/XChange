@@ -24,8 +24,11 @@
         <div id="s">
             
             <div id="searchBar">
-                <input type="text" name="Search Here" placeholder="Search Here" />
-                <button id="searchBarButton" type="submit"> Search </button>
+                <form method='POST'>
+                    <input type="text" name="searchText" placeholder="Enter Asset Symbol" />
+                    {% csrf_token %}
+                    <button id="searchBarButton" type="submit" value="Search" name="submit"> Search </button>
+                </form>
             </div>
         
             <div>
@@ -37,29 +40,13 @@
                         <th> Growth </th>
                     </tr>
                     
-                     <tr>
-                        <td> Test Company </td>
-                        <td> Test Price-Point </td>
-                        <td> Test Growth </td>
+                    {% if currentSearch %}
+                    <tr>
+                        <td>{{ symbol }}</td>
+                        <td>{{ currentPrice }}</td>
+                        <td>{{ currentGrowth }}</td>
                     </tr>
-                    
-                     <tr>
-                        <td> Test Company 2 </td>
-                        <td> Test Price-Point 2 </td>
-                        <td> Test Growth 2 </td>
-                    </tr>                
-                
-                     <tr>
-                        <td> Test Company 3 </td>
-                        <td> Test Price-Point 3 </td>
-                        <td> Test Growth 3 </td>
-                    </tr>
-                    
-                     <tr>
-                        <td> Test Company 3</td>
-                        <td> Test Price-Point 3</td>
-                        <td> Test Growth 3</td>
-                    </tr>                
+                    {% endif %}
                 </table>
             </div>
         </div>

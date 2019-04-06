@@ -9,6 +9,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from matplotlib import pylab
+from pylab import *
+import PIL, PIL.Image, StringIO
+import base64
+from io import BytesIO
+import requests
+import json
+
 from .forms import SignUpForm, LoginForm
 # Create your views here.
 
@@ -51,7 +59,19 @@ def settings(request):
 def search(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
-    return render(request, 'XChange/search.html')    
+        
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Search'):
+            search_data = request.POST['searchText']
+            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(search_data).strip() + '/quote?displayPercent=true')
+            if (currentSearch.status_code == 200):
+                jsonData = json.loads(currentSearch.content)
+                symbol = jsonData['companyName']
+                currentPrice = jsonData['latestPrice']
+                currentGrowth = jsonData['changePercent']
+            
+            return render(request, 'XChange/search.html', {'currentSearch': currentSearch, 'currentPrice': currentPrice, 'symbol': symbol, 'currentGrowth': currentGrowth})
+    return render(request, 'XChange/search.html')
 
 def bookmarks(request):
     if not request.user.is_authenticated:
@@ -59,6 +79,7 @@ def bookmarks(request):
     return render(request, 'XChange/bookmarks.html')
     
 def home(request):
+   
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     
@@ -66,10 +87,51 @@ def home(request):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-    return render(request, 'XChange/home.html')
+    
+    graphic = getGraph(request).content
+    return render(request, 'XChange/home.html', {'graphic': graphic})
     
 def myPortfolio(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     return render(request, 'XChange/myPortfolio.html')    
 
+
+def getGraph(request):
+    pos = np.arange(10)+ 2 
+
+    fig = plt.figure(figsize=(8, 3))
+    ax = fig.add_subplot(111)
+
+    ax.barh(pos, np.arange(1, 11), align='center')
+    ax.set_yticks(pos)
+    ax.set_yticklabels(('#hcsm',
+        '#ukmedlibs',
+        '#ImmunoChat',
+        '#HCLDR',
+        '#ICTD2015',
+        '#hpmglobal',
+        '#BRCA',
+        '#BCSM',
+        '#BTSM',
+        '#OTalk',), 
+        fontsize=15)
+    ax.set_xticks([])
+    ax.invert_yaxis()
+
+    ax.set_xlabel('Popularity')
+    ax.set_ylabel('Hashtags')
+    ax.set_title('Hashtags')
+
+    plt.tight_layout()
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
+
+    graphic = base64.b64encode(image_png)
+    graphic = graphic.decode('utf-8')
+    # Send buffer in a http response the the browser with the mime type image/png set
+    return HttpResponse(graphic, content_type="image/png")
