@@ -85,6 +85,11 @@ table {
     /*margin:auto;*/
 }
 
+#errorMsg {
+  color: #DB112A;
+  font-family: Arial;
+}
+
 body {
   background-color: #EEEEEE;
 }
