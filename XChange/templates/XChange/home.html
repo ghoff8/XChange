@@ -8,7 +8,7 @@
         <script src="/static/XChange/js/home.js"></script>
     </head>  <!--Might rename to XChange or something similar-->
     <body>
-        <h1 id="home-title">Home</h1>
+        <h1 id="home-title">Welcome {{request.user.username}}!</h1>
         <img id="homeLogo" src="/static/XChange/images/homescreenlogo.png" alt="XChange Logo">
         <br>
         <div class="navBarDiv">
@@ -85,13 +85,13 @@
                 <tr>
                     <th class="Not">Stock Company</th>
                     <th>Last Price</th>
-                    <th>Growth Percentage</th>
+                    <th>Growth</th>
                 </tr>
                 {% for x in stockMovers %}
                 <tr>
                     <td class="Not"> {{ x.companyName }} ({{x.symbol}}) </td>
                     <td> ${{ x.latestPrice }}</td>
-                    <td> {{ x.changePercent }}%</td>
+                    <td> {{ x.change }} ({{ x.changePercent }}%)</td>
                 </tr>
                 {% endfor %}
             </table>
@@ -105,13 +105,13 @@
                 <tr>
                     <th class="Not">Cryptocurrency</th>
                     <th>Last Price</th>
-                    <th>Growth Percentage</th>
+                    <th>Growth</th>
                 </tr>
                 {% for x in cryptoTop %}
                 <tr>
                     <td class="Not"> {{ x.companyName }} </td>
                     <td> ${{ x.latestPrice }}</td>
-                    <td> {{ x.changePercent }}%</td>
+                    <td> {{ x.change }} ({{ x.changePercent }}%)</td>
                 </tr>
                 {% endfor %}
             </table>
