@@ -86,7 +86,6 @@ def home(request):
    
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
-    
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
