@@ -65,6 +65,10 @@
     font-size: 25px;
 }
 
+#assets, #graphDiv, #myBookmarks {
+    background-color: white;    
+}
+
 #assetsUl, #myBookmarksUl {
     list-style: none;
     /*display:inline-block;*/
