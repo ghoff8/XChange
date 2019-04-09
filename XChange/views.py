@@ -16,6 +16,7 @@ import base64
 from io import BytesIO
 import requests
 import json
+from decimal import Decimal
 
 from .forms import SignUpForm, LoginForm
 # Create your views here.
@@ -107,6 +108,12 @@ def home(request):
         stockMovers = json.loads(stockReq)
         cryptoReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/crypto').content
         cryptoTop = json.loads(cryptoReq)
+        for x in cryptoTop:
+            x['changePercent'] *= 100
+        for x in stockMovers:
+            x['changePercent'] *= 100
+        del cryptoTop[5]   #delete bad data
+        del cryptoTop[14]
         
     graphic = getGraph(request).content
     return render(request, 'XChange/home.html', {'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
