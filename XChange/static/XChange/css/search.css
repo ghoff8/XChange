@@ -24,7 +24,7 @@ input:focus {
     background-color: lightblue;    
 }
 
-button {
+#searchBarButton {
   margin-top: 10px;
   background-color: teal;
   border: none;

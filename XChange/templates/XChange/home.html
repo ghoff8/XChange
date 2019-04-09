@@ -18,12 +18,17 @@
               <li class="srchNav"><a href="search.html">Search</a></li>
               <li class="bmarkNav"><a href="bookmarks">Bookmarks</a></li>
               <li class="settNav"><a href="settings.html">Settings</a></li>
+              <li class="logOut">
+                  <form method='POST'>
+                    {% csrf_token %}
+                    <button type="submit" name="submit" value="Logout">Logout</button>
+                  </form></li>
             </ul>
         </div>
-        <form method='POST'>
-            {% csrf_token %}
-            <button type="submit" name="submit" value="Logout">Logout</button>
-        </form>
+        <!--<form method='POST'>-->
+        <!--    {% csrf_token %}-->
+        <!--    <button type="submit" name="submit" value="Logout">Logout</button>-->
+        <!--</form>-->
         <div id="parentDiv">
             <div id="todayDiv">
                 <h1>Today</h1>

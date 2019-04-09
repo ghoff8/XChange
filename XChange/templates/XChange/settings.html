@@ -17,6 +17,11 @@
           <li id="srchNav"><a href="search.html">Search</a></li>
           <li class="bmarkNav"><a href="bookmarks">Bookmarks</a></li>
           <li id="settNav"><a href="#">Settings</a></li>
+          <li class="logOut">
+                  <form method='POST'>
+                    {% csrf_token %}
+                    <button type="submit" name="submit" value="Logout">Logout</button>
+                  </form></li>
         </ul>
       </div>
       <br>

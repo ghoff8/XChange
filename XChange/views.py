@@ -54,11 +54,19 @@ def login(request):
 def settings(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Logout'):
+            logout(request)
+            return render(request, 'XChange/index.html')
     return render(request, 'XChange/settings.html')
     
 def search(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Logout'):
+            logout(request)
+            return render(request, 'XChange/index.html')
         
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Search'):
@@ -80,6 +88,10 @@ def search(request):
 def bookmarks(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Logout'):
+            logout(request)
+            return render(request, 'XChange/index.html')
     return render(request, 'XChange/bookmarks.html')
     
 def home(request):
@@ -102,6 +114,10 @@ def home(request):
 def myPortfolio(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Logout'):
+            logout(request)
+            return render(request, 'XChange/index.html')
     return render(request, 'XChange/myPortfolio.html')    
 
 
