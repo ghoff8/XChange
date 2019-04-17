@@ -106,3 +106,10 @@
     font-size: 25px;
     
 }
+
+body {
+  background-image: url("/static/XChange/images/oneBuilding.png");
+  background-size: 4000px 2666px;
+  /*background-color: rba(0, 0,0, 0.5);*/
+  /*background-color: #EEEEEE;*/
+}

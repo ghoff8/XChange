@@ -91,5 +91,6 @@ table {
 }
 
 body {
-  background-color: #EEEEEE;
+  background-image: url("/static/XChange/images/yellowCity.png");
+  background-size: 4000px 2666px;
 }

@@ -141,12 +141,17 @@ h1 {
     background-color: #dddddd;
 }
 
+.currencyTable tr:nth-child(odd){
+    background-color: #eeeeee;
+}
+
 .currencyTable tr:hover {
     background-color: #AAAAAA;
 }
 
-
 body {
-    background-color: #EEEEEE;
+  background-image: url("/static/XChange/images/bigCity.png");
+  background-size: 4000px 2666px;
+  /*background-color: rba(0, 0,0, 0.5);*/
+  /*background-color: #EEEEEE;*/
 }
-
