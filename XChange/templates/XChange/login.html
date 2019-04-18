@@ -10,12 +10,12 @@
    <body>
     <h1 id="login-page-title"><span id="x">X</span><span id="c">C</span>hange</h1>
     <br><br>
+    {% if error %}
+        <h1> {{ error }} </h1>
+    {% endif %}  
     <div id="log_sign">
         <div id="login">
             <h2>Login</h2>
-            {% if error %}
-                <h1> {{ error }} </h1>
-            {% endif %}    
             <form method = "post">
             <!--- <form action="home.html"> -->
             <!---    <label for="user">Username</label>

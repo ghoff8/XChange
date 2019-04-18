@@ -37,26 +37,53 @@
       </div>
          
       <div id="assets">
-        <ul id="assetsUl" >
-          <li> Apple </li>
-          <li> Google </li>
-          <li> Micorsoft </li>
-          <li> Ford Motor Co </li>
-          <li> Nike Inc </li>
-          <li> SVB Financial Group </li>
-          <li> Regions Financial Corp </li>
-        </ul>
+          {% if userAssets and userAssets.count > 1 %}
+          <table class="currencyTable">
+          <th>Name</th>
+          <th>Price Bought</th>
+          <th>Shares</th>
+            {% for asset in userAssets %}
+              {% if asset.assetName != 'USD'%}
+              <tr>
+                <th>{{asset.assetName}}</th>
+                <th>{{asset.priceBought}}</th>
+                <th>{{asset.shares}}</th>
+                <th>
+                  <form method='POST'>
+                    {% csrf_token %}
+                    <button type="submit" name="assetGraph" value="{{asset.assetName}}">Show Graph</button>
+                  </form>
+                </th>
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+          {% endif %}
       </div>
       <div id="graphDiv">
-        <p>Company Name</p>
-        <img id="appleGraph" src="/static/XChange/images/todayGraph.png" alt="Apple past month graph">
+        {% if not graphic == None %}
+          <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
+        {% endif %}
       </div>
       <div id="myBookmarks">
-        <ul id="myBookmarksUl">
-          <li> Apple </li> <br>
-          <li> Google </li> <br>
-          <li> Micorsoft </li> <br>
-        </ul>
+          {% if userBookmarks %}
+          <table class="currencyTable">
+          <th>Name</th>
+          <th>Date Set</th>
+          <th>Marked Price</th>
+            {% for mark in userBookmarks %}
+              <tr>
+                <th>{{mark.companyName}}</th>
+                <th>{{mark.setDate}}</th>
+                <th>{{mark.bookmarkPrice}}</th>
+              </tr>
+            {% endfor %}
+          </table>
+          {% else %}
+            <h2>
+              No Bookmarks
+            </h2>
+          {% endif %}
       </div>
     </div>
     

@@ -10,15 +10,17 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from matplotlib import pylab
+import matplotlib.pyplot as plt
 from pylab import *
 import PIL, PIL.Image, StringIO
 import base64
 from io import BytesIO
 import requests
 import json
-from decimal import Decimal
+from datetime import datetime
 
 from .forms import SignUpForm, LoginForm
+from .models import UserProfile, Bookmark, Asset
 # Create your views here.
 
 def index(request):
@@ -32,8 +34,10 @@ def login(request):
             reg_form.save()
             username = reg_form.cleaned_data.get('username')
             raw_password = reg_form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            djLogin(request, user)
+            userNew = authenticate(username=username, password=raw_password)
+            newlyCreatedProf = UserProfile.objects.create(user = userNew)
+            Asset.objects.create(userProfile = newlyCreatedProf, assetName = 'USD', shares = 1000, timeBought = datetime.now(), priceBought = 1.00)
+            djLogin(request, userNew)
             return redirect('home')
     
     elif request.method == 'POST' and request.POST.get('submit') == "login": 
@@ -99,6 +103,7 @@ def home(request):
    
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    graphic = None
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
@@ -115,44 +120,52 @@ def home(request):
         del cryptoTop[5]   #delete bad data
         del cryptoTop[14]
         
-    graphic = getGraph(request).content
+    #graphic = getGraph(request, None).content
     return render(request, 'XChange/home.html', {'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
     
 def myPortfolio(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    graphic = None
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-    return render(request, 'XChange/myPortfolio.html')    
+        elif(request.POST.get('assetGraph')):
+            stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/chart/1m').content
+            stockChartData = json.loads(stockReq)
+            for pos, obj in enumerate(stockChartData):
+                date = obj.pop('label', None)
+                close = float(obj.pop('close', None))
+                data = {u'label': date, u'close': close, u'pos': int(pos)}
+                stockChartData[pos] = data
+            graphic = getGraph(request, stockChartData).content
+    currentProfile = UserProfile.objects.get(user = request.user)
+    userAssets = Asset.objects.filter(userProfile = currentProfile)
+    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).distinct()
+    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic})    
 
 
-def getGraph(request):
-    pos = np.arange(10)+ 2 
+def getGraph(request, data):
+    
+    fig = plt.figure(figsize=(9, 4))
+    ax = fig.add_subplot(111, frameon=False)
+    xPlots = []
+    yPlots = []
+    xTicks = []
+    
+    for obj in data:
+        xPlots.append(obj['pos'])
+        yPlots.append(obj['close'])
+        xTicks.append(str(obj['label']))
+    ax.plot(xPlots, yPlots, 'g', linewidth= 3)
+    ax.set_xticks(np.arange(min(xPlots),max(xPlots)+1, 1.0))
+    
+    ax.set_xticklabels(xTicks, rotation='vertical', fontsize=10)
 
-    fig = plt.figure(figsize=(8, 3))
-    ax = fig.add_subplot(111)
-
-    ax.barh(pos, np.arange(1, 11), align='center')
-    ax.set_yticks(pos)
-    ax.set_yticklabels(('#hcsm',
-        '#ukmedlibs',
-        '#ImmunoChat',
-        '#HCLDR',
-        '#ICTD2015',
-        '#hpmglobal',
-        '#BRCA',
-        '#BCSM',
-        '#BTSM',
-        '#OTalk',), 
-        fontsize=15)
-    ax.set_xticks([])
-    ax.invert_yaxis()
-
-    ax.set_xlabel('Popularity')
-    ax.set_ylabel('Hashtags')
-    ax.set_title('Hashtags')
+    ax.set_xlabel('Day')
+    ax.set_ylabel('Price')
+    
 
     plt.tight_layout()
 
