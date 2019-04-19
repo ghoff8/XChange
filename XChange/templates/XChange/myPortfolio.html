@@ -39,14 +39,10 @@
           {% if userAssets and userAssets.count > 1 %}
           <table class="currencyAssetsTable">
           <th>Name</th>
-          <th>Price Bought</th>
-          <th>Shares</th>
             {% for asset in userAssets %}
               {% if asset.assetName != 'USD'%}
               <tr>
                 <td>{{asset.assetName}}</td>
-                <td>${{asset.priceBought}}</td>
-                <td>{{asset.shares}}</td>
                 <th>
                   <form method='POST'>
                     {% csrf_token %}
@@ -62,14 +58,12 @@
       <div id="graphDiv">
         {% if not graphic == None %}
           <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
-          {% for asset in userAssets %}
-              {% if asset.assetName != 'USD'%}
+            {% if selectedAsset %}
               <tr>
-                <th>{{asset.priceBought}}</th>
-                <th>{{asset.shares}}</th>
-                </tr>
-              {% endif %}
-          {% endfor %}
+                <th>{{selectedAsset.priceBought}}</th>
+                <th>{{selectedAsset.shares}}</th>
+              </tr>
+            {% endif %}
         {% endif %}
       </div>
       <div id="myBookmarks">
