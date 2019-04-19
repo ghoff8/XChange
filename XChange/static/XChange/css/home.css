@@ -44,15 +44,21 @@ h1 {
     margin-left: 4.5%;
     /*padding-bottom: 1%;*/
     height: 50vh;
+    background-color: #eee;
 }
 
 #todayDiv img {
     display: block;
     margin: auto;
 }
+
 #todayGraph {
     width: 70%;
     height: auto;
+}
+
+#bookmarkDiv {
+    background-color: #eee;
 }
 
 #currencyBar{
@@ -110,12 +116,15 @@ h1 {
     width: 100%;
     table-layout: fixed;
     margin: auto;
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 
 .currencyTable td, th {
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     padding: 15px;
+    /*margin: 5px;*/
     font-size: 17px;
     font-family: Arial;
     text-align: left;
@@ -126,16 +135,18 @@ h1 {
 }
 
 .currencyTable th {
-    background-color: #AAAAAA;    
+    background-color: #222;
+    color: white;
+    font-size: 20px;
 }
 
 .nameCol {
     width: 51%;
 }
 
-.textLeftCol {
-    text-align: left;
-}
+/*.textLeftCol {*/
+/*    text-align: left;*/
+/*}*/
 
 .currencyTable tr:nth-child(even){
     background-color: #dddddd;

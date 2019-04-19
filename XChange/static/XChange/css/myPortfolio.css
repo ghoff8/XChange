@@ -12,24 +12,20 @@
 }
 
 #divAsset {
-    width: 22.5%;
-}
-
-#divCurrentAsset {
-    width: 60%;
-}
-
-#divBookAsset {
-    width: 16.5%;
+    width: 19.5%;
 }
 
 #assets{
-    width: 22.5%;
+    width: 19.5%;
     height: 40vh;
 }
 
+#divCurrentAsset {
+    width: 50%;
+}
+
 #graphDiv {
-    width:60%;
+    width:50%;
     height: 40vh;
 }
 
@@ -43,8 +39,12 @@
     height: auto;
 }
 
+#divBookAsset {
+    width: 29.5%;
+}
+
 #myBookmarks{
-    width:16.5%;
+    width: 29.5%;
     height: 40vh;
 }
 
@@ -89,12 +89,40 @@
     display:inline-block;
 }
 
+.currencyBookmarksTable {
+    margin: auto;
+    width: 100%;
+}
+
+.currencyBookmarksTable td {
+    /*width: 30%;*/
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.leftAlign {
+    text-align: left;
+}
+
+.rightAlign {
+    text-align: right;
+}
+
+#bookName {
+    width: 40%;
+}
+
+#bookPrice {
+    width: 20%;
+}
+
 #buySell{
     width: 40%;
     margin:auto;
+    margin-top: 20px;
 }
 
-.options{
+.options {
     color: white;
     background-color: teal;
     width: 49%;

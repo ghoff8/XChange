@@ -25,7 +25,6 @@
     </div>
     
     <div id="Wrap">
-      
       <div id="divAsset">
         <h2>Assets</h2>
       </div>
@@ -38,16 +37,16 @@
          
       <div id="assets">
           {% if userAssets and userAssets.count > 1 %}
-          <table class="currencyTable">
+          <table class="currencyAssetsTable">
           <th>Name</th>
           <th>Price Bought</th>
           <th>Shares</th>
             {% for asset in userAssets %}
               {% if asset.assetName != 'USD'%}
               <tr>
-                <th>{{asset.assetName}}</th>
-                <th>{{asset.priceBought}}</th>
-                <th>{{asset.shares}}</th>
+                <td>{{asset.assetName}}</td>
+                <td>${{asset.priceBought}}</td>
+                <td>{{asset.shares}}</td>
                 <th>
                   <form method='POST'>
                     {% csrf_token %}
@@ -63,19 +62,32 @@
       <div id="graphDiv">
         {% if not graphic == None %}
           <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
+          {% for asset in userAssets %}
+              {% if asset.assetName != 'USD'%}
+              <tr>
+                <th>{{asset.priceBought}}</th>
+                <th>{{asset.shares}}</th>
+                </tr>
+              {% endif %}
+          {% endfor %}
         {% endif %}
       </div>
       <div id="myBookmarks">
           {% if userBookmarks %}
-          <table class="currencyTable">
-          <th>Name</th>
-          <th>Date Set</th>
-          <th>Marked Price</th>
+          <table class="currencyBookmarksTable">
+            <col id="bookName">
+            <col id="bookDate">
+            <col id="bookPrice">
+            <tr>
+              <th class="leftAlign">Name</th>
+              <th class="centerAlign">Date Set</th>
+              <th class="rightAlign">Marked Price</th>
+            </tr>
             {% for mark in userBookmarks %}
               <tr>
-                <th>{{mark.companyName}}</th>
-                <th>{{mark.setDate}}</th>
-                <th>{{mark.bookmarkPrice}}</th>
+                <td class="leftAlign">{{mark.companyName}}</td>
+                <td class="centerAlign">{{mark.setDate}}</td>
+                <td class="rightAlign">${{mark.bookmarkPrice}}</td>
               </tr>
             {% endfor %}
           </table>
@@ -91,7 +103,5 @@
         <button class="options">Buy</button>
         <button class="options">Sell</button>
     </div>
-    
-    <br>
   </body>
 </html>
