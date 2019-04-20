@@ -32,7 +32,7 @@
     <!--<table style="width:50%">-->
       <tr>
         <div class = "tableBookmark">
-        <th>ID</th>
+        <!--<th>ID</th>-->
         <th>Company</th>
         <th>Price-Point</th> 
         <th>Date</th>
@@ -40,16 +40,18 @@
       </tr>
       
       {% for b in userBookmarks %}
-        <td> {{b.id}}</td>
-        <td> {{b.companyName}}</td>
-        <td> {{b.bookmarkPrice}}</td>
-        <td> {{b.setDate}}</td>
-        <td>
-        <form method='POST'>
-            {% csrf_token %}
-            <button type="submit" name="delete" value="{{b.id}}">Delete</button>
-        </form>
-        </td>
+        <!--<td> {{b.id}}</td>-->
+        <tr>
+          <td> {{b.companyName}}</td>
+          <td> {{b.bookmarkPrice}}</td>
+          <td> {{b.setDate}}</td>
+          <td>
+          <form method='POST'>
+              {% csrf_token %}
+              <button type="submit" name="delete" value="{{b.id}}">Delete</button>
+          </form>
+          </td>
+        </tr>
       {% endfor %}
     </table>
   </body>
