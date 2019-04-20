@@ -108,6 +108,14 @@ table {
     /*margin:auto;*/
 }
 
+#buySharesRow {
+  border: none;
+}
+
+#buyShares {
+  display: none;
+}
+
 body {
   background-image: url("/static/XChange/images/searchCity.png");
   background-size: 4000px 2666px;

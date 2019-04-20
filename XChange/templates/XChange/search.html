@@ -40,7 +40,7 @@
                     <button id="searchBarButton" type="submit" value="Search" name="submit"> Search </button>
                 </form>
             </div>
-            <div>
+            <div id="searchResultsDiv">
                 <table id="s-table">
                     <!--<table style="width: 50%">-->
                     <col id="notCol">
@@ -53,10 +53,23 @@
                     </tr>
                     
                     {% if currentSearch %}
-                    <tr>
-                        <td id="currSymbol">{{ symbol }}</td>
-                        <td id="currPrice"> ${{ currentPrice }}</td>
-                        <td id="currGrowth"> ${{change}} ({{ currentGrowth }}%)</td>
+                    <tr class="searchResultsRows"
+                     onmouseover="document.getElementById('buyShares').style.display = 'block';"
+                     onmouseout="document.getElementById('buyShares').style.display = 'none';">
+                        <td class="currSymbol">{{ symbol }}</td>
+                        <td class="currPrice"> ${{ currentPrice }}</td>
+                        <td class="currGrowth"> ${{change}} ({{ currentGrowth }}%)</td>
+                    </tr>
+                    <tr id="buySharesRow">
+                        <td></td>
+                        <td>
+                            <form></form>
+                        </td>
+                        <td>
+                            <div id="buyShares">
+                                <button>Buy</button>
+                            </div>
+                        </td>
                     </tr>
                     {% endif %}
                 </table>
