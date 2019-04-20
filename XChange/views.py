@@ -36,7 +36,7 @@ def login(request):
             raw_password = reg_form.cleaned_data.get('password1')
             userNew = authenticate(username=username, password=raw_password)
             newlyCreatedProf = UserProfile.objects.create(user = userNew)
-            Asset.objects.create(userProfile = newlyCreatedProf, assetName = 'USD', shares = 1000, timeBought = datetime.now(), priceBought = 1.00)
+            Asset.objects.create(userProfile = newlyCreatedProf, assetName = 'USD', shares = 1000, timeBought = datetime.now().strftime('%Y-%m-%d'), priceBought = 1.00)
             djLogin(request, userNew)
             return redirect('home')
     
@@ -127,6 +127,9 @@ def myPortfolio(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     graphic = None
+    currentProfile = UserProfile.objects.get(user = request.user)
+    userAssets = Asset.objects.filter(userProfile = currentProfile)
+    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).distinct()
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
@@ -140,10 +143,9 @@ def myPortfolio(request):
                 data = {u'label': date, u'close': close, u'pos': int(pos)}
                 stockChartData[pos] = data
             graphic = getGraph(request, stockChartData).content
-    currentProfile = UserProfile.objects.get(user = request.user)
-    userAssets = Asset.objects.filter(userProfile = currentProfile)
-    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).distinct()
-    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic})    
+            selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
+            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic, 'selectedAsset': selectedAsset})
+    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks})    
 
 
 def getGraph(request, data):
