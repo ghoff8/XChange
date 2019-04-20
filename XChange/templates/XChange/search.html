@@ -52,14 +52,16 @@
                         <th> Growth </th>
                     </tr>
                     
-                    {% if currentSearch %}
+                    {% if results %}
+                    {% for x in results %}
                     <tr class="searchResultsRows"
                      onmouseover="document.getElementById('buyShares').style.display = 'block';"
                      onmouseout="document.getElementById('buyShares').style.display = 'none';">
-                        <td class="currSymbol">{{ symbol }}</td>
-                        <td class="currPrice"> ${{ currentPrice }}</td>
-                        <td class="currGrowth"> ${{change}} ({{ currentGrowth }}%)</td>
+                        <td class="currSymbol">{{ x.symbol }}</td>
+                        <td class="currPrice"> ${{ x.currentPrice }}</td>
+                        <td class="currGrowth"> ${{x.change}} ({{ x.currentGrowth }}%)</td>
                     </tr>
+                    {% endfor %}
                     <tr id="buySharesRow">
                         <td></td>
                         <td>
