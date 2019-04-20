@@ -24,10 +24,15 @@
                   </form></li>
             </ul>
         </div>
-        <br>        
-        
+        <!--<hr>        -->
+    
         <div id="s">
-            
+            <div id="promptDiv">
+                <h2 id="searchPrompt">Search a company name, cryptocurrency, or asset symbol below.</h2>
+            </div>
+            {% if error %}
+                <h2 id="errorMsg"> {{error}} </h2>
+            {% endif %}
             <div id="searchBar">
                 <form method='POST'>
                     <input type="text" name="searchText" placeholder="Enter Asset Symbol" />
@@ -35,12 +40,12 @@
                     <button id="searchBarButton" type="submit" value="Search" name="submit"> Search </button>
                 </form>
             </div>
-            {% if error %}
-                <h2 id="errorMsg"> {{error}} </h2>
-            {% endif %}
             <div>
                 <table id="s-table">
                     <!--<table style="width: 50%">-->
+                    <col id="notCol">
+                    <col>
+                    <col>
                     <tr>
                         <th> Company </th>
                         <th> Price-Point </th>

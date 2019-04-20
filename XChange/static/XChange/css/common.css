@@ -15,7 +15,7 @@ body {
     padding: 0;
     margin: 0;
     /*background-color: black;*/
-    background-color: rgba(0, 0, 0, .2);
+    background-color: rgba(0, 0, 0, .4);
     /*border-radius: 15px;*/
 }
 
@@ -26,8 +26,8 @@ li {
 li a {
     display: block;
     text-decoration: none;
-    color:black;
-    color: #eee;
+    /*color:black;*/
+    color: white;
     padding: 15px 30px 15px 30px;
     text-align: center;
     font-weight: bold;
@@ -44,7 +44,7 @@ li a:hover {
     /*decoration: none;*/
     border: none;
     background-color: rgba(0, 0, 0, 0);
-    color: #eee;
+    color: white;
     text-align: center;
     font-weight: bold;
     font-family: "Arial";

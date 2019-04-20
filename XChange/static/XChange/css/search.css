@@ -7,8 +7,35 @@
   font-size: 50px;
 }
 
-#searchBar {
+#s {
+    width: 90%;
+    margin:auto;
+}
 
+#promptDiv {
+  /*background-color: #eee;*/
+  /*width: 50%;*/
+}
+
+#searchPrompt {
+    padding: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: Arial;
+    color: white;
+    background-color: rgba(0, 0, 0, .4);
+    text-align: center;
+    /*width: 20%;*/
+}
+
+#errorMsg {
+  color: white;
+  font-family: Arial;
+  background-color: rgba(0, 0, 0, .4);
+  padding: 20px;
+  width: 20%;
+  text-align: center;
+  /*border-radius: 10px;*/
 }
 
 input {
@@ -75,19 +102,10 @@ input:focus {
 input[type=text] {
   width: 30%;
 }
-#s {
-    width: 90%;
-    margin:auto;
-}
 
 table {
     width: 100%;
     /*margin:auto;*/
-}
-
-#errorMsg {
-  color: #DB112A;
-  font-family: Arial;
 }
 
 body {

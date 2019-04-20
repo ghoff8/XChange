@@ -46,7 +46,7 @@ h1 {
     margin-left: 4.5%;
     /*padding-bottom: 1%;*/
     height: 50vh;
-    background-color: #eee;
+    background-color: rgba(238, 238, 238, .6);
 }
 
 #todayDiv img {
@@ -60,7 +60,7 @@ h1 {
 }
 
 #bookmarkDiv {
-    background-color: #eee;
+    background-color: rgba(238, 238, 238, .6);
 }
 
 #currencyBar{
@@ -90,7 +90,7 @@ h1 {
 
 
 .dynamic-bar{
-    background-color: #EEEEEE;
+    background-color: rgba(238, 238, 238, .8);
     color: teal;
     width: 49%;
     margin-top: 15px;
