@@ -56,3 +56,8 @@ table {
     width: 100%;
     margin:auto;
 }
+
+body {
+  background-image: url("/static/XChange/images/bookmarkCity.png");
+  background-size: 4000px 2666px;
+}

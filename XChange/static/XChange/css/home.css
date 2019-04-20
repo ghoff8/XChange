@@ -25,6 +25,8 @@ h1 {
 
 #parentDiv {
     width: 100%;
+    padding-top: 20px;
+    /*padding-bottom: 20px;*/
 }
 #bookmarkDiv {
     float: right;
@@ -161,7 +163,7 @@ h1 {
 }
 
 body {
-  background-image: url("/static/XChange/images/bigCity.png");
+  background-image: url("/static/XChange/images/homeCity.png");
   background-size: 4000px 2666px;
   /*background-color: rba(0, 0,0, 0.5);*/
   /*background-color: #EEEEEE;*/
