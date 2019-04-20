@@ -42,33 +42,29 @@
                 <h1>Bookmarks</h1>
                 <table id="bookTable">
                     
-                    
                     <tr>
-                        <td>Test Company</td>
-                        <td>Test Date</td>
-                    </tr>
+        <th>ID</th>
+        <th>Company</th>
+        <th>Price-Point</th> 
+        <th>Date</th>
+      </tr>
                     
-                    <tr>
-                        <td>Test Company 2</td>
-                        <td>Test Date 2</td>
-                    </tr>
                     
+                    {% for b in userBookmarks %}
                     <tr>
-                        <td>Test Company 3</td>
-                        <td>Test Date 3</td>
+                    <td> {{b.id}}</td>
+                    <td> {{b.companyName}}</td>
+                    <td> {{b.bookmarkPrice}}</td>
+                    <td> {{b.setDate}}</td>
                     </tr>
-                    
-                    <tr>
-                        <td>Test Company 4</td>
-                        <td>Test Date 4</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Test Company 5</td>
-                        <td>Test Date 5</td>
-                    </tr>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <button type="submit" name="delete" value="{{b.id}}">Delete</button>
+                    </form>
+                    </td>
+                  {% endfor %}
                 </table>
-                
+            
             </div>
         <!--</div>-->
         </div>
