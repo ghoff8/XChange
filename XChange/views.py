@@ -76,34 +76,34 @@ def search(request):
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Search'):
             search_data = request.POST['searchText']
-            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(search_data).strip() + '/quote?displayPercent=true')
-            if (currentSearch.status_code == 200):
-                jsonData = json.loads(currentSearch.content)
-                symbol = jsonData['companyName']
-                currentPrice = jsonData['latestPrice']
-                currentGrowth = jsonData['changePercent']
-                currentChange = jsonData['change']
-                return render(request, 'XChange/search.html', {'currentSearch': currentSearch, 'currentPrice': currentPrice, 'symbol': symbol, 'currentGrowth': currentGrowth, 'change': currentChange})
-            elif (currentSearch.content == 'Unknown symbol'):
-                nameSearch = requests.get(djSettings.DATA_ENDPOINT + '/ref-data/symbols')
+            results = []
+            if (search_data):
+                try:
+                    #currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(search_data).strip() + '/quote?displayPercent=true')
+                    nameSearch = requests.get(djSettings.DATA_ENDPOINT + '/ref-data/symbols')
+                except requests.exceptions.RequestException:
+                    error = "Error: " + str(nameSearch.status_code)
+                    return render(request, 'XChange/search.html', {'error': error})
                 if(nameSearch.status_code == 200):
                     nameJsonData = json.loads(nameSearch.content)
                     for pos, x in enumerate(nameJsonData):
-                        if (str(search_data) in x['name']):
+                        if (str(search_data).lower() in x['name'].lower() or str(search_data).lower() in x['symbol'].lower()):
                             symbol = x['name']
                             currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x['symbol']) + '/quote?displayPercent=true')
                             symJsonData = json.loads(currentSearch.content)
                             currentPrice = symJsonData['latestPrice']
                             currentGrowth = symJsonData['changePercent']
                             currentChange = symJsonData['change']
-                            return render(request, 'XChange/search.html', {'currentSearch': currentSearch, 'currentPrice': currentPrice, 'symbol': symbol, 'currentGrowth': currentGrowth, 'change': currentChange})
-                    error = "Asset Not Found"
-                    return render(request, 'XChange/search.html', {'error': error})        
+                            results.append({"symbol": x['name'], "currentPrice": symJsonData['latestPrice'], "currentGrowth": symJsonData['changePercent'], "currentChange": symJsonData['change']})
+                    if (not results):
+                        error = "No Results"
+                        return render(request, 'XChange/search.html', {'error': error})
+                    return render(request, 'XChange/search.html', {'results': results})
                 else:
                     error = "Asset Not Found"
                     return render(request, 'XChange/search.html', {'error': error})
             else:
-                error = "Request failed with Status Code: " + currentSearch.status_code
+                error = "Please enter an asset symbol or company name"
                 return render(request, 'XChange/search.html', {'error': error})
             
     return render(request, 'XChange/search.html')
