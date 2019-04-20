@@ -133,6 +133,19 @@ def home(request):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
+    
+    currentProfile = UserProfile.objects.get(user = request.user)
+    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).order_by('companyName')
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Logout'):
+            logout(request)
+            return render(request, 'XChange/index.html')
+        elif(request.POST.get('delete')):
+            bmID = request.POST['delete']
+            Bookmark.objects.filter(id=bmID).delete()
+            message = 'Bookmark deleted'
+            return render(request, 'XChange/home.html', {'userBookmarks': userBookmarks})
+    
     else:
         stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/list/gainers').content
         stockMovers = json.loads(stockReq)
@@ -145,8 +158,9 @@ def home(request):
         del cryptoTop[5]   #delete bad data
         del cryptoTop[14]
         
+        
     #graphic = getGraph(request, None).content
-    return render(request, 'XChange/home.html', {'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
+    return render(request, 'XChange/home.html', {'userBookmarks': userBookmarks, 'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
     
 def myPortfolio(request):
     if not request.user.is_authenticated:
