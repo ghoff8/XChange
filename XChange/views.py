@@ -93,11 +93,18 @@ def search(request):
 def bookmarks(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    currentProfile = UserProfile.objects.get(user = request.user)
+    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).order_by('companyName')
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-    return render(request, 'XChange/bookmarks.html')
+        elif(request.POST.get('delete')):
+            bmID = request.POST['delete']
+            Bookmark.objects.filter(id=bmID).delete()
+            message = 'Bookmark deleted'
+            return render(request, 'XChange/bookmarks.html', {'userBookmarks': userBookmarks, 'message': message})
+    return render(request, 'XChange/bookmarks.html', {'userBookmarks': userBookmarks})
     
 def home(request):
    
