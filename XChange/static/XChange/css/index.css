@@ -44,18 +44,30 @@ h3 {
   text-align: justify;
 }
 
+form {
+  width: 100%;
+  /*float: center;*/
+  text-align: center;
+}
+
 input {
-  margin-top: 10px;
-  margin-left: 45%;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  /*margin-left: 45%;*/
   background-color: teal;
   border: none;
   color: white;
   padding: 20px;
   font-weight: bold;
   font-size: 20px;
-  border-radius: 10px;
+  /*border-radius: 10px;*/
   cursor: pointer;
   font-family: 'Helvetica';
+  transition: box-shadow .3s;
+}
+
+input:hover {
+    box-shadow: 3px 7px 10px grey;
 }
 
 hr {
@@ -66,19 +78,18 @@ hr {
 }
 
 #textBox {
-  background-color: rgb(80, 80, 80, .8);
+  background-color: rgb(50, 50, 50, .5);
   color: white;
   width: 80%;
   margin: auto;
   padding-top: 1%;
   padding-bottom: 1%;
-  border-radius: 40px;
+  /*border-radius: 40px;*/
   /*opacity: .9;*/
 }
 
 
 body {
   background-image: url("/static/XChange/images/indexbackground.png");
-  /*background-color: rba(0, 0,0, 0.5);*/
-  /*background-color: #EEEEEE;*/
+  /*background-size: 2000px 1200px;*/
 }

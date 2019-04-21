@@ -18,14 +18,16 @@
 
 #login {
     padding-left: 12%;
-    width: 300px;
+    width: 30%;
     float: left;
+    font-family: arial;
 }
 
 #signup {
-    width: 300px;
+    width: 40%;
     float: right; 
     padding-right: 12%;
+    font-family: arial;
 }
 
 input {
@@ -56,20 +58,28 @@ button {
   background-color: teal;
   border: none;
   color: white;
-  padding: 8px;
+  padding: 10px;
+  padding-bottom: 15px;
+  padding-top: 15px;
   font-weight: bold;
-  font-size: 16px;
-  border-radius: 5px;
+  font-size: 20px;
+  /*border-radius: 5px;*/
   cursor: pointer;
   width: 100px;
 }
 
 #log_sign {
-    width: 70%;
+    width: 80%;
     overflow: hidden;
     margin: auto;
 }
 
+.signUpPrompt {
+  font-family: courier;
+  font-size: 20px;
+}
+
 body {
-  background-color: #EEEEEE;
+  background-image: url("/static/XChange/images/loginCity.png");
+  background-size: 2000px 1333px;
 }
