@@ -37,43 +37,33 @@
                 <form method='POST'>
                     <input type="text" name="searchText" placeholder="Search" />
                     {% csrf_token %}
-                    <button id="searchBarButton" type="submit" value="Search" name="submit"> Search </button>
+                    <button id="searchBarButton" type="submit" value="Search" name="submit">Search</button>
                 </form>
             </div>
             <div id="searchResultsDiv">
                 <table id="s-table">
                     <!--<table style="width: 50%">-->
-                    <col id="notCol">
-                    <col>
-                    <col>
+                    <col id="compCol">
+                    <col id="priceCol">
+                    <col id="growthCol">
+                    <col id="buttonCol">
                     <tr>
-                        <th> Company </th>
-                        <th> Price-Point </th>
-                        <th> Growth </th>
+                        <th>Company</th>
+                        <th class="rightAlign">Price-Point</th>
+                        <th class="rightAlign">Growth</th>
+                        <th>More Details</th>
                     </tr>
                     
                 {% if results %}
                     {% for x in results %}
-                    <tr class="searchResultsRows"
-                     onmouseover="document.getElementsByClassName('buySharesClass').style.display = 'block';"
-                     onmouseout="document.getElementsByClassName('buySharesClass').style.display = 'none';">
-                        <td class="currSymbol">{{ x.name }}</td>
+                    <tr class=searchResultsRow>
+                        <td class="currSymbol">{{ x.symbol }}</td>
                         <td class="currPrice"> ${{ x.currentPrice }}</td>
                         <td class="currGrowth"> ${{x.currentChange}} ({{ x.currentGrowth }}%)</td>
-                    </tr>
-                    <tr class="buySharesClass" onmouseover="document.getElementsByClassName('buySharesClass').style.display = 'block';"
-                     onmouseout="document.getElementsByClassName('buySharesClass').style.display = 'none';">
-                        <td></td>
-                        <td>
-                            <form method=POST>
-                                <input type="number" min="1" name="quantity" placeholder="Enter # of shares" />
-                        </td>
-                        <td>
-                            <div id="buyShares">
-                            {% csrf_token %}
-                            <button id="searchBarButton" type="submit" value="{{x.symbol}}" name="buyButton">Buy</button>
+                        <td class="buttonCell">
+                            <form>
+                                <button href="assetDetails.html" class="buyDetailsButton" type="submit">More Details/Buy</button>
                             </form>
-                            </div>
                         </td>
                     </tr>
                     {% endfor %}

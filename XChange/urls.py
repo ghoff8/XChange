@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^bookmarks', views.bookmarks, name='bookmarks'),
     url(r'^home', views.home, name='home'),
     url(r'^myPortfolio', views.myPortfolio, name='myPortfolio'),
+    url(r'^assetDetails', views.assetDetails, name='assetDetails'),
 ]

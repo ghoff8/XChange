@@ -17,14 +17,6 @@
         <div id="login">
             <h2>Login</h2>
             <form method = "post">
-            <!--- <form action="home.html"> -->
-            <!---    <label for="user">Username</label>
-                <input type="text" placeholder="Enter Username" name="user" required>
-                <br>
-                <br>  
-                <label for="pass">Password</label>
-                <input type="password" placeholder="Enter Password" name="pass" required>
-                <br> -->
                 {% csrf_token %}
                 {{ login_form.as_p }} 
                 <button type="submit" name="submit" value="login">Login</button>
@@ -46,22 +38,6 @@
                     {% endfor %}
                   </p>
                 {% endfor %}
-                    
-                <!--<label for="user">Username</label>
-                <input type="text" placeholder="Enter Username" name="user" required>
-                <br>
-                <br>
-                <label for="pass">Password</label>
-                <input type="password" placeholder="Enter Password" name="pass" required>
-                <br>
-                <br>
-                <label for="pass">Repeat Password</label>
-                <input type="password" placeholder="Re-Enter Password" name="pass" required>        
-                <br>
-                <br>
-                <label for="email">Email</label>
-                <input type="email" placeholder="Enter Email" name="email" required>        
-                <br> -->
                 <button type="submit" name="submit" value="register">Register</button>
             </form>
         </div>
