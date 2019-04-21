@@ -52,20 +52,22 @@
                         <th> Growth </th>
                     </tr>
                     
-                    {% if results %}
+                {% if results %}
                     {% for x in results %}
                     <tr class="searchResultsRows"
-                     onmouseover="document.getElementById('buyShares').style.display = 'block';"
-                     onmouseout="document.getElementById('buyShares').style.display = 'none';">
+                     onmouseover="document.getElementsByClassName('buySharesClass').style.display = 'block';"
+                     onmouseout="document.getElementsByClassName('buySharesClass').style.display = 'none';">
                         <td class="currSymbol">{{ x.symbol }}</td>
                         <td class="currPrice"> ${{ x.currentPrice }}</td>
-                        <td class="currGrowth"> ${{x.change}} ({{ x.currentGrowth }}%)</td>
+                        <td class="currGrowth"> ${{x.currentChange}} ({{ x.currentGrowth }}%)</td>
                     </tr>
-                    {% endfor %}
-                    <tr id="buySharesRow">
+                    <tr class="buySharesClass" onmouseover="document.getElementsByClassName('buySharesClass').style.display = 'block';"
+                     onmouseout="document.getElementsByClassName('buySharesClass').style.display = 'none';">
                         <td></td>
                         <td>
-                            <form></form>
+                            <form>
+                                <input type="number" min="0" name="quantity" placeholder="Enter # of shares" />
+                            </form>
                         </td>
                         <td>
                             <div id="buyShares">
@@ -73,7 +75,8 @@
                             </div>
                         </td>
                     </tr>
-                    {% endif %}
+                    {% endfor %}
+                {% endif %}
                 </table>
             </div>
         </div>
