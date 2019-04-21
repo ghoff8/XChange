@@ -35,7 +35,7 @@
             {% endif %}
             <div id="searchBar">
                 <form method='POST'>
-                    <input type="text" name="searchText" placeholder="Enter Asset Symbol" />
+                    <input type="text" name="searchText" placeholder="Search" />
                     {% csrf_token %}
                     <button id="searchBarButton" type="submit" value="Search" name="submit"> Search </button>
                 </form>
@@ -57,7 +57,7 @@
                     <tr class="searchResultsRows"
                      onmouseover="document.getElementsByClassName('buySharesClass').style.display = 'block';"
                      onmouseout="document.getElementsByClassName('buySharesClass').style.display = 'none';">
-                        <td class="currSymbol">{{ x.symbol }}</td>
+                        <td class="currSymbol">{{ x.name }}</td>
                         <td class="currPrice"> ${{ x.currentPrice }}</td>
                         <td class="currGrowth"> ${{x.currentChange}} ({{ x.currentGrowth }}%)</td>
                     </tr>
@@ -65,13 +65,14 @@
                      onmouseout="document.getElementsByClassName('buySharesClass').style.display = 'none';">
                         <td></td>
                         <td>
-                            <form>
-                                <input type="number" min="0" name="quantity" placeholder="Enter # of shares" />
-                            </form>
+                            <form method=POST>
+                                <input type="number" min="1" name="quantity" placeholder="Enter # of shares" />
                         </td>
                         <td>
                             <div id="buyShares">
-                                <button>Buy</button>
+                            {% csrf_token %}
+                            <button id="searchBarButton" type="submit" value="{{x.symbol}}" name="buyButton">Buy</button>
+                            </form>
                             </div>
                         </td>
                     </tr>

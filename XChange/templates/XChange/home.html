@@ -32,39 +32,32 @@
         <!--</form>-->
         <div id="parentDiv">
             <div id="todayDiv">
-                <h1>Today</h1>
-                <p>Your net income from the past 24 hrs is: </p>
+                <h1>Total Equity</h1>
                 <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
             </div>
             
-            <!--<div id="parentDiv">-->
-            <div id="bookmarkDiv">
-                <h1>Bookmarks</h1>
-                <table id="bookTable">
+        <!--<div id="parentDiv">-->
+        <div id="bookmarkDiv">
+        <h1>Assets</h1>
+        {% if userAssets %}    
+            <table id="bookTable">
                     
+            <tr>
+                <th>Company</th>
+                <th>Shares</th>
+                <th>Total Equity</th> 
+            </tr>
+                {% for a, v in userAssets %}
                     <tr>
-        <th>ID</th>
-        <th>Company</th>
-        <th>Price-Point</th> 
-        <th>Date</th>
-      </tr>
-                    
-                    
-                    {% for b in userBookmarks %}
-                    <tr>
-                    <td> {{b.id}}</td>
-                    <td> {{b.companyName}}</td>
-                    <td> {{b.bookmarkPrice}}</td>
-                    <td> {{b.setDate}}</td>
+                        <td> {{a.assetName}}</td>
+                        <td> {{a.shares}}</td>
+                        <td> ${{v}}</td>
                     </tr>
-                    <form method='POST'>
-                        {% csrf_token %}
-                        <button type="submit" name="delete" value="{{b.id}}">Delete</button>
-                    </form>
-                    </td>
-                  {% endfor %}
-                </table>
-            
+                 {% endfor %}
+            </table>
+        {% else %}
+        <h1> No Assets: Search and buy one now!</h1>
+        {% endif %}
             </div>
         <!--</div>-->
         </div>

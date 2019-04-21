@@ -18,7 +18,7 @@ from io import BytesIO
 import requests
 import json
 from datetime import datetime
-
+import operator
 from .forms import SignUpForm, LoginForm
 from .models import UserProfile, Bookmark, Asset
 # Create your views here.
@@ -51,6 +51,7 @@ def login(request):
             return redirect("home")
         else:
             return render(request, 'XChange/login.html', {'login_form': login_form, 'reg_form': reg_form, 'error': 'Login Failed'})
+    
     else:
         login_form = LoginForm()
         reg_form = SignUpForm()
@@ -68,13 +69,12 @@ def settings(request):
 def search(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+        
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-        
-    if (request.method == 'POST'):
-        if (request.POST.get('submit') == 'Search'):
+        elif (request.POST.get('submit') == 'Search'):
             search_data = request.POST['searchText']
             results = []
             if (search_data):
@@ -88,13 +88,9 @@ def search(request):
                     nameJsonData = json.loads(nameSearch.content)
                     for pos, x in enumerate(nameJsonData):
                         if (str(search_data).lower() in x['name'].lower() or str(search_data).lower() in x['symbol'].lower()):
-                            symbol = x['name']
                             currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x['symbol']) + '/quote?displayPercent=true')
                             symJsonData = json.loads(currentSearch.content)
-                            currentPrice = symJsonData['latestPrice']
-                            currentGrowth = symJsonData['changePercent']
-                            currentChange = symJsonData['change']
-                            results.append({"symbol": x['name'], "currentPrice": symJsonData['latestPrice'], "currentGrowth": symJsonData['changePercent'], "currentChange": symJsonData['change']})
+                            results.append({"symbol": x['symbol'], "name": x['name'], "currentPrice": symJsonData['latestPrice'], "currentGrowth": symJsonData['changePercent'], "currentChange": symJsonData['change']})
                     if (not results):
                         error = "No Results"
                         return render(request, 'XChange/search.html', {'error': error})
@@ -105,6 +101,10 @@ def search(request):
             else:
                 error = "Please enter an asset symbol or company name"
                 return render(request, 'XChange/search.html', {'error': error})
+        elif (request.POST.get('buyButton')):
+            print(request.POST.get('buyButton'))
+            quantity = request.POST['quantity']
+            print ("Quan: " + quantity)
             
     return render(request, 'XChange/search.html')
 
@@ -129,24 +129,23 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     graphic = None
-    if (request.method == 'POST'):
-        if (request.POST.get('submit') == 'Logout'):
-            logout(request)
-            return render(request, 'XChange/index.html')
-    
     currentProfile = UserProfile.objects.get(user = request.user)
-    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).order_by('companyName')
+    
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-        elif(request.POST.get('delete')):
-            bmID = request.POST['delete']
-            Bookmark.objects.filter(id=bmID).delete()
-            message = 'Bookmark deleted'
-            return render(request, 'XChange/home.html', {'userBookmarks': userBookmarks})
-    
     else:
+        userAssets = Asset.objects.filter(userProfile = currentProfile).exclude(assetName = 'USD')
+        totalValues = []
+        for x in userAssets:
+            try:
+                currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x.assetName).strip() + '/quote')
+            except requests.exceptions.RequestException:
+                pass
+            jsonData = json.loads(currentSearch.content)
+            totalValues.append(round(jsonData['latestPrice'] * x.shares, 2))
+        
         stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/list/gainers').content
         stockMovers = json.loads(stockReq)
         cryptoReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/crypto').content
@@ -158,9 +157,9 @@ def home(request):
         del cryptoTop[5]   #delete bad data
         del cryptoTop[14]
         
-        
-    #graphic = getGraph(request, None).content
-    return render(request, 'XChange/home.html', {'userBookmarks': userBookmarks, 'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
+        graphic = getHomeGraph(request, userAssets).content
+        userAssets = zip(userAssets, totalValues)
+        return render(request, 'XChange/home.html', {'userAssets': userAssets, 'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
     
 def myPortfolio(request):
     if not request.user.is_authenticated:
@@ -212,6 +211,46 @@ def getGraph(request, data):
 
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
+
+    graphic = base64.b64encode(image_png)
+    graphic = graphic.decode('utf-8')
+    # Send buffer in a http response the the browser with the mime type image/png set
+    return HttpResponse(graphic, content_type="image/png")
+    
+def getHomeGraph(request, data):
+    labels = []
+    sizes = []
+    latestPrices = []
+    totalValue = 0
+    
+    for x in data:
+        try:
+            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x.assetName).strip() + '/quote')
+        except requests.exceptions.RequestException:
+            return None
+        jsonData = json.loads(currentSearch.content)
+        latestPrices.append(jsonData['latestPrice'])
+        labels.append(x.assetName)
+        totalValue = totalValue + round((x.shares * latestPrices[-1]), 2)
+    
+    for pos, x in enumerate(data):
+        sizes.append(round((x.shares * latestPrices[pos])/totalValue*100, 2))
+    arr = np.arange(100).reshape((10,10))
+    fig = plt.figure(figsize=(7,6))
+    ax1 = fig.add_subplot(111, frameon=False)
+    for pos, x in enumerate(labels):
+        labels[pos] = x + ' - ' + str(sizes[pos]) + '%'
+    ax1.pie(sizes, startangle=90, labeldistance = 2)
+    ax1.legend(labels, bbox_to_anchor=(1, 1.), loc = 'best', fancybox=True, framealpha=0)
+    ax1.axis('equal')
+    ax1.set_title("Total Portfolio Value: $" + str(totalValue), fontdict={'fontsize': 18, 'fontweight': 'medium'}, fontname='sans-serif' )
+    plt.tight_layout()
+    
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png', transparent = True)
     buffer.seek(0)
     image_png = buffer.getvalue()
     buffer.close()
