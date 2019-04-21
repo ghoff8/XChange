@@ -28,31 +28,38 @@
     {%if message%}
     <h2>{{message}}</h2>
     {%endif%}
-    <table id = "tableBookmark">
-    <!--<table style="width:50%">-->
-      <tr>
-        <div class = "tableBookmark">
-        <!--<th>ID</th>-->
-        <th>Company</th>
-        <th>Price-Point</th> 
-        <th>Date</th>
-        </div>
-      </tr>
-      
-      {% for b in userBookmarks %}
-        <!--<td> {{b.id}}</td>-->
+    <div id="tableDiv">
+      <table id = "tableBookmark">
+      <!--<table style="width:50%">-->
+        <col id="compNameBook">
+        <col id="dateBook">
+        <col id="priceBook">
+        <col id="deleteButton">
         <tr>
-          <td> {{b.companyName}}</td>
-          <td> {{b.bookmarkPrice}}</td>
-          <td> {{b.setDate}}</td>
-          <td>
-          <form method='POST'>
-              {% csrf_token %}
-              <button type="submit" name="delete" value="{{b.id}}">Delete</button>
-          </form>
-          </td>
+          <div class = "tableBookmarkDiv">
+          <!--<th>ID</th>-->
+          <th>Company</th>
+          <th>Date</th>
+          <th class="rightAlignPrice">Price-Point</th>
+          <th id="deleteHeader">Delete</th>
+          </div>
         </tr>
-      {% endfor %}
-    </table>
+        
+        {% for b in userBookmarks %}
+          <!--<td> {{b.id}}</td>-->
+          <tr>
+            <td>{{b.companyName}}</td>
+            <td>{{b.setDate}}</td>
+            <td class="rightAlignPrice">${{b.bookmarkPrice}}</td>
+            <td class="deleteCell">
+            <form method='POST'>
+                {% csrf_token %}
+                <button type="submit" name="delete" value="{{b.id}}">Delete</button>
+            </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
   </body>
 </html>
