@@ -35,7 +35,7 @@
             {% endif %}
             <div id="searchBar">
                 <form method='POST'>
-                    <input type="text" name="searchText" placeholder="Enter Asset Symbol" />
+                    <input type="text" name="searchText" placeholder="Search" />
                     {% csrf_token %}
                     <button id="searchBarButton" type="submit" value="Search" name="submit">Search</button>
                 </form>
@@ -57,12 +57,13 @@
                 {% if results %}
                     {% for x in results %}
                     <tr class=searchResultsRow>
-                        <td class="currSymbol">{{ x.symbol }}</td>
+                        <td class="currSymbol">{{ x.name }}</td>
                         <td class="currPrice"> ${{ x.currentPrice }}</td>
                         <td class="currGrowth"> ${{x.currentChange}} ({{ x.currentGrowth }}%)</td>
                         <td class="buttonCell">
-                            <form>
-                                <button href="assetDetails.html" class="buyDetailsButton" type="submit">More Details/Buy</button>
+                            <form method = POST>
+                                {% csrf_token %}
+                                <button class="buyDetailsButton" type="submit" name="buyDetailsButton" value="{{x.symbol}}">More Details/Buy</button>
                             </form>
                         </td>
                     </tr>

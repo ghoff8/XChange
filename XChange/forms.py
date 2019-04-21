@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text= 'We will send a confirmation email to verify your account.')
+    email = forms.EmailField(max_length=254)
     #username = forms.CharField(label=("Password"), widget=forms.PasswordInput)
     
     class Meta:
