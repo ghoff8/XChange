@@ -57,6 +57,8 @@ input:focus {
   border: none;
   color: white;
   padding: 8px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   font-weight: bold;
   font-size: 16px;
   border-radius: 5px;
@@ -79,6 +81,10 @@ input:focus {
 
 #s-table tr:nth-child(even){
     background-color: #dddddd;
+}
+
+#s-table tr:nth-child(odd){
+    background-color: #eee;
 }
 
 #searchBarButton {
@@ -108,14 +114,48 @@ table {
     /*margin:auto;*/
 }
 
-.buySharesClass {
-  /*display: none;*/
-  /*border: none;*/
-  /*border-collapse: collapse;*/
+#priceCol {
+  width: 15%;
 }
 
-/*#buyShares {*/
-/*  display: none;*/
+#growthCol {
+  width: 15%;
+}
+
+#buttonCol {
+  width: 15%;
+}
+
+/*This not working for some reason*/
+.rightAlign {  
+  text-align: right;
+}
+
+.currPrice, .currGrowth {
+  text-align: right;
+}
+
+.buttonCell {
+  text-align: center;
+}
+
+.buttonCell button {
+  margin-top: 10px;
+  background-color: teal;
+  border: none;
+  color: white;
+  /*padding: 8px;*/
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
+  margin: auto;
+}
+/*.priceCol, .growthCol {*/
+/*  text-align: right;*/
 /*}*/
 
 body {

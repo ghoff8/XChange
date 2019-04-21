@@ -108,6 +108,9 @@ def search(request):
             
     return render(request, 'XChange/search.html')
 
+def assetDetails(request):
+    return render(request, 'XChange/assetDetails.html')
+    
 def bookmarks(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))

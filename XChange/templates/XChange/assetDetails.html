@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>More Details</title>
+    <link rel="stylesheet" type="text/css" href="/static/XChange/css/assetDetails.css" />
+    <link rel="stylesheet" type="text/css" href="/static/XChange/css/common.css" />
+    <script src="/static/XChange/js/assetDetails.js"></script>
+    <link rel="icon" href="/static/XChange/images/tab_favicon.png">
+  </head
+  <body>
+  <!--title of page needs to be Asset Name-->
+    <h1 id="assetDetails-title">Asset Name</h1> 
+    <div class="navBarDiv">
+      <ul class="navBarList">
+        <li class="homeNav"><a href="/home.html">Home</a></li>
+        <li class="portNav"><a href="myPortfolio.html">My Portfolio</a></li>
+        <li class="srchNav"><a href="search.html">Search</a></li>
+        <li class="bmarkNav"><a href="bookmarks">Bookmarks</a></li>
+        <li class="settNav"><a href="settings.html">Settings</a></li>
+        <li class="logOut">
+          <form method='POST'>
+            {% csrf_token %}
+            <button type="submit" name="submit" value="Logout">Logout</button>
+          </form></li>
+      </ul>
+    </div>
+    
+    <div id="allDetails">
+        <div id="graphDiv">
+            <p>Asset Name Here</p>
+            <br>
+            <div id="graphImage">
+                
+            </div>
+        </div>
+        <div id="buyDiv">
+            <form>
+                <p>This asset is currently priced at $' ' ' ' '</p>
+                <label for="numOfShares">Quantity:</label>
+                <input type="number" id="numofShares" name="numOfShares" min="0" />
+                <p id="totalCost"> $totalcost</p>
+                <div id="buyButtonDiv">
+                    <button id="buyButton">Buy</button>
+                </div>
+            </form>
+        </div>
+        <div id="setBookmarkDiv">
+            <p>Create a bookmark for the current price.</p>
+            <form>
+                <button id="bookmarkButton">Bookmark Now</button>
+            </form>
+        </div>
+    </div>
+  </body>
+</html>
