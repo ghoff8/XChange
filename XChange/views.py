@@ -99,16 +99,20 @@ def search(request):
                     error = "Asset Not Found"
                     return render(request, 'XChange/search.html', {'error': error})
             else:
-                error = "Please enter an asset symbol or company name"
+                error = "Please enter an asset symbol, cryptocurrency, or company name"
                 return render(request, 'XChange/search.html', {'error': error})
-        elif (request.POST.get('buyButton')):
-            print(request.POST.get('buyButton'))
-            quantity = request.POST['quantity']
-            print ("Quan: " + quantity)
+        elif (request.POST.get('buyDetailsButton')):
+            pass
             
     return render(request, 'XChange/search.html')
 
 def assetDetails(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    if (request.method == 'POST'):
+        if (request.POST.get('submit') == 'Logout'):
+            logout(request)
+            return render(request, 'XChange/index.html')
     return render(request, 'XChange/assetDetails.html')
     
 def bookmarks(request):
