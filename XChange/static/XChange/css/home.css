@@ -24,28 +24,38 @@ h1 {
 }
 
 #parentDiv {
-    width: 90%;
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
     padding-top: 20px;
     /*padding-bottom: 20px;*/
-}
-#bookmarkDiv {
-    float: right;
-    width:45%;
-    border: 1px solid black;
-    /*margin: auto;*/
-    /*padding-bottom: 25px;*/
-    margin-right: 4.5%;
-    height: 50vh;
 }
 
 #todayDiv {
     float: left;
-    width: 45%;
+    width: 40%;
+    height: 91%;
+    position: absolute;
     display: inline-table;
     border: 1px solid black;
     margin-left: 4.5%;
     /*padding-bottom: 1%;*/
-    height: 50vh;
+    /*height: auto;*/
+    background-color: rgba(255, 255, 255, .6);
+}
+
+#bookmarkDiv {
+    width:40%;
+    height: 100%;
+    position: absolute;
+    float: right;
+    left: 55%;
+    border: 1px solid black;
+    /*margin: auto;*/
+    /*padding-bottom: 25px;*/
+    margin-right: 4.5%;
+    height: 56vh;
     background-color: rgba(255, 255, 255, .6);
 }
 
@@ -59,15 +69,73 @@ h1 {
     height: auto;
 }
 
-#bookmarkDiv {
-    background-color: rgba(255, 255, 255, .6);
+#bookTable {
+    width: 90%;
+    margin: auto;
+}
+
+#bookTable td{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bookTable th{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bookTable tr:nth-child(odd){
+    background-color: #dddddd;
+}
+
+#bookTable tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+#bookTable th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  background-color: #222;
+  color: white;
+  font-family: Arial;
+  font-size: 18px;
+  /*border-radius: 5px;*/
+  border: none;
+}
+
+#bookTable td {
+    padding: 10px;
+    /*margin: 5px;*/
+    font-size: 17px;
+    font-family: Arial; 
+}
+
+#bookTable tr:hover {
+  background-color: #AAAAAA;
+}
+
+#compNameBook {
+  width: 68%;
+}
+
+#sharesBook {
+  width: 12%;
+}
+
+#equityBook {
+    width: 20%;
+}
+
+table .rightAlignEquity {
+  /*color: white;  */
+  text-align: right;
 }
 
 #currencyBar{
     width: 15%;
     /*display: table;*/
     margin: auto;
-    
 }
 
 #currencyBar, button {
@@ -144,7 +212,7 @@ h1 {
 }
 
 .nameCol {
-    width: 51%;
+    width: 49.5%;
 }
 
 /*.textLeftCol {*/

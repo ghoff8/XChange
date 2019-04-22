@@ -18,7 +18,6 @@
 
 #tableBookmark td{
   border: 1px solid #ddd;
-  padding: 8px;
 }
 
 #deleteHeader {
@@ -26,10 +25,23 @@
 }
 
 #tableBookmark th{
-  border: 1px solid #ddd;
-  padding: 8px;
+  text-align: left;
+  background-color: #222;
+  color: white;
+  font-family: Arial;
+  font-size: 20px;
+  border: none;
 }
 
+#tableBookmark td, th {
+    padding: 15px;
+    font-size: 17px;
+    font-family: Arial; 
+}
+
+#tableBookmark tr:hover {
+  background-color: #AAAAAA;
+}
 #tableBookmark tr:nth-child(odd){
     background-color: #dddddd;
 }
@@ -59,29 +71,6 @@
 /*#tableBookmark tr:nth-child(even){*/
 /*  background-color: #dddddd;*/
 /*}*/
-
-#tableBookmark th {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  text-align: left;
-  background-color: #222;
-  color: white;
-  font-family: Arial;
-  font-size: 20px;
-  /*border-radius: 5px;*/
-  border: none;
-}
-
-#tableBookmark td, th {
-    padding: 15px;
-    /*margin: 5px;*/
-    font-size: 17px;
-    font-family: Arial; 
-}
-
-#tableBookmark tr:hover {
-  background-color: #AAAAAA;
-}
 
 input[type=text] {
   width: 30%;

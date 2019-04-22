@@ -42,7 +42,7 @@
             {% for asset in userAssets %}
               {% if asset.assetName != 'USD'%}
               <tr>
-                <td>{{asset.assetName}}</td>
+                <td>{{asset.assetName}}</td> <!--replace with company name-->
                 <th>
                   <form method='POST'>
                     {% csrf_token %}

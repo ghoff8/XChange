@@ -37,27 +37,29 @@
             </div>
             
         <!--<div id="parentDiv">-->
-        <div id="bookmarkDiv">
-        <h1>Assets</h1>
-        {% if userAssets %}    
-            <table id="bookTable">
-                    
-            <tr>
-                <th>Company</th>
-                <th>Shares</th>
-                <th>Total Equity</th> 
-            </tr>
-                {% for a, v in userAssets %}
+            <div id="bookmarkDiv">
+            <h1>Assets</h1>
+            {% if userAssets %}    
+                <table id="bookTable">
+                    <col id="compNameBook">
+                    <col id="sharesBook">
+                    <col id="equityBook">
                     <tr>
-                        <td> {{a.assetName}}</td>
-                        <td> {{a.shares}}</td>
-                        <td> ${{v}}</td>
+                        <th>Company</th>
+                        <th class="rightAlignEquity">Shares</th>
+                        <th class="rightAlignEquity">Total Equity</th> 
                     </tr>
-                 {% endfor %}
-            </table>
-        {% else %}
-        <h1> No Assets: Search and buy one now!</h1>
-        {% endif %}
+                    {% for a, v in userAssets %}
+                        <tr>
+                            <td> {{a.assetName}}</td> <!--replace with company name instead of symbol-->
+                            <td class="rightAlignEquity"> {{a.shares}}</td>
+                            <td class="rightAlignEquity"> ${{v}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+            <h1> No Assets: Search and buy one now!</h1>
+            {% endif %}
             </div>
         <!--</div>-->
         </div>
