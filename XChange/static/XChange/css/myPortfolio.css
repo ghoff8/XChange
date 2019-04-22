@@ -7,17 +7,16 @@
 }
 
 #Wrap{
-    width: 100%;
+    width: 95%;
     margin: auto;
 }
 
 #divAsset {
-    width: 19.5%;
+    width: 18%;
 }
 
 #assets{
-    width: 19.5%;
-    height: 40vh;
+    width: 18%;
 }
 
 #divCurrentAsset {
@@ -26,7 +25,6 @@
 
 #graphDiv {
     width:50%;
-    height: 40vh;
 }
 
 #graphDiv p {
@@ -40,12 +38,11 @@
 }
 
 #divBookAsset {
-    width: 29.5%;
+    width: 25%;
 }
 
 #myBookmarks{
     width: 29.5%;
-    height: 40vh;
 }
 
 #divAsset, #divCurrentAsset, #divBookAsset, #assets, #graphDiv, #myBookmarks{
@@ -56,17 +53,17 @@
 
 #divAsset, #divCurrentAsset, #divBookAsset {
     margin-top: 2%;
-    background-color: #555
-}
-
-#divAsset h2, #divCurrentAsset h2, #divBookAsset h2 {
-    color: #eee;
-    font-family: "Arial";
-    font-size: 25px;
+    background-color: #222;
+    font-family: Arial;
+    color: white;
 }
 
 #assets, #graphDiv, #myBookmarks {
-    background-color: white;    
+    background-color: rgba(255, 255, 255, .6);
+    height: auto;
+    font-size: 20px;
+    padding: 20px;
+    padding-bottom: 40px;
 }
 
 #assetsUl, #myBookmarksUl {
@@ -137,7 +134,5 @@
 
 body {
   background-image: url("/static/XChange/images/portfolioCity.png");
-  background-size: 4000px 1600px;
-  /*background-color: rba(0, 0,0, 0.5);*/
-  /*background-color: #EEEEEE;*/
+  background-size: 2000px 1300px;
 }

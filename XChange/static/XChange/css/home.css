@@ -24,7 +24,7 @@ h1 {
 }
 
 #parentDiv {
-    width: 100%;
+    width: 90%;
     padding-top: 20px;
     /*padding-bottom: 20px;*/
 }
@@ -46,7 +46,7 @@ h1 {
     margin-left: 4.5%;
     /*padding-bottom: 1%;*/
     height: 50vh;
-    background-color: rgba(238, 238, 238, .6);
+    background-color: rgba(255, 255, 255, .6);
 }
 
 #todayDiv img {
@@ -60,7 +60,7 @@ h1 {
 }
 
 #bookmarkDiv {
-    background-color: rgba(238, 238, 238, .6);
+    background-color: rgba(255, 255, 255, .6);
 }
 
 #currencyBar{
@@ -85,12 +85,13 @@ h1 {
 #currencyBar{
     width: 100%;
     float: left;
+    margin-left: 5px;
     /*text-align: center;*/
 }
 
 
 .dynamic-bar{
-    background-color: rgba(238, 238, 238, .8);
+    background-color: rgba(255, 255, 255, .6);
     color: teal;
     width: 49%;
     margin-top: 15px;
