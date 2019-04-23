@@ -11,9 +11,9 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('auth', '0008_alter_user_username_max_length'),
-     ]
+    # dependencies = [
+    #     ('auth', '0008_alter_user_username_max_length'),
+    #  ]
 
     operations = [
         migrations.CreateModel(
