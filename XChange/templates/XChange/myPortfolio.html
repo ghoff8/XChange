@@ -64,6 +64,15 @@
               <p>Number of shares bought: {{selectedAsset.shares}}</p>
               <p>Equity based on current price: $garbage</p>
               {% endif %}
+              
+          {% elif graphic == None %}
+          <!--<img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">-->
+            {% if selectedAsset %}
+              <p>Price per share when bought: ${{selectedAsset.priceBought}}</p>
+              <p>Number of shares bought: {{selectedAsset.shares}}</p>
+              <p>Equity based on current price: $garbage</p>
+            
+            {% endif %}
           {% endif %}
         </div>
       </div>

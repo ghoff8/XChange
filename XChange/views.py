@@ -19,7 +19,7 @@ import requests
 import json
 from datetime import datetime
 import operator
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, SettingsPasswordForm
 from .models import UserProfile, Bookmark, Asset
 # Create your views here.
 
@@ -60,11 +60,35 @@ def login(request):
 def settings(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+        
     if (request.method == 'POST'):
+        # settingspass_form = SettingsPasswordForm()
+        
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-    return render(request, 'XChange/settings.html')
+            
+        if request.method == 'POST' and request.POST.get('settsubmit'):
+            settingspass_form = SettingsPasswordForm(request.user, request.POST)
+            print("before valid print statement")
+            if settingspass_form.is_valid():
+                raw_password = settingspass_form.cleaned_data.get('password1')
+                user = settingspass_form.save()
+                userNew = authenticate(username=user.username, password=raw_password)
+                # djLogin(request, userNew)
+                print("password changed")
+                return redirect('/login.html')
+		
+            
+    else:
+          
+        settingspass_form = SettingsPasswordForm(request.user)
+        print("password not changed")
+        return render(request, 'XChange/settings.html', {
+            'settingspass_form': settingspass_form})
+                
+    
+    return render(request, 'XChange/settings.html', {'settingspass_form': settingspass_form})
     
 def search(request):
     if not request.user.is_authenticated:
@@ -247,11 +271,19 @@ def myPortfolio(request):
                 close = float(obj.pop('close', None))
                 data = {u'label': date, u'close': close, u'pos': int(pos)}
                 stockChartData[pos] = data
-            graphic = getGraph(request, stockChartData).content
-            selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
-            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic, 'selectedAsset': selectedAsset, 'currentBalance': currentBalance})
-    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'currentBalance': currentBalance})    
+                
+            selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])    
+            if ('USD' not in selectedAsset.assetName):
+                graphic = getGraph(request, stockChartData).content
+            
+            else: 
+                graphic = None
+            
+            # selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
+            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic, 'selectedAsset': selectedAsset})
+    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks})    
 
+           
 
 def getGraph(request, data):
     
