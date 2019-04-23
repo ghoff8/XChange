@@ -32,7 +32,8 @@
     width: 90%;
     margin: auto;
     clear: both;
-    height: 700px;
+    overflow-y: auto;
+    /*height: 700px;*/
 }
 
 #listWrap > div {
@@ -104,7 +105,7 @@
 
 #graphDiv {
     height: 100%;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     padding-left: 40px;
 }
 
