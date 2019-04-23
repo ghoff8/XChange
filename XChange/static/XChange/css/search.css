@@ -164,4 +164,5 @@ table {
 body {
   background-image: url("/static/XChange/images/searchCity.png");
   background-size: 3000px 1900px;
+  background-position: -400px -500px;
 }
