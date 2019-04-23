@@ -89,7 +89,7 @@ def search(request):
                         if ((str(search_data).lower() in x['name'].lower() or str(search_data).lower() in x['symbol'].lower()) and not (x['symbol'] == 'BCCUSDT' or x['symbol'] == 'VENUSDT')):
                             currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x['symbol']) + '/quote?displayPercent=true')
                             symJsonData = json.loads(currentSearch.content)
-                            results.append({"symbol": x['symbol'], "name": x['name'], "currentPrice": strsymJsonData['latestPrice'].format, "currentGrowth": symJsonData['changePercent'], "currentChange": symJsonData['change']})
+                            results.append({"symbol": x['symbol'], "name": x['name'], "currentPrice": symJsonData['latestPrice'], "currentGrowth": symJsonData['changePercent'], "currentChange": symJsonData['change']})
                     if (not results):
                         error = "No Results"
                         return render(request, 'XChange/search.html', {'error': error})
@@ -100,33 +100,54 @@ def search(request):
             else:
                 error = "Please enter an asset symbol, cryptocurrency, or company name"
                 return render(request, 'XChange/search.html', {'error': error})
-        elif (request.POST.get('buyDetailsButton')):
-            selectedAsset = request.POST.get('buyDetailsButton')
-            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/quote?displayPercent=true')
-            jsonData = json.loads(currentSearch.content)
-            print jsonData
-            if (not jsonData['primaryExchange'] == 'crypto'):
-                stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/chart/1m').content
-                stockChartData = json.loads(stockReq)
-                for pos, obj in enumerate(stockChartData):
-                    date = obj.pop('label', None)
-                    close = float(obj.pop('close', None))
-                    data = {u'label': date, u'close': close, u'pos': int(pos)}
-                    stockChartData[pos] = data
-                graphic = getGraph(request, stockChartData).content
-                return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'graphic': graphic})
-            return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData})
             
     return render(request, 'XChange/search.html')
 
 def assetDetails(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
+    currentUser = UserProfile.objects.get(user = request.user)
+    currentBalance = Asset.objects.get(assetName = 'USD', userProfile = currentUser)
+    currentBalanceAmount = round(currentBalance.shares * currentBalance.priceBought, 2)
+    error = None
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
-            return render(request, 'XChange/index.html')
-    return render(request, 'XChange/assetDetails.html')
+            return redirect('index')
+        elif(request.POST.get('buyButton')):
+            asset = request.GET.get('asset')
+            totalBuy = float(request.POST.get('buyButton'))
+            shares = request.POST.get('numOfShares')
+            if (shares):
+                currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + asset + '/quote?displayPercent=true')
+                currentPrice = json.loads(currentSearch.content)['latestPrice']
+                if (totalBuy < currentBalanceAmount):
+                    existingCheck = Asset.objects.filter(assetName = asset, userProfile = currentUser)
+                    if(existingCheck):
+                        pass #TODO
+                    else:
+                        newlyCreatedAsset = Asset.objects.create(userProfile = currentUser, assetName = asset, timeBought = datetime.now(), shares = shares, priceBought = currentPrice)
+                        currentBalance.shares -= totalBuy
+                        currentBalance.save()
+                return redirect('home')
+            else:
+                error = "Must buy 1 or more shares"
+    selectedAsset = request.GET.get('asset')
+    method = request.GET.get('BorS')
+    currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/quote?displayPercent=true')
+    jsonData = json.loads(currentSearch.content)
+        
+    if (not jsonData['primaryExchange'] == 'crypto'):
+        stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/chart/1m').content
+        stockChartData = json.loads(stockReq)
+        for pos, obj in enumerate(stockChartData):
+            date = obj.pop('label', None)
+            close = float(obj.pop('close', None))
+            data = {u'label': date, u'close': close, u'pos': int(pos)}
+            stockChartData[pos] = data
+        graphic = getGraph(request, stockChartData).content
+        return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'graphic': graphic, 'currentBalance': currentBalanceAmount, 'method': method})
+    return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'currentBalance': currentBalanceAmount, 'method': method, 'error': error})
     
 def bookmarks(request):
     if not request.user.is_authenticated:
@@ -154,57 +175,56 @@ def home(request):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return render(request, 'XChange/index.html')
-    else:
-        userAssets = Asset.objects.filter(userProfile = currentProfile).exclude(assetName = 'USD')
-        totalValues = []
-        assetNames = []
-        for x in userAssets:
-            try:
-                currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x.assetName).strip() + '/quote')
-            except requests.exceptions.RequestException:
-                pass
-            jsonData = json.loads(currentSearch.content)
-            totalValues.append(round(jsonData['latestPrice'] * x.shares, 2))
-            assetNames.append(jsonData['companyName'])
+    userAssets = Asset.objects.filter(userProfile = currentProfile).exclude(assetName = 'USD')
+    totalValues = []
+    assetNames = []
+    for x in userAssets:
+        try:
+            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x.assetName).strip() + '/quote')
+        except requests.exceptions.RequestException:
+            pass
+        jsonData = json.loads(currentSearch.content)
+        totalValues.append(round(jsonData['latestPrice'] * x.shares, 2))
+        assetNames.append(jsonData['companyName'])
         
-        filteredUserAssets = []
-        filteredTotalValues = []
-        filteredAssetNames = []
+    filteredUserAssets = []
+    filteredTotalValues = []
+    filteredAssetNames = []
         
-        userAssetsList = list(userAssets)
-        totalValuesList = totalValues
-        i = 1
-        while(i < userAssets.count()):
-            max = 0
-            for pos, x in enumerate(userAssetsList):
-                if totalValues[pos] > max:
-                    max = totalValues[pos]
-            index = totalValues.index(max)
-            filteredUserAssets.append(userAssetsList[index])
-            filteredTotalValues.append(totalValues[index])
-            filteredAssetNames.append(assetNames[index])
+    userAssetsList = list(userAssets)
+    totalValuesList = totalValues
+    i = 0
+    while(i < userAssets.count()):
+        if (i > 5):
+            break
+        max = 0
+        for pos, x in enumerate(userAssetsList):
+            if totalValues[pos] > max:
+                max = totalValues[pos]
+        index = totalValues.index(max)
+        filteredUserAssets.append(userAssetsList[index])
+        filteredTotalValues.append(totalValues[index])
+        filteredAssetNames.append(assetNames[index])
+        
+        del userAssetsList[index]
+        del totalValues[index]
+        del assetNames[index]
+        i = i + 1
             
-            del userAssetsList[index]
-            del totalValues[index]
-            del assetNames[index]
-            i = i + 1
-            if (i > 5):
-                break
-            
-        stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/list/gainers').content
-        stockMovers = json.loads(stockReq)
-        cryptoReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/crypto').content
-        cryptoTop = json.loads(cryptoReq)
-        for x in cryptoTop:
-            x['changePercent'] *= 100
-        for x in stockMovers:
-            x['changePercent'] *= 100
-        del cryptoTop[5]   #delete bad data
-        del cryptoTop[14]
+    stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/list/gainers').content
+    stockMovers = json.loads(stockReq)
+    cryptoReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/crypto').content
+    cryptoTop = json.loads(cryptoReq)
+    for x in cryptoTop:
+        x['changePercent'] *= 100
+    for x in stockMovers:
+        x['changePercent'] *= 100
+    del cryptoTop[5]   #delete bad data
+    del cryptoTop[14]
         
-        graphic = getHomeGraph(request, userAssets).content
-        filteredUserAssets = zip(filteredUserAssets, filteredTotalValues, filteredAssetNames)
-        return render(request, 'XChange/home.html', {'userAssets': filteredUserAssets, 'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
+    graphic = getHomeGraph(request, userAssets).content
+    filteredUserAssets = zip(filteredUserAssets, filteredTotalValues, filteredAssetNames)
+    return render(request, 'XChange/home.html', {'userAssets': filteredUserAssets, 'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
     
 def myPortfolio(request):
     if not request.user.is_authenticated:

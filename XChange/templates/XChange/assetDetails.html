@@ -6,9 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/static/XChange/css/common.css" />
     <script src="/static/XChange/js/assetDetails.js"></script>
     <link rel="icon" href="/static/XChange/images/tab_favicon.png">
-  </head
+  </head>
   <body>
-  <!--title of page needs to be Asset Name-->
     <h1 id="assetDetails-title">{{selectedAsset.companyName}}</h1> 
     <div class="navBarDiv">
       <ul class="navBarList">
@@ -24,7 +23,7 @@
           </form></li>
       </ul>
     </div>
-    
+    <h2>Current Balance: ${{currentBalance}}</h2>
     <div id="allDetails">
         <div id="graphDiv">
             <p>{{selectedAsset.companyName}}</p>
@@ -33,25 +32,38 @@
               <div id="graphImage">
                 <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
               </div>
+            {% else %}
+              <h2>Daily High: {{selectedAsset.high}}</h2>
+              <h2>Current Price: {{selectedAsset.latestPrice}}</h2>
+              <h2>Daily Low: {{selectedAsset.low}}</h2>
+              <h2>Previous Close: {{selectedAsset.previousClose}}</h2>
             {% endif %}
             
             
         </div>
         <div id="buyDiv">
-            <form>
-                <p>This asset is currently priced at $<label id="currentPrice">{{selectedAsset.latestPrice}}</label></p>
+          <form method='POST'>
+                <p>This asset is currently priced at $<label id="currentPrice" name = 'currentPrice'>{{selectedAsset.latestPrice}}</label></p>
                 <label for="numOfShares">Shares:</label>
-                <input type="number" id="numOfShares" name="numOfShares" min="0" oninput="calculate()" />
-                <p id="totalCost"> $0</p>
+                <input type="number" id="numOfShares" name="numOfShares" min="0.1" step="0.1" oninput="calculate()" />
+                <p id="totalCost"> $0.00</p>
+                {% if method == 'Buy' %}
                 <div id="buyButtonDiv">
-                    <button id="buyButton">Buy</button>
+                    {% csrf_token %}
+                    <button type="submit" id="buyButton" name="buyButton" onclick="getTotalCost()">Buy</button>
                 </div>
-            </form>
+                {% elif method == 'Sell' %}
+                <div id="sellButtonDiv">
+                    {% csrf_token %}
+                    <button type="submit" id="sellButton" name="sellButton" onclick="getTotalCost()">Buy</button>
+                </div>
+                {% endif %}
+          </form>
         </div>
         <div id="setBookmarkDiv">
             <p>Create a bookmark for the current price.</p>
-            <form>
-                <button id="bookmarkButton">Bookmark Now</button>
+            <form method='POST'>
+                <button id="bookmarkButton" name="bookmark">Bookmark Now</button>
             </form>
         </div>
     </div>

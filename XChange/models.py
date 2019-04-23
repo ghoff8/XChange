@@ -12,7 +12,7 @@ class Asset(models.Model):
     userProfile = models.ForeignKey(UserProfile)
     assetName = models.CharField(max_length=250)
     timeBought = models.DateTimeField()
-    shares = models.IntegerField(max_length=250)
+    shares = models.FloatField(max_length=250)
     priceBought = models.FloatField(max_length=250)
     
 class Bookmark(models.Model):
