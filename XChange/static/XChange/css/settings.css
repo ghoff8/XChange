@@ -64,5 +64,6 @@
 
 body {
   background-image: url("/static/XChange/images/settingsCity.png");
+  background-position: -200px;
   background-size: 4000px 2666px;
 }
