@@ -112,7 +112,8 @@ h1 {
 }
 
 #bookTable tr:hover {
-  background-color: #AAAAAA;
+  background-color: teal;
+  color: white;
 }
 
 #compNameBook {
@@ -228,7 +229,8 @@ table .rightAlignEquity {
 }
 
 .currencyTable tr:hover {
-    background-color: #AAAAAA;
+    background-color: teal;
+    color: white;
 }
 
 body {

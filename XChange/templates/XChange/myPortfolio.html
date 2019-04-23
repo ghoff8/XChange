@@ -24,78 +24,87 @@
       </ul>
     </div>
     
-    <div id="Wrap">
+    <div id="titleWrap">
       <div id="divAsset">
         <h2>Assets</h2>
       </div>
       <div id="divCurrentAsset">
         <h2>Current Balance: ${{currentBalance}}</h2>
       </div>
-      <div id="divBookAsset">
-        <h2>Bookmarks</h2>
-      </div>
-         
+    </div>
+      
+    <div id="listWrap">   
       <div id="assets">
           {% if userAssets and userAssets.count > 1 %}
           <table class="currencyAssetsTable">
-          <th>Name</th>
+            <col id="nameCol">
+            <col id="buttonCol">
             {% for asset in userAssets %}
               {% if asset.assetName != 'USD'%}
               <tr>
                 <td>{{asset.assetName}}</td> <!--replace with company name-->
-                <th>
+                <td>
                   <form method='POST'>
                     {% csrf_token %}
-                    <button type="submit" name="assetGraph" value="{{asset.assetName}}">Show Graph</button>
+                    <button type="submit" name="assetGraph" value="{{asset.assetName}}">Details</button>
                   </form>
-                </th>
+                </td>
               </tr>
               {% endif %}
             {% endfor %}
           </table>
           {% endif %}
       </div>
-      <div id="graphDiv">
-        {% if graphic %}
-          <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
-            {% if selectedAsset %}
-              <tr>
-                <th>{{selectedAsset.priceBought}}</th>
-                <th>{{selectedAsset.shares}}</th>
-              </tr>
-            {% endif %}
-        {% endif %}
-      </div>
-      <div id="myBookmarks">
-          {% if userBookmarks %}
-          <table class="currencyBookmarksTable">
-            <col id="bookName">
-            <col id="bookDate">
-            <col id="bookPrice">
-            <tr>
-              <th class="leftAlign">Name</th>
-              <th class="centerAlign">Date Set</th>
-              <th class="rightAlign">Marked Price</th>
-            </tr>
-            {% for mark in userBookmarks %}
-              <tr>
-                <td class="leftAlign">{{mark.companyName}}</td>
-                <td class="centerAlign">{{mark.setDate}}</td>
-                <td class="rightAlign">${{mark.bookmarkPrice}}</td>
-              </tr>
-            {% endfor %}
-          </table>
-          {% else %}
-            <h1 id="myPortfolio-title">
-              No Bookmarks
-            </h1>
+      <div id="graphViewWrap">
+        <div id="graphDiv">
+          {% if not graphic == None %}
+            <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
+              {% if selectedAsset %}
+              <p>Price per share when bought: ${{selectedAsset.priceBought}}</p>
+              <p>Number of shares bought: {{selectedAsset.shares}}</p>
+              <p>Equity based on current price: $garbage</p>
+              {% endif %}
           {% endif %}
+        </div>
       </div>
     </div>
     
-    <div id="buySell">
-        <button class="options">Buy</button>
-        <button class="options">Sell</button>
+    <div id="bookTitleWrap">
+      <div id="divBookAsset">
+          <h2>Bookmarks</h2>
+      </div>
+    </div>
+    
+    <div id="bookmarkWrap">
+      <div id="myBookmarks">
+        {% if userBookmarks %}
+        <table class="currencyBookmarksTable">
+          <col id="bookName">
+          <col id="bookDate">
+          <col id="bookPrice">
+          <tr>
+            <th class="leftAlign">Name</th>
+            <th class="centerAlign">Date Set</th>
+            <th class="rightAlign">Marked Price</th>
+          </tr>
+          {% for mark in userBookmarks %}
+            <tr>
+              <td class="leftAlign">{{mark.companyName}}</td>
+              <td class="centerAlign">{{mark.setDate}}</td>
+              <td class="rightAlign">${{mark.bookmarkPrice}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+        {% else %}
+          <h1 id="myPortfolio-title">
+            No Bookmarks
+          </h1>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div id="sellDiv">
+        <button id="sellButton">Sell</button>
     </div>
   </body>
 </html>

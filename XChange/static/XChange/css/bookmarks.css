@@ -39,15 +39,17 @@
     font-family: Arial; 
 }
 
-#tableBookmark tr:hover {
-  background-color: #AAAAAA;
-}
 #tableBookmark tr:nth-child(odd){
     background-color: #dddddd;
 }
 
 #tableBookmark tr:nth-child(even){
     background-color: #eeeeee;
+}
+
+#tableBookmark tr:hover {
+  background-color: teal;
+  color: white;
 }
 
 #tableBookmark button {
@@ -63,6 +65,10 @@
   justify-content: center;
   /*border-radius: 5px;*/
   font-weight: bold;
+}
+
+#tableBookmark button:hover {
+  cursor: pointer;
 }
 
 .deleteCell {

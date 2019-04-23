@@ -61,13 +61,13 @@ input:focus {
   padding-bottom: 9px;
   font-weight: bold;
   font-size: 16px;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   cursor: pointer;
   width: 100px;
 }
 
 #s-table td, #s-table th {
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;*/
   padding: 8px;
   font-size: 20px;
   font-family: Arial;
@@ -95,14 +95,15 @@ input:focus {
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: left;
-  background-color: teal;
+  background-color: #222;
   color: white;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   border: none;
 }
 
-#s-table td:hover {
-    cursor: pointer;
+#s-table tr:hover {
+    background-color: teal;
+    color: white;
 }
 
 input[type=text] {
@@ -141,7 +142,7 @@ table {
 
 .buttonCell button {
   margin-top: 10px;
-  background-color: teal;
+  background-color: #222;
   border: none;
   color: white;
   /*padding: 8px;*/
@@ -149,14 +150,11 @@ table {
   padding-bottom: 9px;
   font-weight: bold;
   font-size: 16px;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   cursor: pointer;
   width: 80%;
   margin: auto;
 }
-/*.priceCol, .growthCol {*/
-/*  text-align: right;*/
-/*}*/
 
 body {
   background-image: url("/static/XChange/images/searchCity.png");
