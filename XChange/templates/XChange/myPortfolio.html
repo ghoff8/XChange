@@ -25,48 +25,56 @@
     </div>
     
     <div id="Wrap">
-      <div id="divAsset">
-        <h2>Assets</h2>
+      <div id="titleWrap">
+        <div id="divAsset">
+          <h2>Assets</h2>
+        </div>
+        <div id="divCurrentAsset">
+          <h2>Name of currently selected asset:</h2>
+        </div>
       </div>
-      <div id="divCurrentAsset">
-        <h2>Name of currently selected asset:</h2>
-      </div>
-      <div id="divBookAsset">
-        <h2>Bookmarks</h2>
-      </div>
-         
-      <div id="assets">
-          {% if userAssets and userAssets.count > 1 %}
-          <table class="currencyAssetsTable">
-          <th>Name</th>
-            {% for asset in userAssets %}
-              {% if asset.assetName != 'USD'%}
-              <tr>
-                <td>{{asset.assetName}}</td> <!--replace with company name-->
-                <th>
-                  <form method='POST'>
-                    {% csrf_token %}
-                    <button type="submit" name="assetGraph" value="{{asset.assetName}}">Show Graph</button>
-                  </form>
-                </th>
-              </tr>
-              {% endif %}
-            {% endfor %}
-          </table>
-          {% endif %}
-      </div>
-      <div id="graphDiv">
-        {% if not graphic == None %}
-          <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
-            {% if selectedAsset %}
-              <tr>
-                <th>{{selectedAsset.priceBought}}</th>
-                <th>{{selectedAsset.shares}}</th>
-              </tr>
+      
+      <div id="listWrap">   
+        <div id="assets">
+            {% if userAssets and userAssets.count > 1 %}
+            <table class="currencyAssetsTable">
+            <th>Name</th>
+              {% for asset in userAssets %}
+                {% if asset.assetName != 'USD'%}
+                <tr>
+                  <td>{{asset.assetName}}</td> <!--replace with company name-->
+                  <th>
+                    <form method='POST'>
+                      {% csrf_token %}
+                      <button type="submit" name="assetGraph" value="{{asset.assetName}}">Show Graph</button>
+                    </form>
+                  </th>
+                </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
             {% endif %}
-        {% endif %}
+        </div>
       </div>
-      <div id="myBookmarks">
+      <div id="graphViewWrap">
+        <div id="graphDiv">
+          {% if not graphic == None %}
+            <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
+              {% if selectedAsset %}
+                <tr>
+                  <th>{{selectedAsset.priceBought}}</th>
+                  <th>{{selectedAsset.shares}}</th>
+                </tr>
+              {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
+    <div id="divBookAsset">
+        <h2>Bookmarks</h2>
+    </div>
+    <div id="myBookmarks">
           {% if userBookmarks %}
           <table class="currencyBookmarksTable">
             <col id="bookName">
@@ -91,10 +99,8 @@
             </h1>
           {% endif %}
       </div>
-    </div>
     
     <div id="buySell">
-        <button class="options">Buy</button>
         <button class="options">Sell</button>
     </div>
   </body>

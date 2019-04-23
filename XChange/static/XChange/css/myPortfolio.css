@@ -7,25 +7,35 @@
 }
 
 #Wrap{
-    width: 100%;
+    width: 90%;
     margin: auto;
+    clear: both;
 }
 
-#divAsset {
-    width: 18%;
+#titleWrap {
+    width: 100%;    
 }
 
-#assets{
-    width: 15.9%;
-    padding: 20px;
+#graphTitleWrap {
+    width: 70%;
 }
+
+/*#divAsset {*/
+/*    width: 30%;*/
+/*}*/
+
+/*#assets{*/
+/*    width: 27.9%;*/
+/*    padding: 20px;*/
+/*}*/
 
 #divCurrentAsset {
-    width: 46%;
+    width: 69%;
 }
 
 #graphDiv {
-    width:46%;
+    width:69%;
+    height: 500px;
 }
 
 #graphDiv p {
