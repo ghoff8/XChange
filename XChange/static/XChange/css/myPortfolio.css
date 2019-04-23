@@ -43,7 +43,8 @@
 #assets {
     width: 30%;
     float: left;
-    overflow-y: auto;
+    height: 556px;
+    overflow-y: scroll;
 }
 
 .currencyAssetsTable {
