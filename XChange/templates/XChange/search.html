@@ -61,10 +61,7 @@
                         <td class="currPrice"> ${{ x.currentPrice }}</td>
                         <td class="currGrowth"> ${{x.currentChange}} ({{ x.currentGrowth }}%)</td>
                         <td class="buttonCell">
-                            <form method = POST>
-                                {% csrf_token %}
-                                <button class="buyDetailsButton" type="submit" name="buyDetailsButton" value="{{x.symbol}}">More Details/Buy</button>
-                            </form>
+                            <button class="buyDetailsButton" type="submit" name="buyDetailsButton"><a href='/assetDetails.html?asset={{x.symbol}}&BorS=Buy'>More Details/Buy</a></button>
                         </td>
                     </tr>
                     {% endfor %}
