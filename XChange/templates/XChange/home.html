@@ -38,7 +38,7 @@
             
         <!--<div id="parentDiv">-->
             <div id="bookmarkDiv">
-            <h1>Assets</h1>
+            <h1>Top Assets</h1>
             {% if userAssets %}    
                 <table id="bookTable">
                     <col id="compNameBook">
@@ -49,9 +49,9 @@
                         <th class="rightAlignEquity">Shares</th>
                         <th class="rightAlignEquity">Total Equity</th> 
                     </tr>
-                    {% for a, v in userAssets %}
+                    {% for a, v, n in userAssets %}
                         <tr>
-                            <td> {{a.assetName}}</td> <!--replace with company name instead of symbol-->
+                            <td> {{n}} ({{a.assetName}})</td> <!--replace with company name instead of symbol-->
                             <td class="rightAlignEquity"> {{a.shares}}</td>
                             <td class="rightAlignEquity"> ${{v}}</td>
                         </tr>

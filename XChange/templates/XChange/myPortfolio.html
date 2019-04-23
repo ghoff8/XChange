@@ -29,7 +29,7 @@
         <h2>Assets</h2>
       </div>
       <div id="divCurrentAsset">
-        <h2>Name of currently selected asset:</h2>
+        <h2>Current Balance: ${{currentBalance}}</h2>
       </div>
       <div id="divBookAsset">
         <h2>Bookmarks</h2>
@@ -56,7 +56,7 @@
           {% endif %}
       </div>
       <div id="graphDiv">
-        {% if not graphic == None %}
+        {% if graphic %}
           <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
             {% if selectedAsset %}
               <tr>

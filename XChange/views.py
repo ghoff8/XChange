@@ -79,7 +79,6 @@ def search(request):
             results = []
             if (search_data):
                 try:
-                    #currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(search_data).strip() + '/quote?displayPercent=true')
                     nameSearch = requests.get(djSettings.DATA_ENDPOINT + '/ref-data/symbols')
                 except requests.exceptions.RequestException:
                     error = "Error: " + str(nameSearch.status_code)
@@ -87,10 +86,10 @@ def search(request):
                 if(nameSearch.status_code == 200):
                     nameJsonData = json.loads(nameSearch.content)
                     for pos, x in enumerate(nameJsonData):
-                        if (str(search_data).lower() in x['name'].lower() or str(search_data).lower() in x['symbol'].lower()):
+                        if ((str(search_data).lower() in x['name'].lower() or str(search_data).lower() in x['symbol'].lower()) and not (x['symbol'] == 'BCCUSDT' or x['symbol'] == 'VENUSDT')):
                             currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x['symbol']) + '/quote?displayPercent=true')
                             symJsonData = json.loads(currentSearch.content)
-                            results.append({"symbol": x['symbol'], "name": x['name'], "currentPrice": symJsonData['latestPrice'], "currentGrowth": symJsonData['changePercent'], "currentChange": symJsonData['change']})
+                            results.append({"symbol": x['symbol'], "name": x['name'], "currentPrice": strsymJsonData['latestPrice'].format, "currentGrowth": symJsonData['changePercent'], "currentChange": symJsonData['change']})
                     if (not results):
                         error = "No Results"
                         return render(request, 'XChange/search.html', {'error': error})
@@ -102,7 +101,21 @@ def search(request):
                 error = "Please enter an asset symbol, cryptocurrency, or company name"
                 return render(request, 'XChange/search.html', {'error': error})
         elif (request.POST.get('buyDetailsButton')):
-            pass
+            selectedAsset = request.POST.get('buyDetailsButton')
+            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/quote?displayPercent=true')
+            jsonData = json.loads(currentSearch.content)
+            print jsonData
+            if (not jsonData['primaryExchange'] == 'crypto'):
+                stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/chart/1m').content
+                stockChartData = json.loads(stockReq)
+                for pos, obj in enumerate(stockChartData):
+                    date = obj.pop('label', None)
+                    close = float(obj.pop('close', None))
+                    data = {u'label': date, u'close': close, u'pos': int(pos)}
+                    stockChartData[pos] = data
+                graphic = getGraph(request, stockChartData).content
+                return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'graphic': graphic})
+            return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData})
             
     return render(request, 'XChange/search.html')
 
@@ -132,7 +145,6 @@ def bookmarks(request):
     return render(request, 'XChange/bookmarks.html', {'userBookmarks': userBookmarks})
     
 def home(request):
-   
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (djSettings.LOGIN_URL, request.path))
     graphic = None
@@ -145,6 +157,7 @@ def home(request):
     else:
         userAssets = Asset.objects.filter(userProfile = currentProfile).exclude(assetName = 'USD')
         totalValues = []
+        assetNames = []
         for x in userAssets:
             try:
                 currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x.assetName).strip() + '/quote')
@@ -152,7 +165,32 @@ def home(request):
                 pass
             jsonData = json.loads(currentSearch.content)
             totalValues.append(round(jsonData['latestPrice'] * x.shares, 2))
+            assetNames.append(jsonData['companyName'])
         
+        filteredUserAssets = []
+        filteredTotalValues = []
+        filteredAssetNames = []
+        
+        userAssetsList = list(userAssets)
+        totalValuesList = totalValues
+        i = 1
+        while(i < userAssets.count()):
+            max = 0
+            for pos, x in enumerate(userAssetsList):
+                if totalValues[pos] > max:
+                    max = totalValues[pos]
+            index = totalValues.index(max)
+            filteredUserAssets.append(userAssetsList[index])
+            filteredTotalValues.append(totalValues[index])
+            filteredAssetNames.append(assetNames[index])
+            
+            del userAssetsList[index]
+            del totalValues[index]
+            del assetNames[index]
+            i = i + 1
+            if (i > 5):
+                break
+            
         stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/list/gainers').content
         stockMovers = json.loads(stockReq)
         cryptoReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/market/crypto').content
@@ -165,8 +203,8 @@ def home(request):
         del cryptoTop[14]
         
         graphic = getHomeGraph(request, userAssets).content
-        userAssets = zip(userAssets, totalValues)
-        return render(request, 'XChange/home.html', {'userAssets': userAssets, 'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
+        filteredUserAssets = zip(filteredUserAssets, filteredTotalValues, filteredAssetNames)
+        return render(request, 'XChange/home.html', {'userAssets': filteredUserAssets, 'graphic': graphic, 'cryptoTop': cryptoTop, 'stockMovers': stockMovers})
     
 def myPortfolio(request):
     if not request.user.is_authenticated:
@@ -175,6 +213,8 @@ def myPortfolio(request):
     currentProfile = UserProfile.objects.get(user = request.user)
     userAssets = Asset.objects.filter(userProfile = currentProfile)
     userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).distinct()
+    currentBalance = userAssets.get(assetName = 'USD')
+    currentBalance = round(currentBalance.shares * currentBalance.priceBought, 2)
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
@@ -189,8 +229,8 @@ def myPortfolio(request):
                 stockChartData[pos] = data
             graphic = getGraph(request, stockChartData).content
             selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
-            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic, 'selectedAsset': selectedAsset})
-    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks})    
+            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic, 'selectedAsset': selectedAsset, 'currentBalance': currentBalance})
+    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'currentBalance': currentBalance})    
 
 
 def getGraph(request, data):
@@ -205,7 +245,10 @@ def getGraph(request, data):
         xPlots.append(obj['pos'])
         yPlots.append(obj['close'])
         xTicks.append(str(obj['label']))
-    ax.plot(xPlots, yPlots, 'g', linewidth= 3)
+    if(data[0]['close'] > data[-1]['close']):
+        ax.plot(xPlots, yPlots, 'r', linewidth= 3)
+    else:   
+        ax.plot(xPlots, yPlots, 'g', linewidth= 3)
     ax.set_xticks(np.arange(min(xPlots),max(xPlots)+1, 1.0))
     
     ax.set_xticklabels(xTicks, rotation='vertical', fontsize=10)
@@ -217,7 +260,7 @@ def getGraph(request, data):
     plt.tight_layout()
 
     buffer = BytesIO()
-    plt.savefig(buffer, format='png')
+    plt.savefig(buffer, format='png', transparent = True)
     buffer.seek(0)
     image_png = buffer.getvalue()
     buffer.close()
@@ -246,7 +289,7 @@ def getHomeGraph(request, data):
     for pos, x in enumerate(data):
         sizes.append(round((x.shares * latestPrices[pos])/totalValue*100, 2))
     arr = np.arange(100).reshape((10,10))
-    fig = plt.figure(figsize=(8,6))
+    fig = plt.figure(figsize=(7,6))
     ax1 = fig.add_subplot(111, frameon=False)
     for pos, x in enumerate(labels):
         labels[pos] = x + ' - ' + str(sizes[pos]) + '%'

@@ -137,6 +137,8 @@ LOGOUT_REDIRECT_URL = 'index'
 
 LOGIN_URL = 'login'
 
+DETAILS_URL = 'assetDetails'
+
 DATA_ENDPOINT = 'https://api.iextrading.com/1.0'
 
 DATE_FORMAT = '%m/%d/%Y %H:%M'
