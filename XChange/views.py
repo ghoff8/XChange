@@ -341,7 +341,8 @@ def getHomeGraph(request, data):
     for pos, x in enumerate(data):
         sizes.append(round((x.shares * latestPrices[pos])/totalValue*100, 2))
     arr = np.arange(100).reshape((10,10))
-    fig = plt.figure(figsize=(7,6))
+    fig = plt.figure(figsize=(16,10))
+    
     ax1 = fig.add_subplot(111, frameon=False)
     for pos, x in enumerate(labels):
         labels[pos] = x + ' - ' + str(sizes[pos]) + '%'
