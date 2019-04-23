@@ -32,7 +32,7 @@
     width: 90%;
     margin: auto;
     clear: both;
-    height: 550px;
+    height: 700px;
 }
 
 #listWrap > div {
@@ -106,6 +106,10 @@
     height: 100%;
     padding-top: 20px;
     padding-left: 40px;
+}
+
+#detailsPTag {
+    text-align: center;
 }
 
 #bookTitleWrap, #bookmarkWrap {
