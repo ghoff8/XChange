@@ -6,121 +6,168 @@
   font-size: 50px;
 }
 
-#Wrap{
+#titleWrap {
     width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    clear: both;
+}
+
+#titleWrap h2{
+    padding-left: 10px;
+}
+
+
+#divAsset {
+    width: 30.175%;
+    float: left;
+}
+
+#divCurrentAsset {
+    width: 65.1%;
+    float: right;
+}
+
+#listWrap {
+    width: 90%;
+    margin: auto;
+    clear: both;
+    height: 550px;
+}
+
+#listWrap > div {
+    border: 1px solid black;
+}
+
+#assets {
+    width: 30%;
+    float: left;
+    overflow-y: auto;
+}
+
+.currencyAssetsTable {
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+.currencyAssetsTable td {
+    border: 1px solid black;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 15px;
+    
+}
+
+.currencyAssetsTable tr:nth-child(odd){
+    background-color: #dddddd;
+}
+
+.currencyAssetsTable tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+.currencyAssetsTable tr:hover {
+  background-color: teal;
+  color: white;
+}
+
+.currencyAssetsTable button {
+    color: white;
+    background-color: #222;
+    font-family: Arial;
+    border: none;
+    padding: 10px;
+    margin: auto;
+    font-size: 18px;
+    font-weight: bold;
+    /*width: 100%;*/
+}
+
+.currencyAssetsTable button:hover {
+    cursor: pointer;    
+}
+
+#nameCol {
+    width: 80%;
+}
+
+#buttonCol {
+    width: 20%;
+}
+
+#graphViewWrap {
+    width: 65%;
+    float: right;
+    height: 100%;
+}
+
+#graphDiv {
+    height: 100%;
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+#bookTitleWrap, #bookmarkWrap {
+    width: 60%;
     margin: auto;
     clear: both;
 }
 
-#titleWrap {
-    width: 100%;    
+#bookTitleWrap {
+    margin-top: 50px;    
 }
 
-#graphTitleWrap {
-    width: 70%;
-}
-
-/*#divAsset {*/
-/*    width: 30%;*/
+/*#divBookAsset {*/
+/*    margin-top: 50px;*/
 /*}*/
 
-/*#assets{*/
-/*    width: 27.9%;*/
-/*    padding: 20px;*/
-/*}*/
-
-#divCurrentAsset {
-    width: 69%;
+#divBookAsset, #myBookmarks {
+    width: 100%;
+    margin: auto;
 }
 
-#graphDiv {
-    width:69%;
-    height: 500px;
-}
-
-#graphDiv p {
-    font-size: 20px;
-    font-family: "Verdana";
-}
-
-#todayGraph {
-    width: 70%;
-    padding-top: 20px;
-    height: auto;
-}
-
-#divBookAsset {
-    width: 35%;
-}
-
-#myBookmarks{
-    width: 32.8%;
+#divBookAsset h2 {
     padding: 20px;
+    margin: 0px;
 }
 
-#divAsset, #divCurrentAsset, #divBookAsset, #assets, #graphDiv, #myBookmarks{
-    border: 1px solid #000;
-    float: left;
-    text-align: center;
-}
 
 #divAsset, #divCurrentAsset, #divBookAsset {
-    margin-top: 2%;
     background-color: #222;
     font-family: Arial;
     color: white;
+    text-align: center;
+    font-size: 18px;
 }
 
 #assets, #graphDiv, #myBookmarks {
     background-color: rgba(255, 255, 255, .6);
-    height: auto;
     font-size: 20px;
-    padding-bottom: 40px;
-}
-
-#assetsUl, #myBookmarksUl {
-    list-style: none;
-    /*display:inline-block;*/
-    float: left;
-    font-size: 20px;
-    /*margin: 20px;*/
-}
-
-#assetsUl li, #myBookmarksUl li {
-    float: left;
-    clear: left;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-#myBookmarksUl{
-    list-style: none;
-    display:inline-block;
 }
 
 .currencyBookmarksTable {
-    margin: auto;
+    padding: 20px;
     width: 100%;
 }
 
 .currencyBookmarksTable td {
-    /*width: 30%;*/
     border: 1px solid black;
-    /*padding: 5px;*/
+    padding: 15px;
+    font-size: 18px;
 }
 
 .currencyBookmarksTable th{
   text-align: left;
+  padding: 15px;
   background-color: #222;
   color: white;
   font-family: Arial;
-  font-size: 18px;
+  font-size: 20px;
   border: none;
 }
 
 .currencyBookmarksTable td, th {
-    padding: 10px;
-    font-size: 15px;
     font-family: Arial; 
 }
 
@@ -135,6 +182,11 @@
     background-color: #eeeeee;
 }
 
+.currencyBookmarksTable tr:hover {
+  background-color: teal;
+  color: white;
+}
+
 .leftAlign {
     text-align: left;
 }
@@ -143,33 +195,20 @@
     text-align: right;
 }
 
-#bookName {
-    width: 40%;
-}
-
-#bookPrice {
-    width: 20%;
-}
 
 #bookName {
   width: 50%;
 }
 
 #bookDate {
-  width: 22%;
+  width: 25%;
 }
 
 #bookPrice {
-  width: 10%;
+  width: 15%;
 }
 
-#buySell{
-    width: 40%;
-    margin:auto;
-    margin-top: 20px;
-}
-
-.options {
+#sellButton {
     color: white;
     background-color: teal;
     width: 49%;

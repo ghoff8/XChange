@@ -9,7 +9,7 @@
   </head
   <body>
   <!--title of page needs to be Asset Name-->
-    <h1 id="assetDetails-title">Asset Name</h1> 
+    <h1 id="assetDetails-title">{{selectedAsset.companyName}}</h1> 
     <div class="navBarDiv">
       <ul class="navBarList">
         <li class="homeNav"><a href="/home.html">Home</a></li>
@@ -27,18 +27,22 @@
     
     <div id="allDetails">
         <div id="graphDiv">
-            <p>Asset Name Here</p>
+            <p>{{selectedAsset.companyName}}</p>
             <br>
-            <div id="graphImage">
-                
-            </div>
+            {% if graphic %}
+              <div id="graphImage">
+                <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
+              </div>
+            {% endif %}
+            
+            
         </div>
         <div id="buyDiv">
             <form>
-                <p>This asset is currently priced at $' ' ' ' '</p>
-                <label for="numOfShares">Quantity:</label>
-                <input type="number" id="numofShares" name="numOfShares" min="0" />
-                <p id="totalCost"> $totalcost</p>
+                <p>This asset is currently priced at $<label id="currentPrice">{{selectedAsset.latestPrice}}</label></p>
+                <label for="numOfShares">Shares:</label>
+                <input type="number" id="numOfShares" name="numOfShares" min="0" oninput="calculate()" />
+                <p id="totalCost"> $0</p>
                 <div id="buyButtonDiv">
                     <button id="buyButton">Buy</button>
                 </div>
