@@ -32,7 +32,8 @@
     width: 90%;
     margin: auto;
     clear: both;
-    height: 550px;
+    overflow-y: auto;
+    /*height: 700px;*/
 }
 
 #listWrap > div {
@@ -42,7 +43,8 @@
 #assets {
     width: 30%;
     float: left;
-    overflow-y: auto;
+    height: 556px;
+    overflow-y: scroll;
 }
 
 .currencyAssetsTable {
@@ -104,8 +106,12 @@
 
 #graphDiv {
     height: 100%;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     padding-left: 40px;
+}
+
+#detailsPTag {
+    text-align: center;
 }
 
 #bookTitleWrap, #bookmarkWrap {
