@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/static/XChange/css/common.css" />
     <script src="/static/XChange/js/myPortfolio.js"></script>
     <link rel="icon" href="/static/XChange/images/tab_favicon.png">
-  </head
+  </head>
   <body>
     <h1 id="myPortfolio-title">My Portfolio</h1>
     <div class="navBarDiv" id ="navBarDiv">
@@ -39,6 +39,7 @@
           <table class="currencyAssetsTable">
             <col id="nameCol">
             <col id="buttonCol">
+            <col id="sellCol>"
             {% for asset in userAssets %}
               {% if asset.assetName != 'USD'%}
               <tr>
@@ -48,6 +49,9 @@
                     {% csrf_token %}
                     <button type="submit" name="assetGraph" value="{{asset.assetName}}">Details</button>
                   </form>
+                </td>
+                <td>
+                  <button class="sellButton" type="submit" name="sellAsset" value="{{asset.assetName}}"><a href='/assetDetails.html?asset={{asset.assetName}}&BorS=Sell&shares={{asset.shares}}'>Sell Page</button>
                 </td>
               </tr>
               {% endif %}
@@ -63,7 +67,7 @@
               <div id="detailsPTag">
                 <p>Price per share when bought: ${{selectedAsset.priceBought}}</p>
                 <p>Number of shares bought: {{selectedAsset.shares}}</p>
-                <p>Equity based on current price: $garbage</p>
+                <p>Equity based on current price: ${{totalEquity}}</p>
               </div>
               {% endif %}
               
@@ -72,7 +76,7 @@
             {% if selectedAsset %}
               <p>Price per share when bought: ${{selectedAsset.priceBought}}</p>
               <p>Number of shares bought: {{selectedAsset.shares}}</p>
-              <p>Equity based on current price: $garbage</p>
+              <p>Equity based on current price: ${{totalEquity}}</p>
             
             {% endif %}
           {% endif %}
