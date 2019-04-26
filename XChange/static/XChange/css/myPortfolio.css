@@ -201,6 +201,21 @@
     text-align: right;
 }
 
+.sellDetailsButton {
+  margin-top: 10px;
+  background-color: #222;
+  border: none;
+  color: red;
+  /*padding: 8px;*/
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  width: 100%;
+  margin: auto;
+}
 
 #bookName {
   width: 50%;
@@ -214,10 +229,10 @@
   width: 15%;
 }
 
-#sellButton {
-    color: white;
+.sellButton {
+    color: red;
     background-color: teal;
-    width: 49%;
+    width: 100%;
     margin-top: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -225,6 +240,10 @@
     border:none;
     font-size: 25px;
     
+}
+.sellButton a {
+    text-decoration: none;
+    color: white;
 }
 
 body {
