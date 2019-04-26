@@ -145,7 +145,7 @@ def assetDetails(request):
             if (shares):
                 currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + asset + '/quote?displayPercent=true')
                 currentPrice = json.loads(currentSearch.content)['latestPrice']
-                if (totalBuy < currentBalanceAmount):
+                if (totalBuy <= currentBalanceAmount):
                     existingCheck = Asset.objects.filter(assetName = asset, userProfile = currentUser)
                     if(existingCheck):
                         pass #TODO
@@ -167,12 +167,18 @@ def assetDetails(request):
                     assetModel.delete()
                 else:
                     assetModel.shares -= float(shares)
+                    assetModel.save()
                 currentBalance.shares += totalSell
                 currentBalance.save()    
                 return redirect('home')
             else:
                 error = "Can't sell 0 shares"
                 return redirect('home')
+        elif(request.POST.get('createBookmark')):
+            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['createBookmark']).strip() + '/quote?displayPercent=true').content
+            jsonData = json.loads(currentSearch)
+            Bookmark.objects.create(userProfile = currentUser, companyName = jsonData['companyName'], setDate =  datetime.now(), bookmarkPrice = jsonData['latestPrice'], bookmarkAmount = float(request.POST.get('numOfShares')))
+            return redirect('bookmarks')
     selectedAsset = request.GET.get('asset')
     method = request.GET.get('BorS')
     currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/quote?displayPercent=true')
