@@ -69,9 +69,15 @@
       </div>
       <div id="graphViewWrap">
         <div id="graphDiv">
+          
+          
+         
           {% if graphic == None %}
-          <h2>&lt;- Select an Asset</h2></h2>
+            <h3>&#8672;   Select an Asset</h3>
           {% endif %}
+        
+          
+          
           {% if not graphic == None %}
             <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
               {% if selectedAsset %}
@@ -85,6 +91,11 @@
           {% elif graphic == None %}
           <!--<img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">-->
             {% if selectedAsset %}
+              <style type="text/css">
+                h3 {
+                  display: none;
+                }
+              </style>
               <p>Price per share when bought: ${{selectedAsset.priceBought}}</p>
               <p>Number of shares bought: {{selectedAsset.shares}}</p>
               <p>Equity based on current price: ${{totalEquity}}</p>

@@ -302,14 +302,11 @@ def myPortfolio(request):
                 data = {u'label': date, u'close': close, u'pos': int(pos)}
                 stockChartData[pos] = data
                 
-<<<<<<< HEAD
-            selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
-            if ('USDT' not in selectedAsset.assetName):
-=======
+
             selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])    
             totalEquity = quoteData['latestPrice'] * selectedAsset.shares
-            if ('USD' not in selectedAsset.assetName):
->>>>>>> 7c55431f16f4781748c1205e7eeadac6b5bdab0d
+            if ('USDT' not in selectedAsset.assetName):
+
                 graphic = getGraph(request, stockChartData).content
             else: 
                 graphic = None
