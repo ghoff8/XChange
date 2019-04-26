@@ -38,11 +38,13 @@
           {% if userAssets and userAssets.count > 1 %}
           <table class="currencyAssetsTable">
             <col id="nameCol">
+            <!--<col id ="compNameCol">-->
             <col id="buttonCol">
             {% for asset in userAssets %}
               {% if asset.assetName != 'USD'%}
               <tr>
-                <td>{{asset.assetName}}</td> <!--replace with company name-->
+                <td>{{asset.assetName}}</td>
+                <!--<td>{{asset.companyName}}</td><!--replace with company name-->
                 <td>
                   <form method='POST'>
                     {% csrf_token %}
@@ -52,6 +54,12 @@
               </tr>
               {% endif %}
             {% endfor %}
+            
+            
+            
+            
+            
+            
           </table>
           {% endif %}
       </div>

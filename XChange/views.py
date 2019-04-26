@@ -264,7 +264,7 @@ def myPortfolio(request):
             logout(request)
             return render(request, 'XChange/index.html')
         elif(request.POST.get('assetGraph')):
-            stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/chart/1m').content
+            stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/chart/1m').content 
             stockChartData = json.loads(stockReq)
             for pos, obj in enumerate(stockChartData):
                 date = obj.pop('label', None)
@@ -272,8 +272,8 @@ def myPortfolio(request):
                 data = {u'label': date, u'close': close, u'pos': int(pos)}
                 stockChartData[pos] = data
                 
-            selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])    
-            if ('USD' not in selectedAsset.assetName):
+            selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
+            if ('USDT' not in selectedAsset.assetName):
                 graphic = getGraph(request, stockChartData).content
             
             else: 
