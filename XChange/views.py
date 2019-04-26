@@ -135,6 +135,7 @@ def assetDetails(request):
     currentBalanceAmount = round(currentBalance.shares * currentBalance.priceBought, 2)
     error = None
     if (request.method == 'POST'):
+        print(request.POST);
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return redirect('index')
@@ -153,7 +154,7 @@ def assetDetails(request):
                         newlyCreatedAsset = Asset.objects.create(userProfile = currentUser, assetName = asset, timeBought = datetime.now(), shares = shares, priceBought = currentPrice)
                         currentBalance.shares -= totalBuy
                         currentBalance.save()
-                return redirect('home')
+                return redirect('myPortfolio')
             else:
                 error = "Can't buy 0 shares"
                 return redirect('home')
@@ -167,9 +168,10 @@ def assetDetails(request):
                     assetModel.delete()
                 else:
                     assetModel.shares -= float(shares)
+                    assetModel.save()
                 currentBalance.shares += totalSell
                 currentBalance.save()    
-                return redirect('home')
+                return redirect('myPortfolio')
             else:
                 error = "Can't sell 0 shares"
                 return redirect('home')

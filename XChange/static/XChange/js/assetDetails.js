@@ -16,6 +16,5 @@ function getTotalBuy() {
 function getTotalSell() {
 	var button = document.getElementById('sellButton');	
 	var result = document.getElementById('totalCost');	
-	console.log(result)
     button.value = result.textContent.replace('$', '').trim();
 }
