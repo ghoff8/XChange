@@ -19,12 +19,12 @@
 
 
 #divAsset {
-    width: 30.175%;
+    width: 35.15%;
     float: left;
 }
 
 #divCurrentAsset {
-    width: 65.1%;
+    width: 60.1%;
     float: right;
 }
 
@@ -41,7 +41,7 @@
 }
 
 #assets {
-    width: 30%;
+    width: 35%;
     float: left;
     height: 556px;
     overflow-y: scroll;
@@ -50,40 +50,40 @@
 .currencyAssetsTable {
     width: 100%;
     margin: auto;
-    padding: 20px;
+    /*padding: 10px;*/
 }
 
 .currencyAssetsTable td {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     font-family: Arial;
     font-size: 15px;
-    padding: 15px;
+    padding: 10px;
     
 }
 
-.currencyAssetsTable tr:nth-child(odd){
-    background-color: #dddddd;
-}
+/*.currencyAssetsTable tr:nth-child(odd){*/
+/*    background-color: #dddddd;*/
+/*}*/
 
-.currencyAssetsTable tr:nth-child(even){
-    background-color: #eeeeee;
-}
+/*.currencyAssetsTable tr:nth-child(even){*/
+/*    background-color: #eeeeee;*/
+/*}*/
 
-.currencyAssetsTable tr:hover {
-  background-color: teal;
-  color: white;
-}
+/*.currencyAssetsTable tr:hover {*/
+/*  background-color: teal;*/
+/*  color: white;*/
+/*}*/
 
 .currencyAssetsTable button {
     color: white;
     background-color: #222;
     font-family: Arial;
     border: none;
-    padding: 10px;
-    margin: auto;
+    padding: 5px;
+    margin: 0px;
     font-size: 18px;
     font-weight: bold;
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .currencyAssetsTable button:hover {
@@ -91,15 +91,23 @@
 }
 
 #nameCol {
-    width: 80%;
+    width: 60%;
 }
 
-#buttonCol {
-    width: 20%;
-}
+/*#buttonCol {*/
+/*    width: 15%;*/
+/*}*/
+
+/*#buttonCol {*/
+/*    width: 10%;*/
+/*}*/
+
+/*#sellCol {*/
+/*    width: 25%;    */
+/*}*/
 
 #graphViewWrap {
-    width: 65%;
+    width: 60%;
     float: right;
     height: 100%;
 }
@@ -110,8 +118,16 @@
     padding-left: 40px;
 }
 
+#graphDiv h2 {
+    font-family: Arial;
+    font-size: 25px;
+    padding-top: 20px;
+    margin-top: 0;
+}
+
 #detailsPTag {
-    text-align: center;
+    padding-left: 100px;
+    font-family: Arial;
 }
 
 #bookTitleWrap, #bookmarkWrap {
@@ -201,6 +217,21 @@
     text-align: right;
 }
 
+.sellDetailsButton {
+  margin-top: 10px;
+  background-color: #222;
+  border: none;
+  color: red;
+  /*padding: 8px;*/
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  width: 100%;
+  margin: auto;
+}
 
 #bookName {
   width: 50%;
@@ -214,10 +245,10 @@
   width: 15%;
 }
 
-#sellButton {
-    color: white;
+.sellButton {
+    color: red;
     background-color: teal;
-    width: 49%;
+    width: 100%;
     margin-top: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -225,6 +256,10 @@
     border:none;
     font-size: 25px;
     
+}
+.sellButton a {
+    text-decoration: none;
+    color: white;
 }
 
 body {

@@ -33,10 +33,10 @@
                 <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
               </div>
             {% else %}
-              <h2>Daily High: {{selectedAsset.high}}</h2>
-              <h2>Current Price: {{selectedAsset.latestPrice}}</h2>
-              <h2>Daily Low: {{selectedAsset.low}}</h2>
-              <h2>Previous Close: {{selectedAsset.previousClose}}</h2>
+              <h2>Daily High: ${{selectedAsset.high}}</h2>
+              <h2>Current Price: ${{selectedAsset.latestPrice}}</h2>
+              <h2>Daily Low: ${{selectedAsset.low}}</h2>
+              <h2>Previous Close: ${{selectedAsset.previousClose}}</h2>
             {% endif %}
             
             
@@ -44,18 +44,21 @@
         <div id="buyDiv">
           <form method='POST'>
                 <p>This asset is currently priced at $<label id="currentPrice" name = 'currentPrice'>{{selectedAsset.latestPrice}}</label></p>
-                <label for="numOfShares">Shares:</label>
-                <input type="number" id="numOfShares" name="numOfShares" min="0.1" step="0.1" oninput="calculate()" />
                 <p id="totalCost"> $0.00</p>
                 {% if method == 'Buy' %}
+                <label for="numOfShares">Shares:</label>
+                <input type="number" id="numOfShares" name="numOfShares" min="0.1" step="0.1" oninput="calculate()" />
                 <div id="buyButtonDiv">
                     {% csrf_token %}
-                    <button type="submit" id="buyButton" name="buyButton" onclick="getTotalCost()">Buy</button>
+                    <button type="submit" id="buyButton" name="buyButton" onclick="getTotalBuy()">Buy</button>
                 </div>
                 {% elif method == 'Sell' %}
+                <label for="numOfShares">Shares:</label>
+                <input type="number" id="numOfShares" name="numOfShares" min="0.1" max="{{assetShares}}" step="0.1" oninput="calculate()" />
+                <p>out of {{assetShares}} shares </p>
                 <div id="sellButtonDiv">
                     {% csrf_token %}
-                    <button type="submit" id="sellButton" name="sellButton" onclick="getTotalCost()">Buy</button>
+                    <button type="submit" id="sellButton" name="sellButton" onclick="getTotalSell()">Sell</button>
                 </div>
                 {% endif %}
           </form>
@@ -63,7 +66,10 @@
         <div id="setBookmarkDiv">
             <p>Create a bookmark for the current price.</p>
             <form method='POST'>
-                <button id="bookmarkButton" name="bookmark">Bookmark Now</button>
+                <label>Shares to mark: </label> 
+                <input type="number" id="numOfShares" name="numOfShares" min="0.1" step="0.1" />
+                {% csrf_token %}
+                <button id="bookmarkButton" name="createBookmark" value = "{{ selectedAsset.symbol }}">Bookmark Now</button>
             </form>
         </div>
     </div>

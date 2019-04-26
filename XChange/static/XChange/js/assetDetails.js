@@ -7,8 +7,14 @@ function calculate() {
       
 		
 	}
-function getTotalCost() {
+function getTotalBuy() {
 	var button = document.getElementById('buyButton');	
+	var result = document.getElementById('totalCost');	
+    button.value = result.textContent.replace('$', '').trim();
+}
+
+function getTotalSell() {
+	var button = document.getElementById('sellButton');	
 	var result = document.getElementById('totalCost');	
     button.value = result.textContent.replace('$', '').trim();
 }

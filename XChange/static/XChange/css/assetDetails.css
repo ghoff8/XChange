@@ -55,6 +55,18 @@
     font-size: 20px;
 }
 
+#sellButton {
+    color: white;
+    background-color: crimson;
+    width: 30%;
+    /*margin-top: 10px;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    border:none;
+    font-size: 20px;
+}
+
 #setBookmarkDiv {
     width: 30%;
     float: right;

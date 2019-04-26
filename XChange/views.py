@@ -135,6 +135,7 @@ def assetDetails(request):
     currentBalanceAmount = round(currentBalance.shares * currentBalance.priceBought, 2)
     error = None
     if (request.method == 'POST'):
+        print(request.POST);
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return redirect('index')
@@ -145,7 +146,7 @@ def assetDetails(request):
             if (shares):
                 currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + asset + '/quote?displayPercent=true')
                 currentPrice = json.loads(currentSearch.content)['latestPrice']
-                if (totalBuy < currentBalanceAmount):
+                if (totalBuy <= currentBalanceAmount):
                     existingCheck = Asset.objects.filter(assetName = asset, userProfile = currentUser)
                     if(existingCheck):
                         pass #TODO
@@ -153,14 +154,40 @@ def assetDetails(request):
                         newlyCreatedAsset = Asset.objects.create(userProfile = currentUser, assetName = asset, timeBought = datetime.now(), shares = shares, priceBought = currentPrice)
                         currentBalance.shares -= totalBuy
                         currentBalance.save()
-                return redirect('home')
+                return redirect('myPortfolio')
             else:
-                error = "Must buy 1 or more shares"
+                error = "Can't buy 0 shares"
+                return redirect('home')
+        elif(request.POST.get('sellButton')):
+            asset = request.GET.get('asset')
+            totalSell = float(request.POST.get('sellButton'))
+            shares = float(request.POST.get('numOfShares'))
+            if (shares):
+                assetModel = Asset.objects.get(userProfile = currentUser, assetName = asset)
+                if (assetModel.shares == shares):
+                    assetModel.delete()
+                else:
+                    assetModel.shares -= float(shares)
+                    assetModel.save()
+                currentBalance.shares += totalSell
+                currentBalance.save()    
+                return redirect('myPortfolio')
+            else:
+                error = "Can't sell 0 shares"
+                return redirect('home')
+        elif(request.POST.get('createBookmark')):
+            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['createBookmark']).strip() + '/quote?displayPercent=true').content
+            jsonData = json.loads(currentSearch)
+            Bookmark.objects.create(userProfile = currentUser, companyName = jsonData['companyName'], setDate =  datetime.now(), bookmarkPrice = jsonData['latestPrice'], bookmarkAmount = float(request.POST.get('numOfShares')))
+            return redirect('bookmarks')
     selectedAsset = request.GET.get('asset')
     method = request.GET.get('BorS')
     currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/quote?displayPercent=true')
     jsonData = json.loads(currentSearch.content)
-        
+    if (method == 'Sell'):
+        assetShares=request.GET.get('shares')
+    else:
+        assetShares = None
     if (not jsonData['primaryExchange'] == 'crypto'):
         stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + selectedAsset + '/chart/1m').content
         stockChartData = json.loads(stockReq)
@@ -170,8 +197,8 @@ def assetDetails(request):
             data = {u'label': date, u'close': close, u'pos': int(pos)}
             stockChartData[pos] = data
         graphic = getGraph(request, stockChartData).content
-        return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'graphic': graphic, 'currentBalance': currentBalanceAmount, 'method': method})
-    return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'currentBalance': currentBalanceAmount, 'method': method, 'error': error})
+        return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'graphic': graphic, 'currentBalance': currentBalanceAmount, 'method': method, 'assetShares': assetShares})
+    return render(request, 'XChange/assetDetails.html', {'selectedAsset': jsonData, 'currentBalance': currentBalanceAmount, 'method': method, 'error': error, 'assetShares': assetShares})
     
 def bookmarks(request):
     if not request.user.is_authenticated:
@@ -219,7 +246,7 @@ def home(request):
     totalValuesList = totalValues
     i = 0
     while(i < userAssets.count()):
-        if (i > 5):
+        if (i > 4):
             break
         max = 0
         for pos, x in enumerate(userAssetsList):
@@ -266,22 +293,32 @@ def myPortfolio(request):
         elif(request.POST.get('assetGraph')):
             stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/chart/1m').content 
             stockChartData = json.loads(stockReq)
+            quoteReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/quote').content
+            quoteData = json.loads(quoteReq)
+            
             for pos, obj in enumerate(stockChartData):
                 date = obj.pop('label', None)
                 close = float(obj.pop('close', None))
                 data = {u'label': date, u'close': close, u'pos': int(pos)}
                 stockChartData[pos] = data
                 
+<<<<<<< HEAD
             selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
             if ('USDT' not in selectedAsset.assetName):
+=======
+            selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])    
+            totalEquity = quoteData['latestPrice'] * selectedAsset.shares
+            if ('USD' not in selectedAsset.assetName):
+>>>>>>> 7c55431f16f4781748c1205e7eeadac6b5bdab0d
                 graphic = getGraph(request, stockChartData).content
-            
             else: 
                 graphic = None
             
             # selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
-            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'graphic': graphic, 'selectedAsset': selectedAsset})
-    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks})    
+            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'currentBalance': currentBalance, 'graphic': graphic, 'selectedAsset': selectedAsset, 'totalEquity': totalEquity})
+        elif(request.POST.get('sellAsset')):
+            pass
+    return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'currentBalance': currentBalance})    
 
            
 
