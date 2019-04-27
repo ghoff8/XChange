@@ -6,7 +6,7 @@ body {
     margin: auto;
     /*float: left;*/
     overflow: hidden;
-    width: 100%;
+    width: 60%;
 }
 
 .navBarList {
@@ -60,6 +60,7 @@ li a:hover {
     font-weight: bold;
     font-family: "Arial";
     font-size: 30px;
+    padding-right: 18px;
    
 }
 
@@ -73,7 +74,10 @@ li a:hover {
     font-family: "Arial";
     /*font-size: 20px;*/
      /*float: none;*/
-     /*width: 298px;*/
+     width: 143px;
+     /*position: relative;*/
+     /*right: 18px;*/
+     /*left: 0px;*/
 }
 
 .logOut:hover, .logOut:hover button {

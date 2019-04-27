@@ -11,10 +11,11 @@
   color: teal;
   font-family: Arial;
   font-size: 25px;
+  
 }
 
 .accountInfo {
-    padding-left: 20%;
+    padding-left: 10%;
     width: 300px;
     float: left;
 }
