@@ -1,36 +1,31 @@
 body {
-  position: relative;
-  min-height: 100%;
-  min-height: 100vh;
-
+    margin: 0;
+    padding: 0;
 }
-
 .navBarDiv {
     margin: auto;
     /*float: left;*/
     overflow: hidden;
     width: 100%;
-    /*left: 10%;*/
-
 }
 
 .navBarList {
     list-style-type: none;
-    display: block;
+    /*display: block;*/
     overflow: hidden;
     padding: 0;
-    margin: 0;
+    /*margin: 0;*/
     background-color: black;
     background-color: rgba(0, 0, 0, .4);
     /*border-radius: 15px;*/
   
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
+/*.sticky {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    width: 100%;*/
+/*}*/
 
 li {
     float: left;
@@ -40,14 +35,13 @@ li {
 li a {
     display: block;
     text-decoration: none;
-    /*color:black;*/
     color: white;
     padding: 15px 30px 15px 30px;
     text-align: center;
     font-weight: bold;
     font-family: "Arial";
     font-size: 30px;
-    width: 288px;
+    /*width: 288px;*/
     
     
 }
@@ -77,9 +71,9 @@ li a:hover {
     text-align: center;
     font-weight: bold;
     font-family: "Arial";
-    font-size: 20px;
+    /*font-size: 20px;*/
      /*float: none;*/
-     width: 298px;
+     /*width: 298px;*/
 }
 
 .logOut:hover, .logOut:hover button {
