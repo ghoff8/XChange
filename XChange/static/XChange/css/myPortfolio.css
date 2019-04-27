@@ -114,11 +114,11 @@
 
 #graphDiv {
     height: 100%;
-    /*padding-top: 20px;*/
+    padding-top: 20px;
     padding-left: 40px;
 }
 
-#graphDiv h2 {
+#graphDiv h3 {
     font-family: Arial;
     font-size: 25px;
     padding-top: 20px;

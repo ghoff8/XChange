@@ -291,7 +291,7 @@ def myPortfolio(request):
             logout(request)
             return render(request, 'XChange/index.html')
         elif(request.POST.get('assetGraph')):
-            stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/chart/1m').content
+            stockReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/chart/1m').content 
             stockChartData = json.loads(stockReq)
             quoteReq = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(request.POST['assetGraph']).strip() + '/quote').content
             quoteData = json.loads(quoteReq)
@@ -302,9 +302,11 @@ def myPortfolio(request):
                 data = {u'label': date, u'close': close, u'pos': int(pos)}
                 stockChartData[pos] = data
                 
+
             selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])    
             totalEquity = quoteData['latestPrice'] * selectedAsset.shares
-            if ('USD' not in selectedAsset.assetName):
+            if ('USDT' not in selectedAsset.assetName):
+
                 graphic = getGraph(request, stockChartData).content
             else: 
                 graphic = None
@@ -373,7 +375,8 @@ def getHomeGraph(request, data):
     for pos, x in enumerate(data):
         sizes.append(round((x.shares * latestPrices[pos])/totalValue*100, 2))
     arr = np.arange(100).reshape((10,10))
-    fig = plt.figure(figsize=(7,6))
+    fig = plt.figure(figsize=(16,10))
+    
     ax1 = fig.add_subplot(111, frameon=False)
     for pos, x in enumerate(labels):
         labels[pos] = x + ' - ' + str(sizes[pos]) + '%'
