@@ -1,0 +1,168 @@
+#search-title {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+#s {
+    width: 90%;
+    margin:auto;
+}
+
+#promptDiv {
+  /*background-color: #eee;*/
+  /*width: 50%;*/
+}
+
+#searchPrompt {
+    padding: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: Arial;
+    color: white;
+    background-color: rgba(0, 0, 0, .4);
+    text-align: center;
+    /*width: 20%;*/
+}
+
+#errorMsg {
+  color: white;
+  font-family: Arial;
+  background-color: rgba(0, 0, 0, .4);
+  padding: 20px;
+  width: 20%;
+  text-align: center;
+  /*border-radius: 10px;*/
+}
+
+input {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 20%;
+    border: 1px solid #AAAAAA;
+    box-sizing: border-box;
+}
+
+input:focus {
+    background-color: lightblue;    
+}
+
+#searchBarButton {
+  margin-top: 10px;
+  background-color: teal;
+  border: none;
+  color: white;
+  padding: 8px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-weight: bold;
+  font-size: 16px;
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  width: 100px;
+}
+
+#s-table td, #s-table th {
+  /*border: 1px solid #ddd;*/
+  padding: 8px;
+  font-size: 20px;
+  font-family: Arial;
+}
+
+#s-table td {
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-bottom: 15px;
+}
+
+#s-table tr:nth-child(even){
+    background-color: #dddddd;
+}
+
+#s-table tr:nth-child(odd){
+    background-color: #eee;
+}
+
+#searchBarButton {
+  width: 10%;
+}
+
+#s-table th {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: left;
+  background-color: #222;
+  color: white;
+  /*border-radius: 5px;*/
+  border: none;
+}
+
+#s-table tr:hover {
+    background-color: teal;
+    color: white;
+}
+
+input[type=text] {
+  width: 30%;
+}
+
+table {
+    width: 100%;
+    /*margin:auto;*/
+}
+
+#priceCol {
+  width: 15%;
+}
+
+#growthCol {
+  width: 15%;
+}
+
+#buttonCol {
+  width: 15%;
+}
+
+/*This not working for some reason*/
+.rightAlign {  
+  text-align: right;
+}
+
+.currPrice, .currGrowth {
+  text-align: right;
+}
+
+.buttonCell {
+  text-align: center;
+}
+
+.buyDetailsButton {
+  margin-top: 10px;
+  background-color: #222;
+  border: none;
+  /*color: white;*/
+  /*padding: 8px;*/
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  width: 80%;
+  margin: auto;
+}
+
+.buyDetailsButton a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+  background-image: url("/static/XChange/images/searchCity.png");
+  background-size: 3000px 1900px;
+  background-position: -400px -500px;
+}

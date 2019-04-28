@@ -1,0 +1,241 @@
+#home-title {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+#homeLogo {
+  width: 200px;
+  height: 112px;
+  display: block;
+  margin: auto;
+}
+
+h1 {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 30px;
+}
+
+#parentDiv {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+    padding-top: 20px;
+    /*padding-bottom: 20px;*/
+}
+
+#todayDiv {
+    float: left;
+    width: 40%;
+    height: 91%;
+    position: absolute;
+    display: inline-table;
+    border: 1px solid black;
+    margin-left: 4.5%;
+    /*padding-bottom: 1%;*/
+    /*height: auto;*/
+    background-color: rgba(255, 255, 255, .6);
+}
+
+#bookmarkDiv {
+    width:40%;
+    height: 100%;
+    position: absolute;
+    float: right;
+    left: 55%;
+    border: 1px solid black;
+    /*margin: auto;*/
+    /*padding-bottom: 25px;*/
+    margin-right: 4.5%;
+    height: 56vh;
+    background-color: rgba(255, 255, 255, .6);
+}
+
+#todayDiv img {
+    display: block;
+    margin: auto;
+}
+
+#todayGraph {
+    width: 70%;
+    height: auto;
+}
+
+#bookTable {
+    width: 90%;
+    margin: auto;
+}
+
+#bookTable td{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bookTable th{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bookTable tr:nth-child(odd){
+    background-color: #dddddd;
+}
+
+#bookTable tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+#bookTable th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  background-color: #222;
+  color: white;
+  font-family: Arial;
+  font-size: 18px;
+  /*border-radius: 5px;*/
+  border: none;
+}
+
+#bookTable td {
+    padding: 10px;
+    /*margin: 5px;*/
+    font-size: 17px;
+    font-family: Arial; 
+}
+
+#bookTable tr:hover {
+  background-color: teal;
+  color: white;
+}
+
+#compNameBook {
+  width: 68%;
+}
+
+#sharesBook {
+  width: 12%;
+}
+
+#equityBook {
+    width: 20%;
+}
+
+table .rightAlignEquity {
+  /*color: white;  */
+  text-align: right;
+}
+
+#currencyBar{
+    width: 15%;
+    /*display: table;*/
+    margin: auto;
+}
+
+#currencyBar, button {
+  color: white;
+  /*padding: 8px;*/
+  font-weight: bold;
+  font-size: 16px;
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  
+  display: inline;
+  margin: auto;
+}
+
+#currencyBar{
+    width: 100%;
+    float: left;
+    margin-left: 5px;
+    /*text-align: center;*/
+}
+
+
+.dynamic-bar{
+    background-color: rgba(255, 255, 255, .6);
+    color: teal;
+    width: 49%;
+    margin-top: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-decoration: none;
+    border:none;
+    font-size: 30px;
+}
+
+.dynamic-bar:focus {
+    outline: none;
+    /*background-color: #DDDDDD;*/
+    text-shadow: 5px 5px 5px #AAAAAA;
+    transition: text-shadow .3s;
+}
+
+.assetDiv {
+    width: 90%;
+    margin:auto;
+    /*list-style-type: none;*/
+}
+
+.currencyTable {
+    width: 100%;
+    table-layout: fixed;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+
+.currencyTable td, th {
+    /*border: 1px solid #ddd;*/
+    padding: 15px;
+    /*margin: 5px;*/
+    font-size: 17px;
+    font-family: Arial;
+    text-align: left;
+}
+
+.currencyTable td:not(.Not), th:not(.Not) {
+    text-align: right;    
+}
+
+.currencyTable th {
+    background-color: #222;
+    color: white;
+    font-size: 20px;
+}
+
+.nameCol {
+    width: 49.5%;
+}
+
+/*.textLeftCol {*/
+/*    text-align: left;*/
+/*}*/
+
+.currencyTable tr:nth-child(even){
+    background-color: #dddddd;
+}
+
+.currencyTable tr:nth-child(odd){
+    background-color: #eeeeee;
+}
+
+.currencyTable tr:hover {
+    background-color: teal;
+    color: white;
+}
+
+body {
+  background-image: url("/static/XChange/images/homeCity.png");
+  background-size: 4000px 2666px;
+  /*background-color: rba(0, 0,0, 0.5);*/
+  /*background-color: #EEEEEE;*/
+}
