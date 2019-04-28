@@ -30,7 +30,6 @@ enum34==1.1.6
 functools32==3.2.3.post2
 future==0.17.1
 futures==3.2.0
-gyp==0.1
 hibagent==1.0.0
 idna==2.7
 ikpdb==1.2.3
