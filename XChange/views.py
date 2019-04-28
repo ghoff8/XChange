@@ -375,15 +375,15 @@ def getHomeGraph(request, data):
     for pos, x in enumerate(data):
         sizes.append(round((x.shares * latestPrices[pos])/totalValue*100, 2))
     arr = np.arange(100).reshape((10,10))
-    fig = plt.figure(figsize=(16,10))
+    fig = plt.figure(figsize=(16,12))
     
     ax1 = fig.add_subplot(111, frameon=False)
     for pos, x in enumerate(labels):
         labels[pos] = x + ' - ' + str(sizes[pos]) + '%'
     ax1.pie(sizes, startangle=90, labeldistance = 2)
-    ax1.legend(labels, bbox_to_anchor=(1, 1.), loc = 'best', fancybox=True, framealpha=0)
+    ax1.legend(labels, bbox_to_anchor=(1, 1.), loc = 'best', fancybox=True, framealpha=0, prop={'size': 24})
     ax1.axis('equal')
-    ax1.set_title("Total Portfolio Value: $" + str(totalValue), fontdict={'fontsize': 18, 'fontweight': 'medium'}, fontname='sans-serif' )
+    ax1.set_title("Total Portfolio Value: $" + str(totalValue), fontdict={'fontsize': 48, 'fontweight': 'medium'}, fontname='sans-serif' )
     plt.tight_layout()
     
     buffer = BytesIO()
