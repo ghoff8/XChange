@@ -83,7 +83,7 @@ pystache==0.5.3
 python-daemon==1.5.2
 python-dateutil==1.5
 pytz==2018.9
-pyxattr==0.5.0
+pyxattr==0.5.1
 PyYAML==3.13
 regex==2019.3.12
 requests==2.20.1
