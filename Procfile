@@ -1,1 +1,1 @@
-web: python manage.py runserver $IP:$PORT
+heroku ps:scale web=1
