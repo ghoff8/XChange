@@ -100,7 +100,7 @@ subprocess32==3.5.3
 traitlets==4.3.2
 typing==3.6.6
 tzlocal==1.5.1
-urlgrabber==3.10
+urlgrabber==3.1.0
 urllib3==1.24.1
 virtualenv==16.2.0
 virtualenv-clone==0.5.2
