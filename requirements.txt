@@ -53,7 +53,7 @@ lockfile==0.8
 MarkupSafe==1.1.1
 matplotlib==2.2.4
 mccabe==0.6.1
-mercurial==4.2.3
+mercurial==4.2.2
 numpy==1.16.2
 pandas==0.24.2
 paramiko==1.15.1
