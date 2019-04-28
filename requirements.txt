@@ -1,5 +1,6 @@
 Django==1.11.10
 django-extensions==2.1.6
+gunicorn == 18.0
 jsonpatch==1.2
 jsonpointer==1.0
 jsonschema==2.6.0
