@@ -1,0 +1,108 @@
+
+#assetDetails-title {
+  color: teal;
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+#allDetails {
+    width: 85%;
+    margin: auto;
+}
+
+#allDetails > div {
+    background-color: rgba(255, 255, 255, .7);
+    /*border: 1px solid black;*/
+    /*box-shadow: 12px 12px 15px;*/
+    /*border-radius: 50px;*/
+}
+
+#graphDiv {
+    width: 60%;
+    float: left;
+    height: 60vh;
+    margin-top: 60px;
+    padding: 30px;
+}
+
+#graphImage {
+    width: 70%;
+}
+
+#buyDiv {
+    width: 30%;
+    float: right;
+    height: 25vh;
+    margin-top: 60px;
+    padding: 30px;
+}
+
+#buyDiv input[type=number] {
+    width: 40px;
+}
+
+#buyButton {
+    color: white;
+    background-color: teal;
+    width: 30%;
+    /*margin-top: 10px;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    border:none;
+    font-size: 20px;
+}
+
+#sellButton {
+    color: white;
+    background-color: crimson;
+    width: 30%;
+    /*margin-top: 10px;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    border:none;
+    font-size: 20px;
+}
+
+#setBookmarkDiv {
+    width: 30%;
+    float: right;
+    height: 25vh;
+    margin-top: 35px;
+    padding: 30px;
+}
+
+#bookmarkButton {
+    color: white;
+    background-color: teal;
+    width: 50%;
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    border:none;
+    font-size: 20px;
+}
+
+#buyDiv, #setBookmarkDiv, #graphDiv {
+    text-align: center;
+}
+
+#buyDiv p, #buyDiv label, #setBookmarkDiv p, #graphDiv p {
+    font-family: Verdana;
+    font-size: 20px;
+}
+
+body {
+  background-image: url("/static/XChange/images/assetDetailsCity.png");
+  background-size: 2000px 1300px;
+  /*background-color: rba(0, 0,0, 0.5);*/
+  /*background-color: #EEEEEE;*/
+}
+
+h2 {
+    text-align: center;
+}

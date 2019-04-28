@@ -1,0 +1,111 @@
+#bookmark-title {
+  color: teal;
+  /*padding: 10px;*/
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+#tableDiv {
+  width: 80%;
+  margin: auto;
+}
+
+#tableBookmark {
+  padding-top: 20px;  
+}
+
+#tableBookmark td{
+  border: 1px solid #ddd;
+}
+
+#deleteHeader {
+  text-align: center;
+}
+
+#tableBookmark th{
+  text-align: left;
+  background-color: #222;
+  color: white;
+  font-family: Arial;
+  font-size: 20px;
+  border: none;
+}
+
+#tableBookmark td, th {
+    padding: 15px;
+    font-size: 17px;
+    font-family: Arial; 
+}
+
+#tableBookmark tr:nth-child(odd){
+    background-color: #dddddd;
+}
+
+#tableBookmark tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+#tableBookmark tr:hover {
+  background-color: teal;
+  color: white;
+}
+
+#tableBookmark button {
+  background-color: #222;
+  color: white;
+  font-size: 18px;
+  font-family: Arial;
+  padding: 8px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: -15px;
+  border: none;
+  justify-content: center;
+  /*border-radius: 5px;*/
+  font-weight: bold;
+}
+
+#tableBookmark button:hover {
+  cursor: pointer;
+}
+
+.deleteCell {
+  text-align: center;
+}
+/*#tableBookmark tr:nth-child(even){*/
+/*  background-color: #dddddd;*/
+/*}*/
+
+input[type=text] {
+  width: 30%;
+}
+
+
+table {
+    width: 100%;
+    margin: auto;
+}
+
+#compNameBook {
+  width: 50%;
+}
+
+#dateBook {
+  width: 25%;
+}
+
+#priceBook {
+  width: 10%;
+}
+
+table .rightAlignPrice {
+  /*color: white;  */
+  text-align: right;
+}
+
+body {
+  background-image: url("/static/XChange/images/bookmarkCity.png");
+  background-size: 2000px 1333px;
+}

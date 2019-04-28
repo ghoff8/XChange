@@ -1,0 +1,268 @@
+#myPortfolio-title {
+  color: teal;
+  text-align: center;
+  padding-top: 1%;
+  font-family: 'Arial';
+  font-size: 50px;
+}
+
+#titleWrap {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    clear: both;
+}
+
+#titleWrap h2{
+    padding-left: 10px;
+}
+
+
+#divAsset {
+    width: 35.15%;
+    float: left;
+}
+
+#divCurrentAsset {
+    width: 60.1%;
+    float: right;
+}
+
+#listWrap {
+    width: 90%;
+    margin: auto;
+    clear: both;
+    overflow-y: auto;
+    /*height: 700px;*/
+}
+
+#listWrap > div {
+    border: 1px solid black;
+}
+
+#assets {
+    width: 35%;
+    float: left;
+    height: 556px;
+    overflow-y: scroll;
+}
+
+.currencyAssetsTable {
+    width: 100%;
+    margin: auto;
+    /*padding: 10px;*/
+}
+
+.currencyAssetsTable td {
+    /*border: 1px solid black;*/
+    font-family: Arial;
+    font-size: 15px;
+    padding: 10px;
+    
+}
+
+/*.currencyAssetsTable tr:nth-child(odd){*/
+/*    background-color: #dddddd;*/
+/*}*/
+
+/*.currencyAssetsTable tr:nth-child(even){*/
+/*    background-color: #eeeeee;*/
+/*}*/
+
+/*.currencyAssetsTable tr:hover {*/
+/*  background-color: teal;*/
+/*  color: white;*/
+/*}*/
+
+.currencyAssetsTable button {
+    color: white;
+    background-color: #222;
+    font-family: Arial;
+    border: none;
+    padding: 5px;
+    margin: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.currencyAssetsTable button:hover {
+    cursor: pointer;    
+}
+
+#nameCol {
+    width: 60%;
+}
+
+/*#buttonCol {*/
+/*    width: 15%;*/
+/*}*/
+
+/*#buttonCol {*/
+/*    width: 10%;*/
+/*}*/
+
+/*#sellCol {*/
+/*    width: 25%;    */
+/*}*/
+
+#graphViewWrap {
+    width: 60%;
+    float: right;
+    height: 100%;
+}
+
+#graphDiv {
+    height: 100%;
+    /*padding-top: 20px;*/
+    padding-left: 40px;
+}
+
+#graphDiv h3 {
+    font-family: Arial;
+    font-size: 25px;
+    padding-top: 20px;
+    margin-top: 0;
+}
+
+#detailsPTag {
+    padding-left: 100px;
+    font-family: Arial;
+}
+
+#bookTitleWrap, #bookmarkWrap {
+    width: 60%;
+    margin: auto;
+    clear: both;
+}
+
+#bookTitleWrap {
+    margin-top: 50px;    
+}
+
+/*#divBookAsset {*/
+/*    margin-top: 50px;*/
+/*}*/
+
+#divBookAsset, #myBookmarks {
+    width: 100%;
+    margin: auto;
+}
+
+#divBookAsset h2 {
+    padding: 20px;
+    margin: 0px;
+}
+
+
+#divAsset, #divCurrentAsset, #divBookAsset {
+    background-color: #222;
+    font-family: Arial;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+#assets, #graphDiv, #myBookmarks {
+    background-color: rgba(255, 255, 255, .6);
+    font-size: 20px;
+}
+
+.currencyBookmarksTable {
+    padding: 20px;
+    width: 100%;
+}
+
+.currencyBookmarksTable td {
+    border: 1px solid black;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.currencyBookmarksTable th{
+  text-align: left;
+  padding: 15px;
+  background-color: #222;
+  color: white;
+  font-family: Arial;
+  font-size: 20px;
+  border: none;
+}
+
+.currencyBookmarksTable td, th {
+    font-family: Arial; 
+}
+
+.currencyBookmarksTable tr:hover {
+  background-color: #AAAAAA;
+}
+.currencyBookmarksTable tr:nth-child(odd){
+    background-color: #dddddd;
+}
+
+.currencyBookmarksTable tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+.currencyBookmarksTable tr:hover {
+  background-color: teal;
+  color: white;
+}
+
+.leftAlign {
+    text-align: left;
+}
+
+.rightAlign {
+    text-align: right;
+}
+
+.sellDetailsButton {
+  margin-top: 10px;
+  background-color: #222;
+  border: none;
+  color: red;
+  /*padding: 8px;*/
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  width: 100%;
+  margin: auto;
+}
+
+#bookName {
+  width: 50%;
+}
+
+#bookDate {
+  width: 25%;
+}
+
+#bookPrice {
+  width: 15%;
+}
+
+.sellButton {
+    color: red;
+    background-color: teal;
+    width: 100%;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    border:none;
+    font-size: 25px;
+    
+}
+.sellButton a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+  background-image: url("/static/XChange/images/portfolioCity.png");
+  background-size: 3000px 1900px;
+}
