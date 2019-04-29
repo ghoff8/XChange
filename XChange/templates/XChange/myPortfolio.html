@@ -84,7 +84,7 @@
               <div id="detailsPTag">
                 <p>Share Price When Purchased: ${{selectedAsset.priceBought}}</p>
                 <p>Shares Bought: {{selectedAsset.shares}}</p>
-                <p>Current Equity: ${{totalEquity}}</p>
+                <p>Current Equity: ${{totalEquity}} (${{gainLoss}})</p>
               </div>
               {% endif %}
               
@@ -96,10 +96,9 @@
                   display: none;
                 }
               </style>
-              <p>Price per share when bought: ${{selectedAsset.priceBought}}</p>
-              <p>Number of shares bought: {{selectedAsset.shares}}</p>
-              <p>Equity based on current price: ${{totalEquity}}</p>
-            
+                <p>Share Price When Purchased: ${{selectedAsset.priceBought}}</p>
+                <p>Shares Bought: {{selectedAsset.shares}}</p>
+                <p>Current Equity: ${{totalEquity}} (${{gainLoss}})</p>
             {% endif %}
           {% endif %}
         </div>
