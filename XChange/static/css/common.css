@@ -82,7 +82,7 @@ li a:hover {
 
 .logOut:hover, .logOut:hover button {
     color: red;
-    background-color: #EEE;
+    /*background-color: #EEE;*/
 }
 
 footer {
