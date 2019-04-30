@@ -137,7 +137,6 @@ def assetDetails(request):
     currentBalanceAmount = round(currentBalance.shares * currentBalance.priceBought, 2)
     error = None
     if (request.method == 'POST'):
-        print(request.POST);
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
             return redirect('index')
