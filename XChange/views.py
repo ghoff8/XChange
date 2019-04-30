@@ -165,13 +165,11 @@ def assetDetails(request):
             shares = float(request.POST.get('numOfShares'))
             if (shares):
                 assetModel = Asset.objects.get(userProfile = currentUser, assetName = asset)
-                if (assetModel.shares == shares):
+                subtract = round(assetModel.shares - round(shares,2),2)
+                if (subtract == 0):
                     assetModel.delete()
                 else:
-                    subtract = assetModel.shares - round(shares,2)
-                    if subtract < 0:
-                        subtract = 0
-                    assetModel.shares -= subtract
+                    assetModel.shares = round(assetModel.shares - subtract,2)
                     assetModel.save()
                 currentBalance.shares += totalSell
                 currentBalance.save()    
