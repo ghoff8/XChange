@@ -316,13 +316,14 @@ def myPortfolio(request):
 
             selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])    
             totalEquity = quoteData['latestPrice'] * selectedAsset.shares
+            gainLoss = selectedAsset.priceBought * selectedAsset.shares - totalEquity
             if ('USDT' not in selectedAsset.assetName):
                 graphic = getGraph(request, stockChartData).content
             else: 
                 graphic = None
             
             # selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])
-            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'currentBalance': currentBalance, 'graphic': graphic, 'selectedAsset': selectedAsset, 'totalEquity': totalEquity})
+            return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'currentBalance': currentBalance, 'graphic': graphic, 'selectedAsset': selectedAsset, 'totalEquity': totalEquity, 'gainLoss': gainLoss})
         elif(request.POST.get('sellAsset')):
             pass
     return render(request, 'XChange/myPortfolio.html', {'userAssets': userAssets, 'userBookmarks': userBookmarks, 'currentBalance': currentBalance})    

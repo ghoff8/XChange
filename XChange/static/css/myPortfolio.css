@@ -125,8 +125,9 @@
     margin-top: 0;
 }
 
-#detailsPTag {
+.detailsPTag {
     padding-left: 100px;
+    padding-top: 1px;
     font-family: Arial;
 }
 

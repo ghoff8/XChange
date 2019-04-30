@@ -23,7 +23,7 @@
           </form></li>
       </ul>
     </div>
-    <h2>Current Balance: ${{currentBalance}}</h2>
+    <h2 id="assetCurrBal">Current Balance: ${{currentBalance}}</h2>
     <div id="allDetails">
         <div id="graphDiv">
             <p>{{selectedAsset.companyName}}</p>
@@ -33,10 +33,10 @@
                 <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
               </div>
             {% else %}
-              <h2>Daily High: ${{selectedAsset.high}}</h2>
-              <h2>Current Price: ${{selectedAsset.latestPrice}}</h2>
-              <h2>Daily Low: ${{selectedAsset.low}}</h2>
-              <h2>Previous Close: ${{selectedAsset.previousClose}}</h2>
+              <h3>Daily High: ${{selectedAsset.high}}</h3>
+              <h3>Current Price: ${{selectedAsset.latestPrice}}</h3>
+              <h3>Daily Low: ${{selectedAsset.low}}</h3>
+              <h3>Previous Close: ${{selectedAsset.previousClose}}</h3>
             {% endif %}
             
             

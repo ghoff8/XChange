@@ -7,6 +7,11 @@
   font-size: 50px;
 }
 
+#assetCurrBal {
+    font-family: Arial;
+    font-size: 30px;
+}
+
 #allDetails {
     width: 85%;
     margin: auto;
@@ -22,9 +27,10 @@
 #graphDiv {
     width: 60%;
     float: left;
-    height: 60vh;
+    height: auto;
     margin-top: 60px;
     padding: 30px;
+    font-family: Arial;
 }
 
 #graphImage {
@@ -47,7 +53,7 @@
     color: white;
     background-color: teal;
     width: 30%;
-    /*margin-top: 10px;*/
+    margin-top: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
     text-decoration: none;
@@ -70,7 +76,7 @@
 #setBookmarkDiv {
     width: 30%;
     float: right;
-    height: 25vh;
+    height: auto;
     margin-top: 35px;
     padding: 30px;
 }
@@ -91,9 +97,14 @@
     text-align: center;
 }
 
-#buyDiv p, #buyDiv label, #setBookmarkDiv p, #graphDiv p {
+#buyDiv p, #buyDiv label, #setBookmarkDiv p {
     font-family: Verdana;
     font-size: 20px;
+}
+
+#graphDiv p {
+    font-size: 30px;
+    font-weight: bold;
 }
 
 body {
