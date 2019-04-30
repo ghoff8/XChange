@@ -7,15 +7,3 @@ function openAsset(buttonName) {
     document.getElementById(buttonName).style.display = "block";
 }
 
-window.onscroll = function() {stickyNav()};
-
-var navbar = document.getElementsByClassName("navBarDiv");
-var sticky = navbar.offsetTop;
-
-function stickyNav() {
-    if (window.pageYOffset >= sticky) {
-        navbar.classList.add("stick");
-    } else {
-        navbar.classList.remove("stick");
-    }
-}
