@@ -81,7 +81,7 @@
           {% if not graphic == None %}
             <img id="todayGraph" src="data:image/png;base64,{{graphic|safe}}" alt="Today's Graph">
               {% if selectedAsset %}
-              <div id="detailsPTag">
+              <div class="detailsPTag">
                 <p>Share Price When Purchased: ${{selectedAsset.priceBought}}</p>
                 <p>Shares Bought: {{selectedAsset.shares}}</p>
                 <p>Current Equity: ${{totalEquity}} (${{gainLoss}})</p>
@@ -96,10 +96,12 @@
                   display: none;
                 }
               </style>
+              <div class="detailsPTag">
                 <h2>Sorry, no graph can currently be displayed for this stock.</h2>
                 <p>Share Price When Purchased: ${{selectedAsset.priceBought}}</p>
                 <p>Shares Bought: {{selectedAsset.shares}}</p>
                 <p>Current Equity: ${{totalEquity}} (${{gainLoss}})</p>
+              </div>
             {% endif %}
           {% endif %}
         </div>
