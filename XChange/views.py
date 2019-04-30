@@ -14,7 +14,8 @@ matplotlib.use('Agg')
 from matplotlib import pylab
 import matplotlib.pyplot as plt
 from pylab import *
-import PIL, PIL.Image, StringIO
+#import PIL, PIL.Image, StringIO
+import Image, StringIO
 import base64
 from io import BytesIO
 import requests
