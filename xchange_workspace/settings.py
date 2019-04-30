@@ -125,7 +125,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'XChange/static')
 
-STATIC_URL = '/static/XChange/'
+STATIC_URL = '/static/XChange'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "XChange/static/XChange"),
