@@ -283,9 +283,18 @@ def myPortfolio(request):
     graphic = None
     currentProfile = UserProfile.objects.get(user = request.user)
     userAssets = Asset.objects.filter(userProfile = currentProfile)
-    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).distinct()
+    assetNames = []
+    for x in userAssets:
+        try:
+            currentSearch = requests.get(djSettings.DATA_ENDPOINT + '/stock/' + str(x.assetName).strip() + '/quote')
+        except requests.exceptions.RequestException:
+            pass
+        jsonData = json.loads(currentSearch.content)
+        assetNames.append(jsonData['companyName'])
     currentBalance = userAssets.get(assetName = 'USD')
     currentBalance = round(currentBalance.shares * currentBalance.priceBought, 2)
+    userAssets = zip(userAssets, assetNames)
+    userBookmarks = Bookmark.objects.filter(userProfile = currentProfile).distinct().order_by('setDate')[:5]
     if (request.method == 'POST'):
         if (request.POST.get('submit') == 'Logout'):
             logout(request)
@@ -306,7 +315,6 @@ def myPortfolio(request):
             selectedAsset = Asset.objects.get(userProfile = currentProfile, assetName = request.POST['assetGraph'])    
             totalEquity = quoteData['latestPrice'] * selectedAsset.shares
             if ('USDT' not in selectedAsset.assetName):
-
                 graphic = getGraph(request, stockChartData).content
             else: 
                 graphic = None

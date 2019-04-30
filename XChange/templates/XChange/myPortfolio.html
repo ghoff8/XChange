@@ -41,10 +41,10 @@
             <!--<col id ="compNameCol">-->
             <col id="buttonCol">
             <col id="sellCol>"
-            {% for asset in userAssets %}
+            {% for asset, compName in userAssets %}
               {% if asset.assetName != 'USD'%}
               <tr>
-                <td>{{asset.assetName}}</td>
+                <td>{{compName}} ({{asset.assetName}})</td>
                 <!--<td>{{asset.companyName}}</td><!--replace with company name-->
                 <td>
                   <form method='POST'>
@@ -108,7 +108,7 @@
     
     <div id="bookTitleWrap">
       <div id="divBookAsset">
-          <h2>Bookmarks</h2>
+          <h2>Oldest Bookmarks</h2>
       </div>
     </div>
     
