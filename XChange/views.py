@@ -9,7 +9,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+import matplotlib
 from matplotlib import pylab
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from pylab import *
 import PIL, PIL.Image, StringIO
