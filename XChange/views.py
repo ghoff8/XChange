@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 import matplotlib
-from matplotlib import pylab
 matplotlib.use('Agg')
+from matplotlib import pylab
 import matplotlib.pyplot as plt
 from pylab import *
 import PIL, PIL.Image, StringIO
